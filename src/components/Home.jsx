@@ -17,6 +17,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useNavigate } from "react-router-dom";
 import { Snackbar, Alert } from '@mui/material';
 import { current } from "@reduxjs/toolkit";
+import { makeApiCallGet, makeApiCall, makeApiCallWithAuth, makeApiGetCallWithAuth, makeSwinkApiCallWithAuth } from '../Services/Api' 
 
 
 function Home (){
@@ -31,6 +32,18 @@ function Home (){
     const [timeLeft, setTimeLeft]  = useState(10)
     const [resend, setResend]  = useState(false)
     const time = useRef(null);
+
+    const queryParams = new URLSearchParams(window.location.search);
+    const hdnRefNumber = queryParams.get('hdnRefNumber');
+    const transactionId = queryParams.get('transactionId');
+    const amount = queryParams.get('amount');
+
+    useEffect(() => {
+        if(transactionId){
+          navigate('/offers');
+        }
+      },[]); 
+      
     const offers = [
         {
             icon:zee5,
@@ -60,7 +73,11 @@ function Home (){
         setinfoDailog(false);
     };
     const handleClickOpenInfo = () => {
+        if(sessionStorage.getItem('otp')){
         setinfoDailog(true);
+        }else{
+            setOpen(true);  
+        }
     };
 
     const validationSchema = Yup.object({
@@ -108,6 +125,7 @@ function Home (){
                 setOtpDailog(false)
                 clearInterval(time.current);  
                 setTimeLeft(10);
+                sessionStorage.setItem('otp', true)
             }else{
                 setwrongOtp(true)
                 setResend(true)
@@ -128,7 +146,12 @@ function Home (){
         }
     }
 
+
+
     useEffect(()=>{
+        if(sessionStorage.getItem('otp')){
+            setOpen(false);
+            }
     if (timeLeft === 0) {
         clearInterval(time.current);
         time.current = null;  
@@ -151,7 +174,44 @@ function Home (){
     }, [OtpDailog]);
 
     const handlePayment = ()=>{
-    navigate('/offer')
+        let indata ={
+            test: "1"
+           }
+         
+        
+           makeApiCall('validationCheckDemo', indata)
+            .then((response) => {
+              console.log(response?.data?.data?.data)
+              if(response?.data?.data?.data?.url){
+                let paymenturl = response.data.data.data.url;
+                //setIsloading(false);
+                window.location.href = paymenturl;
+                }
+              /*else if(response?.data?.data?.data?.errorstring === "Failed"){
+                 setIsloading(false);
+                 if(!modal){
+                  setModal('failed')
+                  setErrmessage('Something Went Wrong')
+                  setIsloading(false);
+                  }
+              
+              }
+              else if(response?.data?.status === 200){
+                sessionStorage.setItem('coupon',JSON.stringify(response.data.data))
+                setIsloading(false);
+                navigate('/offer')
+              }
+              else{
+                setIsloading(false);
+                if(!modal){
+                  setModal('failed')
+                  setErrmessage(response.data?.message)
+                  //setIsloading(false);
+                  }
+              }*/
+               
+            })
+            .catch((e) => {console.log("err", e);setIsloading(false);})
     }
 
     const poster = (

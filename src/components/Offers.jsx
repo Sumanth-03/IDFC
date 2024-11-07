@@ -22,21 +22,24 @@ const offers = [
         offerTitle:'ZEE5',
         offer:'3 month subscription',
         value:'1000',
-        code:'CHEGGIDFCZEP08128JOY'
+        code:'CHEGGIDFCZEP08128JOY',
+        offerLink:'https://www.zee5.com'
     },
     {
         icon:lenscart,
         offerTitle:'LENSKART',
         offer:'2 month subscription',
         value:'1600',
-        code:'CHEGGIDFCZEP08128JOY'
+        code:'CHEGGIDFCZEP08128JOY',
+        offerLink:'https://www.lenskart.com'
     },
     {
         icon:audible,
         offerTitle:'AUDIBLE',
         offer:'Free 2 months subscription ',
         value:'398',
-        code:'CHEGGIDFCZEP08128JOY'
+        code:'CHEGGIDFCZEP08128JOY',
+        offerLink:'https://www.audible.in'
     }
 ]
 

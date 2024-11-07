@@ -44,7 +44,7 @@ function OfferDetails (){
                         <CopyButton textToCopy={offer.code}></CopyButton>
                 </div>
                 <div className="text-center pt-3 w-[100%]">
-                    <Button variant="contained" onClick={()=>handleClick(offer)} sx={{backgroundColor:'#2dac13', textTransform:'initial', width:'100%'}}>
+                    <Button variant="contained"  onClick={()=>{window.open(offer.offerLink)}} sx={{backgroundColor:'#2dac13', textTransform:'initial', width:'100%'}}>
                         Redeem Now
                     </Button>
                 </div>

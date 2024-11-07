@@ -16,6 +16,7 @@ import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useNavigate } from "react-router-dom";
 import { Snackbar, Alert } from '@mui/material';
+import { current } from "@reduxjs/toolkit";
 
 
 function Home (){
@@ -27,9 +28,9 @@ function Home (){
     const navigate = useNavigate()
     const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
     const [otpValues, setOtpValues] = useState(["", "", "", "",""]);
-    const [openSnackbar, setOpenSnackbar] = useState(false);
-
-
+    const [timeLeft, setTimeLeft]  = useState(10)
+    const [resend, setResend]  = useState(false)
+    const time = useRef(null);
     const offers = [
         {
             icon:zee5,
@@ -80,7 +81,9 @@ function Home (){
 
     const handleChange = (e, index) => {
         const value = e.target.value.slice(-1);
-    
+        
+        setwrongOtp(false)
+
         const newOtpValues = [...otpValues];
         newOtpValues[index] = value;
         setOtpValues(newOtpValues);
@@ -103,51 +106,79 @@ function Home (){
             if(otpCode == '12345'){
                 setOpen(false)
                 setOtpDailog(false)
+                clearInterval(time.current);  
+                setTimeLeft(10);
             }else{
-                setOpenSnackbar(true)
                 setwrongOtp(true)
+                setResend(true)
+                if (!time.current) {
+                    time.current = setInterval(() => {
+                        setTimeLeft((prev) => prev - 1);
+                    }, 1000);
+                }
             }    
         }
       };
 
-      const handleCloseSnackbar = () => {
-        setOpenSnackbar(false);
-      };
-
-      useEffect(() => {
-        if(OtpDailog){
-        inputRefs[0].current.focus();
+    const resendOtp = ()=>{
+        if (!time.current) {
+            time.current = setInterval(() => {
+                setTimeLeft((prev) => prev - 1);
+            }, 1000);
         }
-      }, [OtpDailog]);
+    }
 
-      const handlePayment = ()=>{
-        navigate('/offer')
-      }
-      const poster = (
-        <section>
-                <img src={Banner} alt="banner" className="mx-auto w-52 py-10"></img>
-                <h1 className="text-2xl py-5">What You’ll Need to do!</h1>
-                <span className="text-xl relative py-2 -ml-5">1. Ensure your card is activated  
+    useEffect(()=>{
+    if (timeLeft === 0) {
+        clearInterval(time.current);
+        time.current = null;  
+        setResend(true)     
+        setTimeLeft(10); 
+                    
+    }
+    },[timeLeft])
+
+    const handleKeyDown = (event, index) => {
+    if (event.key === 'Backspace' && !event.target.value && index > 0) {
+        inputRefs[index - 1].current.focus();
+    }
+    };
+
+    useEffect(() => {
+    if(OtpDailog){
+    inputRefs[0].current.focus();
+    }
+    }, [OtpDailog]);
+
+    const handlePayment = ()=>{
+    navigate('/offer')
+    }
+
+    const poster = (
+    <section>
+            <img src={Banner} alt="banner" className="mx-auto w-52 py-10"></img>
+            <h1 className="text-2xl py-5">What You’ll Need to do!</h1>
+            <span className="text-xl relative py-2 -ml-5">1. Ensure your card is activated  
+            <Box
+                    onClick={handleClickOpenInfo}
+                    sx={{ position:'absolute', right:'-30px',top:'35%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white',borderRadius: '50%', 
+                        width: 20, height: 20, boxShadow: 1,
+                    }}
+                    >
+                    <QuestionMarkIcon sx={{ color: '#951B24',fontSize:'20px' }} />
+                </Box>
+            </span><br/>
+            <span className="text-xl relative py-2 -ml-5">2. Enable your online transactions
                 <Box
-                        onClick={handleClickOpenInfo}
-                        sx={{ position:'absolute', right:'-30px',top:'35%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white',borderRadius: '50%', 
-                            width: 20, height: 20, boxShadow: 1,
-                        }}
-                        >
-                        <QuestionMarkIcon sx={{ color: '#951B24',fontSize:'20px' }} />
-                    </Box>
-                </span><br/>
-                <span className="text-xl relative py-2 -ml-5">2. Enable your online transactions
-                    <Box
-                        onClick={handleClickOpenInfo}
-                        sx={{ position:'absolute', right:'-30px',top:'35%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white',borderRadius: '50%', 
-                            width: 20, height: 20, boxShadow: 1,
-                        }}
-                        >
-                        <QuestionMarkIcon sx={{ color: '#951B24',fontSize:'20px' }} />
-                    </Box>
-                </span>
-            </section>
+                    onClick={handleClickOpenInfo}
+                    sx={{ position:'absolute', right:'-30px',top:'35%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white',borderRadius: '50%', 
+                        width: 20, height: 20, boxShadow: 1,
+                    }}
+                    >
+                    <QuestionMarkIcon sx={{ color: '#951B24',fontSize:'20px' }} />
+                </Box>
+            </span>
+        </section>
       )
     return(
         <>
@@ -288,31 +319,23 @@ function Home (){
                         value={otpValues[index]}
                         onChange={(e) => handleChange(e, index)}
                         onClick={() => handleClick(index)}
+                        onKeyDown={(e) => handleKeyDown(e, index)}
                     />
                 ))}
                 </div>
+                {wrongOtp && <div className="text-red-400 text-xs pt-2">Incorrect OTP</div>}
             </div>
             <div className="text-center pt-3 w-full">
                 <Button disabled={!terms} onClick={handleSubmit} variant="contained" sx={{backgroundColor:'#951B24', textTransform:'initial', width:'100%', borderRadius:'10px'}}>
                     Continue
                 </Button>
-                {wrongOtp &&
-                <Button>
-                <div className="text-gray-500 text-lg pt-5">Resend OTP</div>
+                {resend &&
+                <Button disabled={time.current} onClick={resendOtp} sx={{textTransform:'capitalize', width:'100%',paddingX:'0'}}>
+                <div  className={`text-gray-500 text-sm mt-2 rounded-lg p-2 w-full ${time.current ? '':'text-secondary'}`}>Resend OTP <span className={`pl-3 text-sm ${time.current ? '':'hidden'}`}>{timeLeft}</span></div>
                 </Button>
                 }
                 
             </div>
-                <Snackbar
-                    open={openSnackbar}
-                    autoHideDuration={1000}
-                    onClose={handleCloseSnackbar}
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                >
-                <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: '100%' }}>
-                    Incorrect OTP
-                </Alert>
-                </Snackbar>
         </section>}
         </Dialog>
         <Dialog

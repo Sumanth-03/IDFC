@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Button from '@mui/material/Button';
 import Logo from '../assets/Logo.svg'
 import mail from '../assets/mail.svg'
@@ -89,10 +89,15 @@ function Offers (){
         }
         setOpen((pre)=>!pre)
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0); 
+    }, []);
+
     return(
     <>
         <section className="flex flex-col justify-center gap-3 lg:block w-full p-5 py-10 bg-secondary text-primary rounded-2xl relative text-center md:text-left pb-32 md:pb-10">
-        <h1 className="text-5xl font-semibold md:max-w-[80%] lg:max-w-[60%]" style={{lineHeight:'1.2'}}>
+        <h1 className="text-3xl md:text-5xl font-semibold md:max-w-[80%] lg:max-w-[60%]" style={{lineHeight:'1.2'}}>
         Congrats! You’ve redeemed the ₹ 1 Rupee deal.
         </h1>
         <p className="md:max-w-[80%] lg:max-w-[60%] text-xl pt-5">
@@ -115,7 +120,7 @@ function Offers (){
         <section className="flex flex-col sm:flex-row flex-wrap gap-2 justify-center items-center bg-white rounded-t-3xl md:rounded-t-none -translate-y-24 md:translate-y-0">
             {offers.map((offer)=>{
                 return(
-                    <div className="flex flex-col gap-3 md:m-2  md:shadow-xl p-5 md:rounded-xl my-5 md:my-10 md:mx-2 w-full md:w-auto">
+                    <div className="flex flex-col gap-3 md:m-2 shadow-md md:shadow-xl p-5 md:rounded-xl my-5 md:my-10 md:mx-2 w-[95%] rounded-md md:w-auto">
                     <div className="flex md:flex-col gap-3">
                     <img src={offer.icon} alt="icon" className="w-16"></img>
                     <div className="flex flex-col gap-1">
@@ -130,7 +135,7 @@ function Offers (){
                         <CopyButton textToCopy={offer.code}></CopyButton>
                     </div>
                     <div className="hidden md:block text-center pt-3">
-                    <Button variant="contained" onClick={()=>handleClick(offer)} sx={{backgroundColor:'#951B24', textTransform:'initial' , width:'100%'}}>
+                    <Button variant="contained" onClick={()=>handleClick(offer)} sx={{backgroundColor:'#951B24', textTransform:'initial' , width:'100%',borderRadius:'0.65rem'}}>
                         View Details & Redeem
                     </Button>
                     </div>
@@ -154,7 +159,7 @@ function Offers (){
                     bottom:'20rem',
                     borderRadius: '1rem',
                     padding:'10px',
-                    background: 'radial-gradient(circle at top,  #EED7D8, #FFFFFF, #FFFFFF)',
+                    background: 'radial-gradient(circle at top,  #EAD0D2, #f9f0f0, #FFFFFF)',
                     overflow:'visible'
                 },
             }}
@@ -175,9 +180,9 @@ function Offers (){
             </IconButton>
             <div className="flex flex-col items-center pb-5">
                 <img src={offer?.icon}className="w-20 py-5"></img>
-                <p className="font-bold text-2xl">{offer?.offerTitle}</p>
-                <p className="text-2xl font-semibold text-gray-400 text-center">{offer?.offer} worth ₹ {offer?.value}</p>
-                <p className="text-lg text-gray-400">Valid till 27th december 2024</p>
+                <p className="font-semibold text-2xl">{offer?.offerTitle}</p>
+                <p className="text-2xl font-semibold text-gray-600 text-center">{offer?.offer} worth ₹ {offer?.value}</p>
+                <p className="text-lg text-gray-500">Valid till 27th december 2024</p>
             </div>
         </Dialog>
         <Dialog
@@ -206,21 +211,29 @@ function Offers (){
                 },
             }}
         >
-            <div className="flex flex-col">
-                <h1 className="text-xl font-bold">About <span className="lowercase">{offer?.offerTitle}</span></h1>
+            <div className="flex flex-col mt-3">
+                <h1 className="text-xl font-semibold">About <span className="capitalize"> {offer?.offerTitle ? offer.offerTitle.toLowerCase() : ''}</span></h1>
                 <p className="font-semibold mb-3">Leading producer and provider of audio storytelling</p>
                 <p className="font-light text-gray-700">Copy this code and use it during your purchase</p>
-                <div className="flex gap-2 border-dashed border-2 p-2 border-secondary rounded-lg my-2 justify-between">
+                <div className="flex gap-2 border-dashed border-2 p-2 border-secondary rounded-lg my-2 mb-4 justify-between" style={{color:'#9c1d26',borderColor:'#9c1d26'}}>
                         <p className="text-secondary font-semibold">{offer?.code}</p>
                         <CopyButton textToCopy={offer?.code}></CopyButton>
                 </div>
-                <h1 className="text-xl font-semibold">Terms & conditions</h1>
-                <p className=" text-gray-800">Eligible Customer at the time of signing up for Audible</p>
-                <div className="text-center pt-3 my-3">
-                    <Button variant="contained"  sx={{backgroundColor:'#951B24', textTransform:'initial', width:'90%', fontSize:'1rem'}}>
-                    Visit <pre className="capitalize"> <span className="lowercase">{offer?.offerTitle}</span> </pre> to claim
+                <h1 className="text-xl font-medium">Terms & conditions</h1>
+                <p className=" text-gray-800">Eligible Customer at the time of signing up for&nbsp;  
+                    <span style={{ textTransform: 'capitalize' }}>
+                        {offer?.offerTitle?.toLowerCase()}
+                    </span>&nbsp;
+                </p>
+                <div className="text-center pt-3 my-3 text-lg font-semibold">
+                    <Button variant="contained"  sx={{backgroundColor:'#951B24', textTransform:'initial', width:'90%', fontSize:'1.2rem'}}>
+                    Visit&nbsp;
+                    <span style={{ textTransform: 'capitalize' }}>
+                    {offer?.offerTitle ? offer.offerTitle.toLowerCase() : ''}
+                    </span>&nbsp;
+                    to claim
                     </Button>
-                    </div>
+                </div>
             </div>
         </Dialog>
     </>

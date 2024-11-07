@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useEffect} from "react";
 import { useLocation } from "react-router-dom";
 import mail from '../assets/mail.svg'
 import { CopyButton } from "./Offers";
@@ -17,6 +17,12 @@ function OfferDetails (){
     //     value:'398',
     //     code:'CHEGGIDFCZEP08128JOY'
     // }
+
+    useEffect(() => {
+        window.scrollTo(0, 0); 
+    }, []);
+
+
     return(
         <main className="flex flex-col md:flex-row">
             <section className="flex flex-col gap-3 md:w-1/2 p-2 m-2 border rounded-lg ">

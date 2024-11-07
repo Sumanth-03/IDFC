@@ -3,7 +3,7 @@ import cheggout from '../assets/cheggout.svg'
 function Footer (){
 
     return(
-        <footer className="flex flex-col items-center md:flex-row gap-2 text-primary bg-black p-2 justify-between w-screen px-10 h-auto md:-translate-x-10">
+        <footer className="flex flex-col items-center md:flex-row gap-2 text-primary bg-black p-2 justify-between w-screen px-10 h-auto">
             <div className="flex ">
                 <span>Powered by:</span>
                 <span className="relative">

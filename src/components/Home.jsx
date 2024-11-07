@@ -15,17 +15,20 @@ import { Close as CloseIcon } from '@mui/icons-material';
 import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useNavigate } from "react-router-dom";
-
+import { Snackbar, Alert } from '@mui/material';
 
 
 function Home (){
     const [open, setOpen] = useState(true);
     const [terms, setTerms] = useState(false);
     const [OtpDailog, setOtpDailog] = useState(false);
+    const [wrongOtp, setwrongOtp] = useState(false);
     const [infoDailog, setinfoDailog] = useState(false)
     const navigate = useNavigate()
     const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
     const [otpValues, setOtpValues] = useState(["", "", "", "",""]);
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+
 
     const offers = [
         {
@@ -97,9 +100,18 @@ function Home (){
         const otpCode = otpValues.join('')
         if(otpCode.length === 5){
             console.log(otpCode)
-            setOpen(false)
-            setOtpDailog(false)
+            if(otpCode == '12345'){
+                setOpen(false)
+                setOtpDailog(false)
+            }else{
+                setOpenSnackbar(true)
+                setwrongOtp(true)
+            }    
         }
+      };
+
+      const handleCloseSnackbar = () => {
+        setOpenSnackbar(false);
       };
 
       useEffect(() => {
@@ -182,7 +194,7 @@ function Home (){
                         these exclusive perks and elevate your experience today!
                     </p>
                     <div className="text-center pt-3">
-                    <Button onClick={handlePayment} variant="contained" sx={{backgroundColor:'#951B24', textTransform:'initial'}}>
+                    <Button onClick={handleClickOpenInfo} variant="contained" sx={{backgroundColor:'#951B24', textTransform:'initial'}}>
                         <img src={Lock} alt ='lock' className="pr-2"></img>
                         Unlock all for Only ₹1 !
                     </Button>
@@ -284,7 +296,23 @@ function Home (){
                 <Button disabled={!terms} onClick={handleSubmit} variant="contained" sx={{backgroundColor:'#951B24', textTransform:'initial', width:'100%', borderRadius:'10px'}}>
                     Continue
                 </Button>
+                {wrongOtp &&
+                <Button>
+                <div className="text-gray-500 text-lg pt-5">Resend OTP</div>
+                </Button>
+                }
+                
             </div>
+                <Snackbar
+                    open={openSnackbar}
+                    autoHideDuration={1000}
+                    onClose={handleCloseSnackbar}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                >
+                <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: '100%' }}>
+                    Incorrect OTP
+                </Alert>
+                </Snackbar>
         </section>}
         </Dialog>
         <Dialog
@@ -334,7 +362,7 @@ function Home (){
                 <div className="md:w-1/2 p-2 flex flex-col gap-4 items-center">
                     <h1 className='text-2xl font-semibold'style={{color:'#149E10',}}>Yes, I’m ready!</h1>
                     <p className="text-xs">Click below to unlock exclusive discount just for you at ₹ 1.</p>
-                    <Button variant="contained" sx={{backgroundColor:'#149E10', textTransform:'initial',width:'80%'}}>Unlock My Offer</Button>
+                    <Button variant="contained" onClick={handlePayment} sx={{backgroundColor:'#149E10', textTransform:'initial',width:'80%'}}>Unlock My Offer</Button>
                 </div>
             </section>
         </section>

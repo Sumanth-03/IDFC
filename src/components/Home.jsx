@@ -338,7 +338,7 @@ function Home (){
         {!OtpDailog ?
         <section className="flex flex-col items-center p-2 gap-2 relative text-gray-700">
             
-                <h1 className="font-bold text-lg ">Enter Bank Registered Mobile Number</h1>
+                <h1 className="font-bold text-lg ">Enter Registered Mobile Number</h1>
                 <div>
                 <Formik
                 initialValues={{ mobileNumber: '' }}
@@ -353,7 +353,7 @@ function Home (){
                     <ErrorMessage name="mobileNumber" component="div" style={{ color: 'red' }} />
                     <div className="flex py-3">
                     <input type="checkbox" value={terms} onChange={()=>setTerms((pre)=>!pre)}/>
-                    <p className="ml-2 text-xs">By continuing, you agree to our Terms of Use and Privacy Policy.</p>
+                    <p className="ml-2 text-xs">By continuing, you agree to our <button className="text-blue-700" onClick={()=>navigate('/terms')}>Terms of Use</button> and <button className="text-blue-700" onClick={()=>{navigate('/privacypolicy')}}>Privacy Policy</button>.</p>
                     </div>
                     <div className="text-center pt-3">
                     <Button disabled={!terms} onClick={()=>setDailog2(errors,touched)} variant="contained" sx={{backgroundColor:'#951B24', textTransform:'initial', width:'80%', borderRadius:'10px'}}>
@@ -367,7 +367,7 @@ function Home (){
         </section>
         :
         <section className="flex flex-col items-center p-2 gap-2 relative text-gray-700">
-            <h1 className="font-bold text-lg ">Please Enter The 5 Digit Code sent to  bank registered mobile number</h1>
+            <h1 className="font-bold text-lg ">Please Enter The 5 Digit Code sent to registered mobile number</h1>
             <div className="w-full text-left">
                 <label htmlFor="otp" className="text-xs">OTP</label>
                 <div className="flex gap-2">

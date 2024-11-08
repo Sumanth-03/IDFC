@@ -19,32 +19,32 @@ import { useNavigate } from "react-router-dom";
 
 import emailjs from 'emailjs-com';
 
-export const sendRedeemCodeEmail = (email, redeemCode) => {
-    const serviceID = 'service_2ua4a3a'; 
-    const templateID = 'template_97jd3ny'; 
-    const userID = 'FhBMyAEf7LN1uwIOr';
+// export const sendRedeemCodeEmail = (email, redeemCode) => {
+//     const serviceID = 'service_2ua4a3a'; 
+//     const templateID = 'template_97jd3ny'; 
+//     const userID = 'FhBMyAEf7LN1uwIOr';
 
-    const templateParams = {
-        user_email: email, 
-        redeem_code: redeemCode,
-    };
+//     const templateParams = {
+//         user_email: email, 
+//         redeem_code: redeemCode,
+//     };
 
-    emailjs.send(serviceID, templateID, templateParams, userID)
-        .then((response) => {
-            console.log('Email sent successfully!', response.status, response.text);
-            alert('Redeem code sent to your email!');
-        })
-        .catch((error) => {
-            console.error('Failed to send email:', error);
-            alert('Failed to send redeem code email.');
-        });
-};
+//     emailjs.send(serviceID, templateID, templateParams, userID)
+//         .then((response) => {
+//             console.log('Email sent successfully!', response.status, response.text);
+//             alert('Redeem code sent to your email!');
+//         })
+//         .catch((error) => {
+//             console.error('Failed to send email:', error);
+//             alert('Failed to send redeem code email.');
+//         });
+// };
 
-export const handleSendRedeemCode = (email) => {
-    const userEmail = email;
-    const redeemCode = 'CHEGGIDFCZEP08128JOY'; 
-    sendRedeemCodeEmail(userEmail, redeemCode);
-};
+// export const handleSendRedeemCode = (email) => {
+//     const userEmail = email;
+//     const redeemCode = 'CHEGGIDFCZEP08128JOY'; 
+//     //sendRedeemCodeEmail(userEmail, redeemCode);
+// };
 
 const offers = [
     {
@@ -53,7 +53,9 @@ const offers = [
         offer:'3 month subscription',
         value:'1000',
         code:'CHEGGIDFCZEP08128JOY',
-        offerLink:'https://www.zee5.com'
+        offerLink:'https://www.zee5.com',
+        desclaimer:'Valid till 20th November 2024',
+        discription:'A leading digital entertainment platform with a wide variety of TV shows, movies, and web series'
     },
     {
         icon:lenscart,
@@ -61,7 +63,9 @@ const offers = [
         offer:'2 month subscription',
         value:'1600',
         code:'CHEGGIDFCZEP08128JOY',
-        offerLink:'https://www.lenskart.com'
+        offerLink:'https://www.lenskart.com',
+        desclaimer:'Valid till 27th December 2024',
+        discription:'Premium eyewear solutions with stylish frames and lenses'
     },
     {
         icon:audible,
@@ -69,7 +73,9 @@ const offers = [
         offer:'Free 2 months subscription ',
         value:'398',
         code:'CHEGGIDFCZEP08128JOY',
-        offerLink:'https://www.audible.in'
+        offerLink:'https://www.audible.in',
+        desclaimer:'Valid till 10th December 2024',
+        discription:'Leading producer and provider of audio storytelling'
     }
 ]
 
@@ -111,9 +117,11 @@ export function CopyButton({ textToCopy }) {
 
 function Offers (){
     const [open, setOpen] = useState()
+    const [openalert, setOpenalert] = useState()
     const [openEmailDailog, setOpenEmailDailog] = useState()
     const [offer, setOffer] = useState()
     const [email, setEmail] = useState('')
+    const [alertType, setalertType] = useState('')
     const navigate = useNavigate()
 
     const handleClick = (offer)=>{
@@ -125,9 +133,19 @@ function Offers (){
         }
         setOpen((pre)=>!pre)
     }
+
+    const handleClosealert = ()=>{
+        setOpenalert(false)
+    }
+    const handlesetOpenalert = (type)=>{
+        setOpenalert(true)
+        setalertType(type)
+    }
+
     const handleClickEmailDailog = ()=>{
         setOpenEmailDailog((pre)=>!pre)
     }
+
 
     useEffect(() => {
         window.scrollTo(0, 0); 
@@ -145,11 +163,11 @@ function Offers (){
         <div className="lg:absolute right-5 top-1/2 transform lg:-translate-x-1/2 lg:-translate-y-1/2 text-center">
         <img src={Logo} alt="logo" className="hidden lg:block h-32 absolute right-10 top-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></img>
         <div className="flex md:flex-row lg:flex-col p-2 gap-2 max-w-[600px] text-center justify-center">
-        <Button onClick={handleClickEmailDailog} sx={{backgroundColor:'#ffffff', color:'#951B24', borderRadius:'10px', paddingX:'20px', paddingY:'10px'}}>
+        <Button onClick={()=>handlesetOpenalert('Mail')} sx={{backgroundColor:'#ffffff', color:'#951B24', borderRadius:'10px', paddingX:'20px', paddingY:'10px'}}>
             <img src={mail}></img>
             <span  className="hidden md:block"> Email My Code</span>
         </Button>
-        <Button sx={{backgroundColor:'#ffffff', color:'#951B24', borderRadius:'10px', paddingX:'20px', paddingY:'10px',paddingBottom:'5px'}}>
+        <Button onClick={()=>handlesetOpenalert('SMS')} sx={{backgroundColor:'#ffffff', color:'#951B24', borderRadius:'10px', paddingX:'20px', paddingY:'10px',paddingBottom:'5px'}}>
             <img src={message}></img>
             <span className="hidden md:block">SMS My Code</span>
         </Button>
@@ -195,7 +213,7 @@ function Offers (){
             PaperProps={{
                 style: {
                     position:'absolute',
-                    bottom:'20rem',
+                    bottom:'40%',
                     borderRadius: '1rem',
                     padding:'10px',
                     background: 'radial-gradient(circle at top,  #EAD0D2, #f9f0f0, #FFFFFF)',
@@ -209,7 +227,7 @@ function Offers (){
                 sx={() => ({
                     position: 'absolute',
                     right:10,
-                    top:'-28vh',
+                    top:'-20vh',
                     color: '#000',
                     backgroundColor: '#ffffff',
                     boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
@@ -221,7 +239,7 @@ function Offers (){
                 <img src={offer?.icon}className="w-20 py-5"></img>
                 <p className="font-semibold text-2xl">{offer?.offerTitle}</p>
                 <p className="text-2xl font-semibold text-gray-600 text-center">{offer?.offer} worth ₹ {offer?.value}</p>
-                <p className="text-lg text-gray-500">Valid till 27th december 2024</p>
+                <p className="text-lg text-gray-500">{offer?.desclaimer}</p>
             </div>
         </Dialog>
         <Dialog
@@ -252,7 +270,7 @@ function Offers (){
         >
             <div className="flex flex-col mt-3">
                 <h1 className="text-xl font-semibold">About <span className="capitalize"> {offer?.offerTitle ? offer.offerTitle.toLowerCase() : ''}</span></h1>
-                <p className="font-semibold mb-3">Leading producer and provider of audio storytelling</p>
+                <p className="font-semibold mb-3">{offer?.discription}</p>
                 <p className="font-light text-gray-700">Copy this code and use it during your purchase</p>
                 <div className="flex gap-2 border-dashed border-2 p-2 border-secondary rounded-lg my-2 mb-4 justify-between" style={{color:'#9c1d26',borderColor:'#9c1d26'}}>
                         <p className="text-secondary font-semibold">{offer?.code}</p>
@@ -315,6 +333,16 @@ function Offers (){
                 <button onClick={()=>handleSendRedeemCode(email)} className="bg-secondary py-1 rounded-2xl text-white mt-6 w-full">Email My Code</button>
             </div>
         </Dialog>
+        <Snackbar open={openalert} autoHideDuration={2000} onClose={handleClosealert}  anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+        <Alert
+            onClose={handleClosealert}
+            severity="success"
+            variant="filled"
+            sx={{ width: '100%' }}
+        >
+            {`${alertType} sent successfully` }
+        </Alert>
+        </Snackbar>
         
     </>
     

@@ -1,7 +1,8 @@
 import React from "react";
 import cheggout from '../assets/cheggout.svg'
+import { useNavigate } from "react-router-dom";
 function Footer (){
-
+    const navigate = useNavigate()
     return(
         <footer className="flex flex-col items-center md:flex-row gap-2 text-primary bg-black p-2 justify-between w-screen px-10 h-auto">
             <div className="flex ">
@@ -12,7 +13,7 @@ function Footer (){
                 
             </div>
             <div>
-               ©2024 Cheggout. All rights reserved | <button className="text-blue-700" onClick={()=>{window.open('https://idfcdemo2.z29.web.core.windows.net/terrms')}}>Terms of Service</button> | <button className="text-blue-700" onClick={()=>{window.open('https://idfcdemo2.z29.web.core.windows.net/privacypolicy')}}>Privacy Policy</button>
+               ©2024 Cheggout. All rights reserved | <button className="text-blue-700" onClick={()=>navigate('/terms')}>Terms of Service</button> | <button className="text-blue-700" onClick={()=>{navigate('/privacypolicy')}}>Privacy Policy</button>
             </div>
             <div className="flex flex-row">
                 <span className="pr-2">Contact us:</span>

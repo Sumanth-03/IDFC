@@ -7,3 +7,13 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
     -moz-appearance: textfield;
 }
+
+.background-gradient-md {
+    background: none;
+}
+
+@media (min-width: 768px) {
+    .background-gradient-md {
+        background: radial-gradient(circle at top, #EED7D8, #FFFFFF);
+    }
+}

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Button from '@mui/material/Button';
 import Logo from '../assets/Logo.svg'
+import Logomixed from '../assets/logomixed.svg'
 import mail from '../assets/mail.svg'
 import message from '../assets/message.svg'
 
@@ -15,6 +16,35 @@ import Tooltip from '@mui/material/Tooltip';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { Snackbar, Alert } from '@mui/material';
 import { useNavigate } from "react-router-dom";
+
+import emailjs from 'emailjs-com';
+
+export const sendRedeemCodeEmail = (email, redeemCode) => {
+    const serviceID = 'service_2ua4a3a'; 
+    const templateID = 'template_97jd3ny'; 
+    const userID = 'FhBMyAEf7LN1uwIOr';
+
+    const templateParams = {
+        user_email: email, 
+        redeem_code: redeemCode,
+    };
+
+    emailjs.send(serviceID, templateID, templateParams, userID)
+        .then((response) => {
+            console.log('Email sent successfully!', response.status, response.text);
+            alert('Redeem code sent to your email!');
+        })
+        .catch((error) => {
+            console.error('Failed to send email:', error);
+            alert('Failed to send redeem code email.');
+        });
+};
+
+export const handleSendRedeemCode = (email) => {
+    const userEmail = email;
+    const redeemCode = 'CHEGGIDFCZEP08128JOY'; 
+    sendRedeemCodeEmail(userEmail, redeemCode);
+};
 
 const offers = [
     {
@@ -42,6 +72,7 @@ const offers = [
         offerLink:'https://www.audible.in'
     }
 ]
+
 
 export function CopyButton({ textToCopy }) {
     const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -80,7 +111,9 @@ export function CopyButton({ textToCopy }) {
 
 function Offers (){
     const [open, setOpen] = useState()
+    const [openEmailDailog, setOpenEmailDailog] = useState()
     const [offer, setOffer] = useState()
+    const [email, setEmail] = useState('')
     const navigate = useNavigate()
 
     const handleClick = (offer)=>{
@@ -92,6 +125,9 @@ function Offers (){
         }
         setOpen((pre)=>!pre)
     }
+    const handleClickEmailDailog = ()=>{
+        setOpenEmailDailog((pre)=>!pre)
+    }
 
     useEffect(() => {
         window.scrollTo(0, 0); 
@@ -99,7 +135,7 @@ function Offers (){
 
     return(
     <>
-        <section className="flex flex-col justify-center gap-3 lg:block w-full p-5 py-10 bg-secondary text-primary rounded-2xl relative text-center md:text-left pb-32 md:pb-10">
+        <section className="flex flex-col justify-center gap-3 lg:block w-full p-5 py-10 bg-secondary text-primary md:rounded-2xl relative text-center md:text-left pb-32 md:pb-10">
         <h1 className="text-3xl md:text-5xl font-semibold md:max-w-[80%] lg:max-w-[60%]" style={{lineHeight:'1.2'}}>
         Congrats! You’ve redeemed the ₹ 1 Rupee deal.
         </h1>
@@ -109,9 +145,9 @@ function Offers (){
         <div className="lg:absolute right-5 top-1/2 transform lg:-translate-x-1/2 lg:-translate-y-1/2 text-center">
         <img src={Logo} alt="logo" className="hidden lg:block h-32 absolute right-10 top-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></img>
         <div className="flex md:flex-row lg:flex-col p-2 gap-2 max-w-[600px] text-center justify-center">
-        <Button sx={{backgroundColor:'#ffffff', color:'#951B24', borderRadius:'10px', paddingX:'20px', paddingY:'10px'}}>
+        <Button onClick={handleClickEmailDailog} sx={{backgroundColor:'#ffffff', color:'#951B24', borderRadius:'10px', paddingX:'20px', paddingY:'10px'}}>
             <img src={mail}></img>
-            <span className="hidden md:block">Email My Code</span>
+            <span  className="hidden md:block"> Email My Code</span>
         </Button>
         <Button sx={{backgroundColor:'#ffffff', color:'#951B24', borderRadius:'10px', paddingX:'20px', paddingY:'10px',paddingBottom:'5px'}}>
             <img src={message}></img>
@@ -239,6 +275,47 @@ function Offers (){
                 </div>
             </div>
         </Dialog>
+        <Dialog
+            open={openEmailDailog}
+            onClose={handleClickEmailDailog}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+            PaperProps={{
+                style: {
+                    position:'absolute',
+                    bottom:'20rem',
+                    borderRadius: '1rem',
+                    padding:'10px',
+                    background: 'radial-gradient(circle at top,  #EAD0D2, #f9f0f0, #FFFFFF)',
+                    overflow:'visible'
+                },
+            }}
+        >
+            <div className=" text-secondary flex w-48 py-2 ">
+                <img src={Logomixed} alt="logo" className="hidden md:block w-auto h-full p-1 mr-2"></img>
+                <img src={Logomixed} alt="logo" className="md:hidden w-auto h-full p-1 mr-2"></img>
+                {/* <span className="hidden md:block font-bold">IDFC FIRST <br/> Bank</span> */}
+            </div>
+            <IconButton
+                aria-label="close"
+                onClick={handleClickEmailDailog}
+                sx={() => ({
+                    position: 'absolute',
+                    right:10,
+                    color: '#000',
+                    backgroundColor: '#ffffff',
+                    boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
+                })}
+            >
+                <CloseIcon />
+            </IconButton>
+            <div className="flex flex-col  pb-5 min-h-30 ">
+                <p className="font-semibold text-lg text-left">Enter your email :</p>
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="px-2 py-1 w-full border !border-gray-300 rounded-lg mt-2 min-w-60 md:min-w-96" autoFocus></input>
+                <button onClick={()=>handleSendRedeemCode(email)} className="bg-secondary py-1 rounded-2xl text-white mt-6 w-full">Email My Code</button>
+            </div>
+        </Dialog>
+        
     </>
     
     )

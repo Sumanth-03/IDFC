@@ -12,7 +12,7 @@ function Footer (){
                 
             </div>
             <div>
-               ©2024 Cheggout. All rights reserved | Terms of Service | Privacy Policy
+               ©2024 Cheggout. All rights reserved | <button className="text-blue-700" onClick={()=>{window.open('https://idfcdemo2.z29.web.core.windows.net/terrms')}}>Terms of Service</button> | <button className="text-blue-700" onClick={()=>{window.open('https://idfcdemo2.z29.web.core.windows.net/privacypolicy')}}>Privacy Policy</button>
             </div>
             <div className="flex flex-row">
                 <span className="pr-2">Contact us:</span>

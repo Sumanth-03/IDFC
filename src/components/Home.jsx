@@ -1,5 +1,6 @@
 import React,{useState, useRef, useEffect} from "react";
-import Logo from '../assets/logomixed.svg'
+import Logo from '../assets/Logo.svg'
+import Logomixed from '../assets/logomixed.svg'
 import Banner from '../assets/Banner.svg'
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import { Box } from '@mui/material';
@@ -242,15 +243,15 @@ function Home (){
       )
     return(
         <>
-        <main className="w-full h-auto p-2">
-            <section className="w-full p-5 py-10 bg-secondary text-primary rounded-2xl relative text-center md:text-left ">
+        <main className="w-full h-auto md:p-2">
+            <section className="w-full md:p-5 py-10 bg-secondary text-primary md:rounded-2xl relative text-center md:text-left ">
                 <h1 className="text-2xl font-semibold">
                     The ₹ 1 Store
                 </h1>
                 <p className="md:max-w-96 text-xl pt-5">
                     Welcome to the store where your favourite<br/> merchant offers are all just for ₹ 1!
                 </p>
-                {/* <img src={Logo} alt="logo" className="hidden md:block h-24 absolute right-10 top-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></img> */}
+                <img src={Logo} alt="logo" className="hidden md:block h-24 absolute right-10 top-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></img>
                 <section className="block md:hidden text-center w-full pb-10 md:pb-0 bg-secondary text-white rounded-2xl">
                 {poster}
                 </section>
@@ -313,8 +314,9 @@ function Home (){
         >
         <header className="flex justify-between items-center">
             <div className=" text-secondary flex w-48 py-2 ">
-                <img src={Logo} alt="logo" className="w-auto h-full p-1 mr-2"></img>
-                {/* <span className="font-bold">IDFC FIRST <br/> Bank</span> */}
+                <img src={Logomixed} alt="logo" className="hidden md:block w-auto h-full p-1 mr-2"></img>
+                <img src={Logomixed} alt="logo" className="md:hidden w-auto h-full p-1 mr-2"></img>
+                {/* <span className="hidden md:block font-bold">IDFC FIRST <br/> Bank</span> */}
             </div>
 
             <IconButton

@@ -15,8 +15,8 @@ import { Close as CloseIcon } from '@mui/icons-material';
 //import { sendRedeemCodeEmail, handleSendRedeemCode } from "./Offers";
 
 function OfferDetails (){
-    //const [openEmailDailog, setOpenEmailDailog] = useState()
-    //const [email, setEmail] = useState('')
+    const [openEmailDailog, setOpenEmailDailog] = useState()
+    const [email, setEmail] = useState('')
     const [alertType, setalertType] = useState('')
     const [openalert, setOpenalert] = useState()
 
@@ -24,6 +24,7 @@ function OfferDetails (){
         setOpenalert(false)
     }
     const handlesetOpenalert = (type)=>{
+        setOpenEmailDailog(false)
         setOpenalert(true)
         setalertType(type)
     }
@@ -36,9 +37,9 @@ function OfferDetails (){
     //     value:'398',
     //     code:'CHEGGIDFCZEP08128JOY'
     // }
-    // const handleClickEmailDailog = ()=>{
-    //     setOpenEmailDailog((pre)=>!pre)
-    // }
+    const handleClickEmailDailog = ()=>{
+        setOpenEmailDailog((pre)=>!pre)
+    }
     useEffect(() => {
         window.scrollTo(0, 0); 
     }, []);
@@ -52,7 +53,7 @@ function OfferDetails (){
                         <img src={offer.icon} alt='icon' className="w-10"></img>
                         <p>{offer.offerTitle}</p>
                     </div>
-                    <Button onClick={()=>handlesetOpenalert('Mail')} sx={{backgroundColor:'#f5e8e9', color:'#951B24', borderRadius:'10px', paddingX:'20px',paddingY:'0px',height:'40px',border:'1px solid #951B24' }}>
+                    <Button onClick={handleClickEmailDailog} sx={{backgroundColor:'#f5e8e9', color:'#951B24', borderRadius:'10px', paddingX:'20px',paddingY:'0px',height:'40px',border:'1px solid #951B24' }}>
                         <img src={mail}></img>
                         <span className="hidden md:block">Email</span>
                     </Button>
@@ -84,7 +85,7 @@ function OfferDetails (){
             <section className='md:w-1/2 h-[calc(100vh-64px)] flex' style={{background: 'linear-gradient(to bottom, #0a2943, #010e19)'}}>
                     <img src={audibleBanner} alt="banner" className="w-full"></img>
             </section>
-            {/* <Dialog
+            <Dialog
             open={openEmailDailog}
             onClose={handleClickEmailDailog}
             aria-labelledby="alert-dialog-title"
@@ -103,7 +104,7 @@ function OfferDetails (){
             <div className=" text-secondary flex w-48 py-2 ">
                 <img src={Logomixed} alt="logo" className="hidden md:block w-auto h-full p-1 mr-2"></img>
                 <img src={Logomixed} alt="logo" className="md:hidden w-auto h-full p-1 mr-2"></img>
-                {/* <span className="hidden md:block font-bold">IDFC FIRST <br/> Bank</span> 
+                {/* <span className="hidden md:block font-bold">IDFC FIRST <br/> Bank</span> */}
             </div>
             <IconButton
                 aria-label="close"
@@ -121,9 +122,9 @@ function OfferDetails (){
             <div className="flex flex-col  pb-5 min-h-30 ">
                 <p className="font-semibold text-lg text-left">Enter your email :</p>
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="px-2 py-1 w-full border !border-gray-300 rounded-lg mt-2 min-w-60 md:min-w-96" autoFocus></input>
-                <button  className="bg-secondary py-1 rounded-2xl text-white mt-6 w-full">Email My Code</button>
+                <button onClick={()=>handlesetOpenalert('Mail')} className="bg-secondary py-1 rounded-2xl text-white mt-6 w-full">Email My Code</button>
             </div>
-        </Dialog> */}
+        </Dialog>
         <Snackbar open={openalert} autoHideDuration={2000} onClose={handleClosealert}  anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
         <Alert
             onClose={handleClosealert}

@@ -138,6 +138,7 @@ function Offers (){
         setOpenalert(false)
     }
     const handlesetOpenalert = (type)=>{
+        setOpenEmailDailog(false)
         setOpenalert(true)
         setalertType(type)
     }
@@ -163,7 +164,7 @@ function Offers (){
         <div className="lg:absolute right-5 top-1/2 transform lg:-translate-x-1/2 lg:-translate-y-1/2 text-center">
         <img src={Logo} alt="logo" className="hidden lg:block h-32 absolute right-10 top-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></img>
         <div className="flex md:flex-row lg:flex-col p-2 gap-2 max-w-[600px] text-center justify-center">
-        <Button onClick={()=>handlesetOpenalert('Mail')} sx={{backgroundColor:'#ffffff', color:'#951B24', borderRadius:'10px', paddingX:'20px', paddingY:'10px'}}>
+        <Button onClick={handleClickEmailDailog} sx={{backgroundColor:'#ffffff', color:'#951B24', borderRadius:'10px', paddingX:'20px', paddingY:'10px'}}>
             <img src={mail}></img>
             <span  className="hidden md:block"> Email My Code</span>
         </Button>
@@ -330,7 +331,7 @@ function Offers (){
             <div className="flex flex-col  pb-5 min-h-30 ">
                 <p className="font-semibold text-lg text-left">Enter your email :</p>
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="px-2 py-1 w-full border !border-gray-300 rounded-lg mt-2 min-w-60 md:min-w-96" autoFocus></input>
-                <button onClick={()=>handleSendRedeemCode(email)} className="bg-secondary py-1 rounded-2xl text-white mt-6 w-full">Email My Code</button>
+                <button onClick={()=>handlesetOpenalert('Mail')} className="bg-secondary py-1 rounded-2xl text-white mt-6 w-full">Email My Code</button>
             </div>
         </Dialog>
         <Snackbar open={openalert} autoHideDuration={2000} onClose={handleClosealert}  anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>

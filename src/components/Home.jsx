@@ -127,6 +127,7 @@ function Home (){
                 clearInterval(time.current);  
                 setTimeLeft(10);
                 sessionStorage.setItem('otp', true)
+                window.location.reload();
             }else{
                 setwrongOtp(true)
                 setResend(true)

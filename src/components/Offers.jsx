@@ -229,7 +229,7 @@ function Offers (){
                     </span>&nbsp;
                 </p>
                 <div className="text-center pt-3 my-3 text-lg font-semibold">
-                    <Button variant="contained"  sx={{backgroundColor:'#951B24', textTransform:'initial', width:'90%', fontSize:'1.2rem'}}>
+                    <Button variant="contained"  sx={{backgroundColor:'#951B24', textTransform:'initial', width:'90%', fontSize:'1.2rem'}} onClick={()=>{window.open(offer.offerLink)}}>
                     Visit&nbsp;
                     <span style={{ textTransform: 'capitalize' }}>
                     {offer?.offerTitle ? offer.offerTitle.toLowerCase() : ''}

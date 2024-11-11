@@ -12,10 +12,10 @@ function Footer (){
                 </span>
                 
             </div>
-            <div className=" order-3 md:order-2 border-0 border-t-[1px] pt-3 md:pt-0 md:border-none px-10 md:px-2 text-center">
+            <div className="order-3 md:order-2 border-0 border-t-[1px] pt-3 md:pt-0 md:border-none px-10 md:px-2 text-center">
                ©2024 Cheggout. All rights reserved | <button className="text-blue-700" onClick={()=>navigate('/terms')}>Terms of Service</button> | <button className="text-blue-700" onClick={()=>{navigate('/privacypolicy')}}>Privacy Policy</button> | <button className="text-blue-700" onClick={()=>{navigate('/disclaimer')}}>Disclaimer</button>
             </div>
-            <div className="flex flex-row">
+            <div className="order-2 md:order-3 flex flex-row">
                 <span className="pr-2">Contact us:</span>
                 <div className="flex flex-col items-center justify-center">
                     <span>support@cheggout.com</span>

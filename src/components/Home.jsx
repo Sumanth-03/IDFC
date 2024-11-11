@@ -219,7 +219,7 @@ function Home (){
     const poster = (
     <section>
             <img src={Banner} alt="banner" className="mx-auto w-52 py-10"></img>
-            <h1 className="text-2xl py-5">What You’ll Need to do!</h1>
+            <h1 className="text-2xl py-5 font-semibold">What You’ll Need to do!</h1>
             <span className="text-xl relative py-2 -ml-5">1. Ensure your card is activated  
             <Box
                     onClick={handleClickOpenInfo}
@@ -257,19 +257,19 @@ function Home (){
                 {poster}
                 </section>
             </section>
-            <div className="flex flex-col md:flex-row my-5 -translate-y-10 md:translate-y-0  md:static  bg-primary rounded-3xl">
-            <section className="text-centerw-full  md:w-1/2 p-5 border-2 md:ml-2 md:mr-4 border-secondary rounded-2xl">
+            <div className="flex flex-col md:flex-row my-5 -translate-y-10 md:translate-y-0  md:static  bg-primary rounded-3xl p-2 md:p-0">
+            <section className="text-centerw-full  md:w-1/2 p-5 border-[2px] md:border-2 md:ml-2 md:mr-4 :border-secondary rounded-2xl">
                 <h1 className="text-2xl font-bold text-center py-4 pb-12">
                     Total benefits worth ₹2,998 
                 </h1>
                 <div className="text-left">
                     {offers.map((offer)=>{
                         return(
-                            <div className="flex justify-between mb-4 items-center">
+                            <div className="flex justify-between mb-4 items-center md:border-b-0 border-b-[1px] pb-1">
                             <div className="flex gap-2 flex-wrap">
                                 <img src={offer.icon} className="w-12 h-12"></img>
                                 <div className="flex flex-col  justify-center">
-                                    <span className="max-w-20">{offer.offerTitle}</span>
+                                    <span className="max-w-20 text-gray-500 font-semibold">{offer.offerTitle}</span>
                                     <p className="w-full hidden md:block">{offer.offer}</p>
                                 </div>
                                 <p className="w-full md:hidden">{offer.offer}</p>
@@ -286,8 +286,8 @@ function Home (){
                         for online payments and make a payment of just ₹1 to gain access to great offers from premium brands. Enjoy
                         these exclusive perks and elevate your experience today!
                     </p>
-                    <div className="text-center pt-3">
-                    <Button onClick={handleClickOpenInfo} variant="contained" sx={{backgroundColor:'#951B24', textTransform:'initial'}}>
+                    <div className="text-center pt-3 font-semibold">
+                    <Button onClick={handleClickOpenInfo} variant="contained" sx={{borderRadius:'10px',backgroundColor:'#951B24', textTransform:'initial'}}>
                         <img src={Lock} alt ='lock' className="pr-2"></img>
                         Unlock all for Only ₹1 !
                     </Button>
@@ -337,7 +337,7 @@ function Home (){
         </header>
             
         {!OtpDailog ?
-        <section className="flex flex-col items-center p-2 gap-2 relative text-gray-700">
+        <section className="flex flex-col items-center p-2 gap-2 relative" style={{color:'#1f4172'}}>
             
                 <h1 className="font-bold text-lg ">Enter Registered Mobile Number</h1>
                 <div>
@@ -350,7 +350,7 @@ function Home (){
                 {({ errors, touched }) => (
                     <Form>
                     <label htmlFor="mobileNumber" className="text-sm pb-1">Mobile Number</label><br/>
-                    <Field name="mobileNumber" type="text" className={`w-[100%] border-2 p-2 rounded-lg ${errors.mobileNumber && touched.mobileNumber ? 'border-red-500' : 'border-gray-500'}`}/><br/>
+                    <Field name="mobileNumber" placeholder='e.g. 00-000-00000' type="text" className={`w-[100%] border-2 p-2 rounded-lg ${errors.mobileNumber && touched.mobileNumber ? 'border-red-500' : 'border-gray-500'}`}/><br/>
                     <ErrorMessage name="mobileNumber" component="div" style={{ color: 'red' }} />
                     <div className="flex py-3">
                     <input type="checkbox" value={terms} onChange={()=>setTerms((pre)=>!pre)}/>
@@ -389,11 +389,11 @@ function Home (){
                 {wrongOtp && <div className="text-red-400 text-xs pt-2">Incorrect OTP</div>}
             </div>
             <div className="text-center pt-3 w-full">
-                <Button disabled={!terms} onClick={handleSubmit} variant="contained" sx={{backgroundColor:'#951B24', textTransform:'initial', width:'100%', borderRadius:'10px'}}>
+                <Button disabled={!terms} onClick={handleSubmit} variant="contained" sx={{ backgroundColor:'#951B24', textTransform:'initial', width:'100%', borderRadius:'10px'}}>
                     Continue
                 </Button>
                 {resend &&
-                <Button disabled={time.current} onClick={resendOtp} sx={{textTransform:'capitalize', width:'100%',paddingX:'0'}}>
+                <Button disabled={time.current} onClick={resendOtp} sx={{borderRadius:'10px', textTransform:'capitalize', width:'100%',paddingX:'0'}}>
                 <div  className={`text-gray-500 text-sm mt-2 rounded-lg p-2 w-full ${time.current ? '':'text-secondary'}`}>Resend OTP <span className={`pl-3 text-sm ${time.current ? '':'hidden'}`}>{timeLeft}</span></div>
                 </Button>
                 }
@@ -437,7 +437,7 @@ function Home (){
             <p className='text-lg font-semibold py-3'style={{color:'#411518'}}>Have you activated your card and enabled online transactions?</p>
             <section className="flex flex-col md:flex-row">
                 <div className="md:w-1/2 p-2 border-0 md:border-r-2  border-r-gray-300 flex flex-col gap-4 text-sm mb-4">
-                    <h1 className="text-secondary text-lg font-semibold">Here’s how!</h1>
+                    <h1 className="text-secondary text-xl font-semibold">Here’s how!</h1>
                     <p>
                         1. Activate Card: Download IDFC FIRST Mobile App {'>'} Go to Credit Cards {'>'} Generate PIN
                     </p>
@@ -447,8 +447,8 @@ function Home (){
                 </div>
                 <div className="md:w-1/2 p-2 flex flex-col gap-4 items-center">
                     <h1 className='text-2xl font-semibold'style={{color:'#149E10',}}>Yes, I’m ready!</h1>
-                    <p className="text-xs">Click below to unlock exclusive discount just for you at ₹ 1.</p>
-                    <Button variant="contained" onClick={handlePayment} sx={{backgroundColor:'#149E10', textTransform:'initial',width:'80%'}}>Unlock My Offer</Button>
+                    <p className="text-sm">Click below to unlock exclusive discount just for you at ₹ 1.</p>
+                    <Button variant="contained" onClick={handlePayment} sx={{borderRadius:'10px',backgroundColor:'#149E10', textTransform:'initial',width:'80%'}}>Unlock My Offer</Button>
                 </div>
             </section>
         </section>

@@ -339,7 +339,7 @@ function Home (){
         {!OtpDailog ?
         <section className="flex flex-col items-center p-2 gap-2 relative" style={{color:'#1f4172'}}>
             
-                <h1 className="font-bold text-lg ">Enter Registered Mobile Number</h1>
+                <h1 className="font-bold text-lg ">Enter Your Mobile Number</h1>
                 <div>
                 <Formik
                 initialValues={{ mobileNumber: '' }}

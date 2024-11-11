@@ -198,7 +198,7 @@ function Offers (){
                     </Button>
                     </div>
                     <div className="md:hidden text-center w-full pt-3">
-                    <Button variant="contained" onClick={()=>handleClickDailog(offer)} sx={{backgroundColor:'#951B24', textTransform:'initial', width:'100%'}}>
+                    <Button variant="contained" onClick={()=>handleClickDailog(offer)} sx={{backgroundColor:'#951B24', textTransform:'initial', width:'100%',borderRadius:'0.65rem'}}>
                         Offer Details & Redeem
                     </Button>
                     </div>
@@ -271,20 +271,20 @@ function Offers (){
         >
             <div className="flex flex-col mt-3">
                 <h1 className="text-xl font-semibold">About <span className="capitalize"> {offer?.offerTitle ? offer.offerTitle.toLowerCase() : ''}</span></h1>
-                <p className="font-semibold mb-3">{offer?.discription}</p>
-                <p className="font-light text-gray-700">Copy this code and use it during your purchase</p>
+                <p className="font-medium mb-3">{offer?.discription}</p>
+                <p className="font-light text-gray-600">Copy this code and use it during your purchase</p>
                 <div className="flex gap-2 border-dashed border-2 p-2 border-secondary rounded-lg my-2 mb-4 justify-between" style={{color:'#9c1d26',borderColor:'#9c1d26'}}>
                         <p className="text-secondary font-semibold">{offer?.code}</p>
                         <CopyButton textToCopy={offer?.code}></CopyButton>
                 </div>
-                <h1 className="text-xl font-medium">Terms & conditions</h1>
-                <p className=" text-gray-800">Eligible Customer at the time of signing up for&nbsp;  
+                <h1 className="text-lg font-medium">Terms & conditions</h1>
+                <p className="font-light text-gray-900 text-base">Eligible Customer at the time of signing up for&nbsp;  
                     <span style={{ textTransform: 'capitalize' }}>
                         {offer?.offerTitle?.toLowerCase()}
                     </span>&nbsp;
                 </p>
                 <div className="text-center pt-3 my-3 text-lg font-semibold">
-                    <Button variant="contained"  sx={{backgroundColor:'#951B24', textTransform:'initial', width:'90%', fontSize:'1.2rem'}} onClick={()=>{window.open(offer.offerLink)}}>
+                    <Button variant="contained"  sx={{borderRadius:'10px',backgroundColor:'#951B24', textTransform:'initial', width:'90%', fontSize:'1.2rem'}} onClick={()=>{window.open(offer.offerLink)}}>
                     Visit&nbsp;
                     <span style={{ textTransform: 'capitalize' }}>
                     {offer?.offerTitle ? offer.offerTitle.toLowerCase() : ''}

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 function Footer (){
     const navigate = useNavigate()
     return(
-        <footer className="flex flex-col items-center md:flex-row gap-2 text-primary bg-black p-2 justify-between w-screen md:px-10 h-auto">
+        <footer className="flex flex-col items-center md:flex-row gap-2 text-primary bg-black p-2 justify-between w-screen md:px-10 h-auto pb-4">
             <div className="flex ">
                 <span>Powered by:</span>
                 <span className="relative">
@@ -13,7 +13,7 @@ function Footer (){
                 
             </div>
             <div className=" order-3 md:order-2 border-0 border-t-[1px] pt-3 md:pt-0 md:border-none px-10 md:px-2 text-center">
-               ©2024 Cheggout. All rights reserved | <button className="text-blue-700" onClick={()=>navigate('/terms')}>Terms of Service</button> | <button className="text-blue-700" onClick={()=>{navigate('/privacypolicy')}}>Privacy Policy</button>
+               ©2024 Cheggout. All rights reserved | <button className="text-blue-700" onClick={()=>navigate('/terms')}>Terms of Service</button> | <button className="text-blue-700" onClick={()=>{navigate('/privacypolicy')}}>Privacy Policy</button> | <button className="text-blue-700" onClick={()=>{navigate('/disclaimer')}}>Disclaimer</button>
             </div>
             <div className="flex flex-row">
                 <span className="pr-2">Contact us:</span>

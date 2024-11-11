@@ -8,6 +8,7 @@ import Offers from './components/Offers';
 import OfferDetails from './components/offerDetails';
 import TermsOfService from './components/Terms';
 import PrivacyPolicy from './components/PrivacyPolicy';
+import Disclaimer from './components/Disclaimer';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/offerDetails" element={<OfferDetails/>} />
           <Route path="/terms" element={<TermsOfService/>} />
           <Route path="/privacypolicy" element={<PrivacyPolicy/>} />
+          <Route path="/disclaimer" element={<Disclaimer/>} />
       </Routes>
     </div>
     </div>

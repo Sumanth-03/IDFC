@@ -446,9 +446,9 @@ function Home (){
                     </p>
                 </div>
                 <div className="md:w-1/2 p-2 flex flex-col gap-4 items-center">
-                    <h1 className='text-2xl font-semibold'style={{color:'#149E10',}}>Yes, I’m ready!</h1>
+                    <h1 className='text-2xl font-semibold'style={{color:'#951B24',}}>Yes, I’m ready!</h1>
                     <p className="text-sm">Click below to unlock exclusive discount just for you at ₹ 1.</p>
-                    <Button variant="contained" onClick={handlePayment} sx={{borderRadius:'10px',backgroundColor:'#149E10', textTransform:'initial',width:'80%'}}>Unlock My Offer</Button>
+                    <Button variant="contained" onClick={handlePayment} sx={{borderRadius:'10px',backgroundColor:'#951B24', textTransform:'initial',width:'80%'}}>Unlock My Offer</Button>
                 </div>
             </section>
         </section>

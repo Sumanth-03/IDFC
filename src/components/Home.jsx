@@ -277,7 +277,7 @@ function Home (){
                                 </div>
                             </div>
                             <div className="flex gap-2">
-                                <div className="rounded-full px-4 p-1 bg-turiary text-center flex items-center min-w-32">worth  ₹ {offer.value} <img src={Gift} alt="gift" className="pl-2"></img></div>
+                                <div className="rounded-full px-4 p-1 bg-turiary text-center flex items-center min-w-32">worth  ₹ {offer.value} <img src={Gift} alt="gift" className="pl-2 md:hidden"></img></div>
                                 <CheckCircleOutlineIcon color="success" sx={{width:'40px',height:'40px', display:{xs:'none',md:'block'},}}/>
                             </div>
                             </div>
@@ -374,7 +374,7 @@ function Home (){
             <h1 className="font-bold text-lg ">Please Enter The 5 Digit Code sent to registered mobile number</h1>
             <div className="w-full text-left">
                 <label htmlFor="otp" className="text-xs">OTP</label>
-                <div className="flex gap-2 justify-evenly pt-3">
+                <div className="flex gap-2 justify-evenly md:justify-normal pt-3">
                 {inputRefs.map((ref, index) => (
                     <input
                         key={index}

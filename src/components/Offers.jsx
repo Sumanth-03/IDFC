@@ -188,8 +188,8 @@ function Offers (){
                     </div>
                     </div>    
                     <p className="text-sm md:hidden">Copy this code and use it during your purchase</p>
-                    <div className="flex gap-2 border-dashed border-2 p-2 border-secondary rounded-lg">
-                        <p>{offer.code}</p>
+                    <div className="flex justify-between gap-2 border-dashed border-2 p-2 border-secondary rounded-lg">
+                        <p className="text-secondary">{offer.code}</p>
                         <CopyButton textToCopy={offer.code}></CopyButton>
                     </div>
                     <div className="hidden md:block text-center pt-3">
@@ -214,7 +214,7 @@ function Offers (){
             PaperProps={{
                 style: {
                     position:'absolute',
-                    bottom:'40%',
+                    bottom:'20rem',
                     borderRadius: '1rem',
                     padding:'10px',
                     background: 'radial-gradient(circle at top,  #EAD0D2, #f9f0f0, #FFFFFF)',
@@ -228,7 +228,7 @@ function Offers (){
                 sx={() => ({
                     position: 'absolute',
                     right:10,
-                    top:'-20vh',
+                    top:'-25vh',
                     color: '#000',
                     backgroundColor: '#ffffff',
                     boxShadow: '0 2px 10px rgba(0,0,0,0.2)',

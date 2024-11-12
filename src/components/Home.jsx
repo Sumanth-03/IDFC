@@ -10,7 +10,9 @@ import lenscart from '../assets/lenscart.svg'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Button from '@mui/material/Button';
 import Lock from '../assets/Lock.svg'
-
+//import Gift from '../assets/gift_red.svg'
+import Gift from '../assets/gift_green.svg'
+import blast from '../assets/blast.svg'
 import { Dialog, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import * as Yup from 'yup';
@@ -24,6 +26,7 @@ import { makeApiCallGet, makeApiCall, makeApiCallWithAuth, makeApiGetCallWithAut
 function Home (){
     const [open, setOpen] = useState(true);
     const [terms, setTerms] = useState(false);
+    const [phone, setPhone] = useState(null);
     const [OtpDailog, setOtpDailog] = useState(false);
     const [wrongOtp, setwrongOtp] = useState(false);
     const [infoDailog, setinfoDailog] = useState(false)
@@ -148,8 +151,6 @@ function Home (){
         }
     }
 
-
-
     useEffect(()=>{
         if(sessionStorage.getItem('otp')){
             setOpen(false);
@@ -159,7 +160,6 @@ function Home (){
         time.current = null;  
         setResend(true)     
         setTimeLeft(10); 
-                    
     }
     },[timeLeft])
 
@@ -219,27 +219,29 @@ function Home (){
     const poster = (
     <section>
             <img src={Banner} alt="banner" className="mx-auto w-52 py-10"></img>
-            <h1 className="text-2xl py-5 font-semibold">What You’ll Need to do!</h1>
-            <span className="text-xl relative py-2 -ml-5">1. Ensure your card is activated  
-            <Box
-                    onClick={handleClickOpenInfo}
-                    sx={{ position:'absolute', right:'-30px',top:'35%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white',borderRadius: '50%', 
-                        width: 20, height: 20, boxShadow: 1,
-                    }}
-                    >
-                    <QuestionMarkIcon sx={{ color: '#951B24',fontSize:'20px' }} />
-                </Box>
-            </span><br/>
-            <span className="text-xl relative py-2 -ml-5">2. Enable your online transactions
+            <div className="p-3 py-5 mx-5 rounded-2xl" style={{backgroundColor:'#80232A'}}>
+            <h1 className="text-2xl pb-5 font-semibold">What You’ll Need to do!</h1>
+                <span className="text-xl relative py-2 -ml-5">1. Ensure your card is activated  
                 <Box
-                    onClick={handleClickOpenInfo}
-                    sx={{ position:'absolute', right:'-30px',top:'35%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white',borderRadius: '50%', 
-                        width: 20, height: 20, boxShadow: 1,
-                    }}
-                    >
-                    <QuestionMarkIcon sx={{ color: '#951B24',fontSize:'20px' }} />
-                </Box>
-            </span>
+                        onClick={handleClickOpenInfo}
+                        sx={{ position:'absolute', right:'-30px',top:'35%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white',borderRadius: '50%', 
+                            width: 20, height: 20, boxShadow: 1,
+                        }}
+                        >
+                        <QuestionMarkIcon sx={{ color: '#951B24',fontSize:'20px' }} />
+                    </Box>
+                </span><br/>
+                <span className="text-xl relative py-2 -ml-5">2. Enable your online transactions
+                    <Box
+                        onClick={handleClickOpenInfo}
+                        sx={{ position:'absolute', right:'-30px',top:'35%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white',borderRadius: '50%', 
+                            width: 20, height: 20, boxShadow: 1,
+                        }}
+                        >
+                        <QuestionMarkIcon sx={{ color: '#951B24',fontSize:'20px' }} />
+                    </Box>
+                </span>
+            </div>
         </section>
       )
     return(
@@ -258,26 +260,28 @@ function Home (){
                 </section>
             </section>
             <div className="flex flex-col md:flex-row my-5 -translate-y-10 md:translate-y-0  md:static  bg-primary rounded-3xl p-2 md:p-0">
-            <section className="text-centerw-full  md:w-1/2 p-5 border-[2px] md:border-2 md:ml-2 md:mr-4 :border-secondary rounded-2xl">
-                <h1 className="text-2xl font-bold text-center py-4 pb-12">
-                    Total benefits worth ₹2,998 
+            <section className="text-centerw-full  md:w-1/2 p-5  md:border-2 md:ml-2 md:mr-4 rounded-2xl">
+                <h1 className="flex text-2xl font-bold text-center py-4 pb-12">
+                    Total benefits worth <span className="underline md:no-underline pl-2">₹2,998</span> <img src={blast} alt="emoji" className="pl-2 md:hidden"></img>
                 </h1>
                 <div className="text-left">
                     {offers.map((offer)=>{
                         return(
-                            <div className="flex justify-between mb-4 items-center md:border-b-0 border-b-[1px] pb-1">
+                            <div className="md:border-0 border-2 mb-4 rounded-xl shadow-md p-4">
+                            <div className="flex  justify-between mb-4 items-center md:border-b-0 border-b-[1px] pb-2">
                             <div className="flex gap-2 flex-wrap">
                                 <img src={offer.icon} className="w-12 h-12"></img>
                                 <div className="flex flex-col  justify-center">
                                     <span className="max-w-20 text-gray-500 font-semibold">{offer.offerTitle}</span>
                                     <p className="w-full hidden md:block">{offer.offer}</p>
                                 </div>
-                                <p className="w-full md:hidden">{offer.offer}</p>
                             </div>
                             <div className="flex gap-2">
-                                <div className="rounded-full px-4 p-1 bg-turiary text-center flex items-center min-w-32">worth  ₹ {offer.value}</div>
-                                <CheckCircleOutlineIcon color="success" sx={{width:'40px',height:'40px'}}/>
+                                <div className="rounded-full px-4 p-1 bg-turiary text-center flex items-center min-w-32">worth  ₹ {offer.value} <img src={Gift} alt="gift" className="pl-2"></img></div>
+                                <CheckCircleOutlineIcon color="success" sx={{width:'40px',height:'40px', display:{xs:'none',md:'block'},}}/>
                             </div>
+                            </div>
+                            <p className="w-full  md:hidden">{offer.offer}</p>
                             </div>
                         )
                     })}
@@ -335,11 +339,10 @@ function Home (){
                 <CloseIcon />
             </IconButton>
         </header>
-            
         {!OtpDailog ?
         <section className="flex flex-col items-center p-2 gap-2 relative" style={{color:'#1f4172'}}>
             
-                <h1 className="font-bold text-lg ">Enter Your Mobile Number</h1>
+                <h1 className="font-bold text-lg text-left w-full ">Enter Your Mobile Number</h1>
                 <div>
                 <Formik
                 initialValues={{ mobileNumber: '' }}
@@ -347,17 +350,17 @@ function Home (){
                 validateOnChange={true}
                 validateOnBlur={true}
                 >
-                {({ errors, touched }) => (
+                {({ errors, touched, values }) => (
                     <Form>
                     <label htmlFor="mobileNumber" className="text-sm pb-1">Mobile Number</label><br/>
-                    <Field name="mobileNumber" placeholder='e.g. 00-000-00000' type="text" className={`w-[100%] border-2 p-2 rounded-lg ${errors.mobileNumber && touched.mobileNumber ? 'border-red-500' : 'border-gray-500'}`}/><br/>
+                    <Field name="mobileNumber"  placeholder='e.g. 00-000-00000' type="text" className={`w-[100%] border-2 p-2 rounded-lg ${errors.mobileNumber && touched.mobileNumber ? 'border-red-500' : 'border-gray-500'}`}/><br/>
                     <ErrorMessage name="mobileNumber" component="div" style={{ color: 'red' }} />
                     <div className="flex py-3">
                     <input type="checkbox" value={terms} onChange={()=>setTerms((pre)=>!pre)}/>
                     <p className="ml-2 text-xs">By continuing, you agree to our <button className="text-blue-700" onClick={()=>navigate('/terms')}>Terms of Use</button> and <button className="text-blue-700" onClick={()=>{navigate('/privacypolicy')}}>Privacy Policy</button>.</p>
                     </div>
                     <div className="text-center pt-3">
-                    <Button disabled={!terms} onClick={()=>setDailog2(errors,touched)} variant="contained" sx={{backgroundColor:'#951B24', textTransform:'initial', width:'80%', borderRadius:'10px'}}>
+                    <Button disabled={!terms || errors.mobileNumber || !values?.mobileNumber==10 || !touched.mobileNumber } onClick={()=>setDailog2(errors,touched)} variant="contained" sx={{backgroundColor:'#951B24', textTransform:'initial', width:'80%', borderRadius:'10px'}}>
                         Continue
                     </Button>
                     </div>
@@ -371,7 +374,7 @@ function Home (){
             <h1 className="font-bold text-lg ">Please Enter The 5 Digit Code sent to registered mobile number</h1>
             <div className="w-full text-left">
                 <label htmlFor="otp" className="text-xs">OTP</label>
-                <div className="flex gap-2">
+                <div className="flex gap-2 justify-evenly pt-3">
                 {inputRefs.map((ref, index) => (
                     <input
                         key={index}
@@ -389,7 +392,7 @@ function Home (){
                 {wrongOtp && <div className="text-red-400 text-xs pt-2">Incorrect OTP</div>}
             </div>
             <div className="text-center pt-3 w-full">
-                <Button disabled={!terms} onClick={handleSubmit} variant="contained" sx={{ backgroundColor:'#951B24', textTransform:'initial', width:'100%', borderRadius:'10px'}}>
+                <Button disabled={otpValues.toString().length!==9} onClick={handleSubmit} variant="contained" sx={{ backgroundColor:'#951B24', textTransform:'initial', width:'100%', borderRadius:'10px'}}>
                     Continue
                 </Button>
                 {resend &&
@@ -401,6 +404,7 @@ function Home (){
             </div>
         </section>}
         </Dialog>
+
         <Dialog
             open={infoDailog}
             onClose={handleCloseInfo}
@@ -437,18 +441,18 @@ function Home (){
             <p className='text-lg font-semibold py-3'style={{color:'#411518'}}>Have you activated your card and enabled online transactions?</p>
             <section className="flex flex-col md:flex-row">
                 <div className="md:w-1/2 p-2 border-0 md:border-r-2  border-r-gray-300 flex flex-col gap-4 text-sm mb-4">
-                    <h1 className="text-secondary text-xl font-semibold">Here’s how!</h1>
-                    <p>
-                        1. Activate Card: Download IDFC FIRST Mobile App {'>'} Go to Credit Cards {'>'} Generate PIN
+                    <h1 className="text-secondary text-xl font-semibold border-0 md:border-none pb-2 md:pb-2 border-b-2">Here’s how!</h1>
+                    <p className="flex md:block items-center gap-2 border-0  md:border-none pb-2 md:pb-2 border-b-2">
+                        <span className="p-1 px-2 md:p-0 border-[3px] rounded-full md:border-none">1</span> <span>&nbsp;Activate Card: Download IDFC FIRST Mobile App {'>'} Go to Credit Cards {'>'} Generate PIN</span>
                     </p>
-                    <p>
-                        2. Enable Online Transactions: Go to IDFC Mobile Banking App {'>'} Click Card Controls {'>'} Enable Online Transactions
+                    <p className="flex md:block items-center gap-2 border-0  md:border-none pb-2 md:pb-2 border-b-2">
+                    <span className="p-1 px-2 md:p-0 border-[3px] rounded-full md:border-none">2</span> <span>&nbsp;Enable Online Transactions: Go to IDFC Mobile Banking App {'>'} Click Card Controls {'>'} Enable Online Transactions</span>
                     </p>
                 </div>
                 <div className="md:w-1/2 p-2 flex flex-col gap-4 items-center">
                     <h1 className='text-2xl font-semibold'style={{color:'#951B24',}}>Yes, I’m ready!</h1>
-                    <p className="text-sm">Click below to unlock exclusive discount just for you at ₹ 1.</p>
-                    <Button variant="contained" onClick={handlePayment} sx={{borderRadius:'10px',backgroundColor:'#951B24', textTransform:'initial',width:'80%'}}>Unlock My Offer</Button>
+                    <p className="text-center md:text-left text-lg md:text-sm">Click below to unlock exclusive discount just for you at ₹ 1.</p>
+                    <Button variant="contained" onClick={handlePayment} sx={{borderRadius:'10px',backgroundColor:'#951B24', textTransform:'initial',width:'80%'}}><img src={Lock} alt='lock' className="pr-2"></img>Unlock My Offer</Button>
                 </div>
             </section>
         </section>

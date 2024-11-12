@@ -6,6 +6,8 @@ import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import { Box } from '@mui/material';
 import zee5 from '../assets/zee5.svg'
 import audible from '../assets/audible.svg'
+import gana from '../assets/gana.svg'
+import hotstar from '../assets/hotstar.svg'
 import lenscart from '../assets/lenscart.svg'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Button from '@mui/material/Button';
@@ -48,25 +50,60 @@ function Home (){
         }
       },[]); 
       
-    const offers = [
-        {
-            icon:zee5,
-            offerTitle:'ZEE5',
-            offer:'3 month subscription',
-            value:'1000',
-        },
+    const offers =[
         {
             icon:lenscart,
             offerTitle:'LENSKART',
-            offer:'2 month subscription',
-            value:'1600',
+            offer: "Free 1 Year Gold Membership worth Rs 500.",
+            value:'500',
+            code:'CHEGGIDFCZEP08128JOY',
+            offerLink: 'https://www.lenskart.com/lenskart-gold-membership.html?utm_source=oct24idfc&utm_medium=affiliate&utm_campaign=oct24idfc',
+            desclaimer:'Hurry! This offer expires in 45 days!',
+            discription:'Premium eyewear solutions with stylish frames and lenses',
+           
+    
         },
         {
             icon:audible,
             offerTitle:'AUDIBLE',
-            offer:'Free 2 months subscription ',
+            offer:'Free 2 months subscription',
             value:'398',
-        }
+            code:'CHEGGIDFCZEP08128JOY',
+            offerLink:'https://www.audible.in/cheggout',
+            desclaimer:'Valid till 11th November 2024',
+            discription:'Leading producer and provider of audio storytelling'
+        },
+        {
+            icon:zee5,
+            offerTitle:'ZEE5',
+            offer:"15% Off on annual subscription",
+            value:'179/ ₹ 150',
+            code:'CHEGGIDFCZEP08128JOY',
+            offerLink:'https://as.zee5.com/myaccount/subscription',
+            desclaimer:'Valid till 30th November 2024',
+            discription:'A leading digital entertainment platform with a wide variety of TV shows, movies, and web series'
+        },
+        {
+            icon:gana,
+            offerTitle:'Gaana',
+            offer:"Free 45 days Gaana Plus memebership at ₹ 1",
+            value:'149',
+            code:'CHEGGIDFCZEP08128JOY',
+            offerLink:' https://gaana.onelink.me/35m8/scratchcard',
+            desclaimer:'Valid till 15th October 2025',
+            discription:'Ad-free music and downloads with Gaana Plus, featuring a vast song and podcast library.'
+        },
+        
+        {
+            icon:hotstar,
+            offerTitle:'Hotstar',
+            offer:"Get 25% Off on 3 Month Super Plan MRP - Rs. 299 ",
+            value:'75',
+            code:'CHEGGIDFCZEP08128JOY',
+            offerLink:'https://web.hotstar.com/in/onboarding/login?promo=HS_M3M50',
+            desclaimer:'Valid till 31th March 2025',
+            discription:'Stream TV shows, movies, and live sports on Hotstar, your entertainment hub.'
+        },
     ]
 
     const handleClose = () => {

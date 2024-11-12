@@ -54,21 +54,19 @@ function Home (){
         {
             icon:lenscart,
             offerTitle:'LENSKART',
-            offer: "Free 1 Year Gold Membership worth Rs 500.",
+            offer: "Free 1 Year Gold Membership",
             value:'500',
-            code:'CHEGGIDFCZEP08128JOY',
+            code:'CHEGGLENSKARTGOLD500',
             offerLink: 'https://www.lenskart.com/lenskart-gold-membership.html?utm_source=oct24idfc&utm_medium=affiliate&utm_campaign=oct24idfc',
             desclaimer:'Hurry! This offer expires in 45 days!',
             discription:'Premium eyewear solutions with stylish frames and lenses',
-           
-    
         },
         {
             icon:audible,
             offerTitle:'AUDIBLE',
             offer:'Free 2 months subscription',
             value:'398',
-            code:'CHEGGIDFCZEP08128JOY',
+            code:'CHEGGAUDIBLE2FREE',
             offerLink:'https://www.audible.in/cheggout',
             desclaimer:'Valid till 11th November 2024',
             discription:'Leading producer and provider of audio storytelling'
@@ -78,7 +76,7 @@ function Home (){
             offerTitle:'ZEE5',
             offer:"15% Off on annual subscription",
             value:'179/ ₹ 150',
-            code:'CHEGGIDFCZEP08128JOY',
+            code:'CHEGGZEE515OFF',
             offerLink:'https://as.zee5.com/myaccount/subscription',
             desclaimer:'Valid till 30th November 2024',
             discription:'A leading digital entertainment platform with a wide variety of TV shows, movies, and web series'
@@ -88,7 +86,7 @@ function Home (){
             offerTitle:'Gaana',
             offer:"Free 45 days Gaana Plus memebership at ₹ 1",
             value:'149',
-            code:'CHEGGIDFCZEP08128JOY',
+            code:'CHEGGGAANAFREE1',
             offerLink:' https://gaana.onelink.me/35m8/scratchcard',
             desclaimer:'Valid till 15th October 2025',
             discription:'Ad-free music and downloads with Gaana Plus, featuring a vast song and podcast library.'
@@ -99,7 +97,7 @@ function Home (){
             offerTitle:'Hotstar',
             offer:"Get 25% Off on 3 Month Super Plan MRP - Rs. 299 ",
             value:'75',
-            code:'CHEGGIDFCZEP08128JOY',
+            code:'CHEGGHS25OFF',
             offerLink:'https://web.hotstar.com/in/onboarding/login?promo=HS_M3M50',
             desclaimer:'Valid till 31th March 2025',
             discription:'Stream TV shows, movies, and live sports on Hotstar, your entertainment hub.'
@@ -480,7 +478,7 @@ function Home (){
                 <div className="md:w-1/2 p-2 border-0 md:border-r-2  border-r-gray-300 flex flex-col gap-4 text-sm mb-4">
                     <h1 className="text-secondary text-xl font-semibold border-0 md:border-none pb-2 md:pb-2 border-b-2">Here’s how!</h1>
                     <p className="flex md:block items-center gap-2 border-0  md:border-none pb-2 md:pb-2 border-b-2">
-                        <span className="p-1 px-2 md:p-0 border-[3px] rounded-full md:border-none">1</span> <span>&nbsp;Activate Card: Download IDFC FIRST Mobile App {'>'} Go to Credit Cards {'>'} Generate PIN</span>
+                        <span className="p-1 px-2 md:p-0 border-[3px] rounded-full md:border-none">1</span> <span>&nbsp;Activate Card: <span onClick={()=>{window.open('https://my.idfcfirstbank.com/digital-banking-app')}} className="text-blue-700">Download IDFC FIRST Mobile App </span>  {'>'} Go to Credit Cards {'>'} Generate PIN</span>
                     </p>
                     <p className="flex md:block items-center gap-2 border-0  md:border-none pb-2 md:pb-2 border-b-2">
                     <span className="p-1 px-2 md:p-0 border-[3px] rounded-full md:border-none">2</span> <span>&nbsp;Enable Online Transactions: Go to IDFC Mobile Banking App {'>'} Click Card Controls {'>'} Enable Online Transactions</span>

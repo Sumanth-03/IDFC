@@ -247,20 +247,6 @@ function Offers (){
                 },
             }}
         >
-            <IconButton
-                aria-label="close"
-                onClick={handleClickDailog}
-                sx={() => ({
-                    position: 'absolute',
-                    right:10,
-                    top:'-25vh',
-                    color: '#000',
-                    backgroundColor: '#ffffff',
-                    boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
-                })}
-            >
-                <CloseIcon />
-            </IconButton>
             <div className="flex flex-col items-center pb-5">
                 <img src={offer?.icon}className="w-20 py-5"></img>
                 <p className="font-semibold text-2xl">{offer?.offerTitle}</p>
@@ -316,6 +302,22 @@ function Offers (){
                     </span>&nbsp;
                     to claim
                     </Button>
+                </div>
+                <div className="relative">
+                <IconButton
+                aria-label="close"
+                onClick={handleClickDailog}
+                sx={() => ({
+                    position: 'absolute',
+                    right:'10px',
+                    top:'-96vh',
+                    color: '#000',
+                    backgroundColor: '#ffffff',
+                    boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
+                })}
+                >
+                    <CloseIcon />
+                </IconButton>
                 </div>
             </div>
         </Dialog>

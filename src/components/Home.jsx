@@ -333,7 +333,7 @@ function Home (){
                     </div>
                 </div>
             </section>
-            <section  className="hidden md:block text-center w-full md:w-1/2 p-5 bg-secondary text-white rounded-2xl"> 
+            <section  className="hidden md:block text-center w-full md:w-1/2 p-5 bg-secondary text-white rounded-2xl h-fit"> 
                 {poster}
             </section>
             </div>

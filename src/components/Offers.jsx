@@ -5,6 +5,9 @@ import Logomixed from '../assets/logomixed.svg'
 import mail from '../assets/mail.svg'
 import message from '../assets/message.svg'
 
+import mailMobile from '../assets/mail_1.svg'
+import messageMobile from '../assets/message_1.svg'
+
 import { Dialog, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 
@@ -189,12 +192,12 @@ function Offers (){
         <div className="lg:absolute right-5 top-1/2 transform lg:-translate-x-1/2 lg:-translate-y-1/2 text-center">
         <img src={Logo} alt="logo" className="hidden lg:block h-32 absolute right-10 top-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></img>
         <div className="flex md:flex-row lg:flex-col p-2 gap-2 max-w-[600px] text-center justify-center">
-        <Button onClick={handleClickEmailDailog} sx={{backgroundColor:'#ffffff', color:'#951B24', borderRadius:'10px', paddingX:'20px', paddingY:'10px'}}>
-            <img src={mail}></img>
+        <Button onClick={handleClickEmailDailog} sx={{backgroundColor:{xs:'#951B24',md:'#ffffff'}, color:'#951B24', borderRadius:'10px', paddingX:'20px', paddingY:'10px',border:'1px solid white'}}>
+            <img src={mail} className="hidden md:block"></img><img src={mailMobile} className="md:hidden"></img>
             <span  className="hidden md:block"> Email My Code</span>
         </Button>
-        <Button onClick={()=>handlesetOpenalert('SMS')} sx={{backgroundColor:'#ffffff', color:'#951B24', borderRadius:'10px', paddingX:'20px', paddingY:'10px',paddingBottom:'5px'}}>
-            <img src={message}></img>
+        <Button onClick={()=>handlesetOpenalert('SMS')} sx={{backgroundColor:{xs:'#951B24',md:'#ffffff'}, color:'#951B24', borderRadius:'10px', paddingX:'20px', paddingY:'10px',paddingBottom:'5px',border:'1px solid white'}}>
+            <img src={message} className="hidden md:block"></img><img src={messageMobile} className="md:hidden"></img>
             <span className="hidden md:block">SMS My Code</span>
         </Button>
         </div>

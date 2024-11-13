@@ -16,7 +16,7 @@ function Header (){
     };
     return(
         <header className="fixed top-0 z-50 w-full h-20 flex flex-row justify-between  max-w-[1200px] bg-secondary md:bg-white background-gradient-md">
-            <div className=" text-secondary flex w-48 p-3  ">
+            <div onClick={()=>navigate('/')} className=" text-secondary flex w-48 p-3">
                 <img src={logodark} alt="logo" className="hidden md:block w-auto h-full p-1 mr-2"></img>
                 <img src={logowhite} alt="logo" className="md:hidden w-auto h-full p-1 mr-2"></img>
                 {/* <span className="hidden md:block font-bold">IDFC FIRST <br/> Bank</span>  */}

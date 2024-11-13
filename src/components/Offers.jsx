@@ -55,21 +55,19 @@ const offers = [
     {
         icon:lenscart,
         offerTitle:'LENSKART',
-        offer: "Free 1 Year Gold Membership worth Rs 500.",
+        offer: "Free 1 Year Gold Membership",
         value:'500',
-        code:'CHEGGIDFCZEP08128JOY',
+        code:'CHEGGLENSKARTGOLD500',
         offerLink: 'https://www.lenskart.com/lenskart-gold-membership.html?utm_source=oct24idfc&utm_medium=affiliate&utm_campaign=oct24idfc',
         desclaimer:'Hurry! This offer expires in 45 days!',
         discription:'Premium eyewear solutions with stylish frames and lenses',
-       
-
     },
     {
         icon:audible,
         offerTitle:'AUDIBLE',
         offer:'Free 2 months subscription',
         value:'398',
-        code:'CHEGGIDFCZEP08128JOY',
+        code:'CHEGGAUDIBLE2FREE',
         offerLink:'https://www.audible.in/cheggout',
         desclaimer:'Valid till 11th November 2024',
         discription:'Leading producer and provider of audio storytelling'
@@ -79,7 +77,7 @@ const offers = [
         offerTitle:'ZEE5',
         offer:"15% Off on annual subscription",
         value:'179/ ₹ 150',
-        code:'CHEGGIDFCZEP08128JOY',
+        code:'CHEGGZEE515OFF',
         offerLink:'https://as.zee5.com/myaccount/subscription',
         desclaimer:'Valid till 30th November 2024',
         discription:'A leading digital entertainment platform with a wide variety of TV shows, movies, and web series'
@@ -89,7 +87,7 @@ const offers = [
         offerTitle:'Gaana',
         offer:"Free 45 days Gaana Plus memebership at ₹ 1",
         value:'149',
-        code:'CHEGGIDFCZEP08128JOY',
+        code:'CHEGGGAANAFREE1',
         offerLink:' https://gaana.onelink.me/35m8/scratchcard',
         desclaimer:'Valid till 15th October 2025',
         discription:'Ad-free music and downloads with Gaana Plus, featuring a vast song and podcast library.'
@@ -100,7 +98,7 @@ const offers = [
         offerTitle:'Hotstar',
         offer:"Get 25% Off on 3 Month Super Plan MRP - Rs. 299 ",
         value:'75',
-        code:'CHEGGIDFCZEP08128JOY',
+        code:'CHEGGHS25OFF',
         offerLink:'https://web.hotstar.com/in/onboarding/login?promo=HS_M3M50',
         desclaimer:'Valid till 31th March 2025',
         discription:'Stream TV shows, movies, and live sports on Hotstar, your entertainment hub.'
@@ -212,7 +210,7 @@ function Offers (){
                     <div className="flex flex-col gap-1">
                         <p className="text-gray-400 text-sm">{offer.offerTitle}</p>
                         <p className="text-lg font-semibold">{offer.offer}</p>
-                        <p className="md:hidden  text-gray-400">Valid till 31st december 2024</p>
+                        <p className="md:hidden  text-gray-400">{offer?.desclaimer}</p>
                     </div>
                     </div>    
                     <p className="text-sm md:hidden">Copy this code and use it during your purchase</p>
@@ -222,7 +220,7 @@ function Offers (){
                     </div>
                     <div className="hidden md:block text-center pt-3">
                     <Button variant="contained" onClick={()=>handleClick(offer)} sx={{backgroundColor:'#951B24', textTransform:'initial' , width:'100%',borderRadius:'0.65rem'}}>
-                        View Details & Redeem
+                        Offer Details & Redeem
                     </Button>
                     </div>
                     <div className="md:hidden text-center w-full pt-3">
@@ -239,10 +237,11 @@ function Offers (){
             onClose={handleClickDailog}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
+            inert
             PaperProps={{
                 style: {
                     position:'absolute',
-                    bottom:'20rem',
+                    bottom:'21rem',
                     borderRadius: '1rem',
                     padding:'10px',
                     background: 'radial-gradient(circle at top,  #EAD0D2, #f9f0f0, #FFFFFF)',
@@ -313,7 +312,7 @@ function Offers (){
                 sx={() => ({
                     position: 'absolute',
                     right:'10px',
-                    top:'-96vh',
+                    top:'-98vh',
                     color: '#000',
                     backgroundColor: '#ffffff',
                     boxShadow: '0 2px 10px rgba(0,0,0,0.2)',

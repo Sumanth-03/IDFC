@@ -39,6 +39,7 @@ function Home (){
     const [resend, setResend]  = useState(false)
     const time = useRef(null);
     const [showerror, setShowError]  = useState('')
+    const [openSnackbar, setOpenSnackbar] = useState(false);
 
     const queryParams = new URLSearchParams(window.location.search);
     const hdnRefNumber = queryParams.get('hdnRefNumber');
@@ -129,6 +130,10 @@ function Home (){
         }
     };
 
+    const handleCloseSnackbar = () => {
+        setOpenSnackbar(false);
+      };
+
     const validationSchema = Yup.object({
         mobileNumber: Yup.string()
           .test(
@@ -152,8 +157,9 @@ function Home (){
                     setOtpDailog(true)
                 }
                 else if(response?.data?.status === 401){
-                    setShowError(response?.data?.message)
-                    setTimeout(() => window.location.reload(), 3000);
+                    //setShowError(response?.data?.message)
+                    setOpenSnackbar(true)
+                    //setTimeout(() => window.location.reload(), 3000);
                 }
             });
 
@@ -435,7 +441,6 @@ function Home (){
                     <label htmlFor="mobileNumber" className="text-sm pb-1">Mobile Number</label><br/>
                     <Field name="mobileNumber"  placeholder='e.g. 00-000-00000' type="text" className={`w-[100%] border-2 p-2 rounded-lg ${errors.mobileNumber && touched.mobileNumber ? 'border-red-500' : 'border-gray-500'}`}/><br/>
                     <ErrorMessage name="mobileNumber" component="div" style={{ color: 'red' }} />
-                    {showerror && <p name="mobileNumber" component="div" style={{ color: 'red' }}>{showerror}</p>}
                     <div className="flex py-3">
                     <input type="checkbox" value={terms} onChange={()=>setTerms((pre)=>!pre)}/>
                     <p className="ml-2 text-xs">By continuing, you agree to our <button className="text-blue-700" onClick={()=>navigate('/terms')}>Terms of Use</button> and <button className="text-blue-700" onClick={()=>{navigate('/privacypolicy')}}>Privacy Policy</button>.</p>
@@ -538,6 +543,16 @@ function Home (){
             </section>
         </section>
         </Dialog>
+        <Snackbar
+          open={openSnackbar}
+          autoHideDuration={2000}
+          onClose={handleCloseSnackbar}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        >
+          <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: '100%' }}>
+            User Not Found!
+          </Alert>
+        </Snackbar>
         </>
         
     )

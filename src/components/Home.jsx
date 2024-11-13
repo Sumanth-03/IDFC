@@ -38,6 +38,7 @@ function Home (){
     const [timeLeft, setTimeLeft]  = useState(10)
     const [resend, setResend]  = useState(false)
     const time = useRef(null);
+    const [showerror, setShowError]  = useState('')
 
     const queryParams = new URLSearchParams(window.location.search);
     const hdnRefNumber = queryParams.get('hdnRefNumber');
@@ -46,11 +47,12 @@ function Home (){
 
     useEffect(() => {
         if(hdnRefNumber){
-        makeApiCall('checkPaymentStatuss',{"order_id": hdnRefNumber})
+        makeApiCall('checkPaymentStatuss',{"order_id": hdnRefNumber, "phone": sessionStorage.getItem('phone')})
         .then((response) => {
             console.log("rsd",response.data)
             if(response.data.status === 200)
             {   //console.log(response.data)
+                sessionStorage.setItem('coupon',JSON.stringify(response.data.data))
                 navigate('/offers');
             }
             
@@ -149,6 +151,10 @@ function Home (){
                 if(response?.data?.status === 200){
                     setOtpDailog(true)
                 }
+                else if(response?.data?.status === 401){
+                    setShowError(response?.data?.message)
+                    setTimeout(() => window.location.reload(), 1000);
+                }
             });
 
             
@@ -193,6 +199,15 @@ function Home (){
                     setTimeLeft(10);
                     sessionStorage.setItem('otp', true)
                     window.location.reload();
+                }
+                else if(response?.data?.status === 201){
+                    setOpen(false)
+                    setOtpDailog(false)
+                    clearInterval(time.current);  
+                    setTimeLeft(10);
+                    sessionStorage.setItem('otp', true)
+                    sessionStorage.setItem('coupon',JSON.stringify(response.data.data))
+                    navigate('/offers');
                 }
                 else{
                     setwrongOtp(true)
@@ -420,6 +435,7 @@ function Home (){
                     <label htmlFor="mobileNumber" className="text-sm pb-1">Mobile Number</label><br/>
                     <Field name="mobileNumber"  placeholder='e.g. 00-000-00000' type="text" className={`w-[100%] border-2 p-2 rounded-lg ${errors.mobileNumber && touched.mobileNumber ? 'border-red-500' : 'border-gray-500'}`}/><br/>
                     <ErrorMessage name="mobileNumber" component="div" style={{ color: 'red' }} />
+                    {showerror && <p name="mobileNumber" component="div" style={{ color: 'red' }}>{showerror}</p>}
                     <div className="flex py-3">
                     <input type="checkbox" value={terms} onChange={()=>setTerms((pre)=>!pre)}/>
                     <p className="ml-2 text-xs">By continuing, you agree to our <button className="text-blue-700" onClick={()=>navigate('/terms')}>Terms of Use</button> and <button className="text-blue-700" onClick={()=>{navigate('/privacypolicy')}}>Privacy Policy</button>.</p>

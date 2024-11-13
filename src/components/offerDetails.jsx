@@ -61,10 +61,11 @@ function OfferDetails (){
                 <p className="text-2xl font-semibold">{offer.offer} worth ₹ {offer.value}</p>
                 <p className="text-xs">Copy this code and use it during your purchase at {offer.offerTitle}
                 </p>
-                <div className="flex justify-between gap-2 border-dashed border-2 p-4 border-secondary rounded-lg">
+                {offer.code &&<div className="flex justify-between gap-2 border-dashed border-2 p-4 border-secondary rounded-lg">
                         <p>{offer.code}</p>
                         <CopyButton textToCopy={offer.code}></CopyButton>
                 </div>
+                }
                 <div className="text-center pt-3 w-[100%]">
                     <Button variant="contained"  onClick={()=>{window.open(offer.offerLink)}} sx={{backgroundColor:'#2dac13', textTransform:'initial', width:'100%'}}>
                         Redeem Now

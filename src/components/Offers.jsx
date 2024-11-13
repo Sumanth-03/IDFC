@@ -37,6 +37,8 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+var coupondeets = JSON.parse(sessionStorage.coupon);
+
 //import emailjs from 'emailjs-com';
 
 // export const sendRedeemCodeEmail = (email, redeemCode) => {
@@ -72,8 +74,8 @@ const offers = [
         offerTitle:'LENSKART',
         offer: "Free 1 Year Gold Membership",
         value:'500',
-        code:'CHEGGLENSKARTGOLD500',
-        offerLink: 'https://www.lenskart.com/lenskart-gold-membership.html?utm_source=oct24idfc&utm_medium=affiliate&utm_campaign=oct24idfc',
+        code: coupondeets[4]?.coupon,
+        offerLink: coupondeets[4]?.redeemurl,
         desclaimer:'Hurry! This offer expires in 45 days!',
         discription:'Premium eyewear solutions with stylish frames and lenses',
         terms : [
@@ -100,8 +102,8 @@ const offers = [
         offerTitle:'AUDIBLE',
         offer:'Free 2 months subscription',
         value:'398',
-        code:'CHEGGAUDIBLE2FREE',
-        offerLink:'https://www.audible.in/cheggout',
+        code: coupondeets[2]?.coupon,
+        offerLink: coupondeets[2]?.redeemurl,
         desclaimer:'Valid till 11th November 2024',
         discription:'Leading producer and provider of audio storytelling',
         terms : [
@@ -139,8 +141,8 @@ const offers = [
         offerTitle:'ZEE5',
         offer:"15% Off on annual subscription",
         value:'179/ ₹ 150',
-        code:'CHEGGZEE515OFF',
-        offerLink:'https://as.zee5.com/myaccount/subscription',
+        code: coupondeets[3]?.coupon,
+        offerLink: coupondeets[3]?.redeemurl,
         desclaimer:'Valid till 30th November 2024',
         discription:'A leading digital entertainment platform with a wide variety of TV shows, movies, and web series',
         terms : [
@@ -176,8 +178,8 @@ const offers = [
         offerTitle:'Gaana',
         offer:"Free 45 days Gaana Plus memebership at ₹ 1",
         value:'149',
-        code:'CHEGGGAANAFREE1',
-        offerLink:' https://gaana.onelink.me/35m8/scratchcard',
+        code: coupondeets[1]?.coupon,
+        offerLink: coupondeets[1]?.redeemurl,
         desclaimer:'Valid till 15th October 2025',
         discription:'Ad-free music and downloads with Gaana Plus, featuring a vast song and podcast library.',
         terms : [
@@ -202,8 +204,8 @@ const offers = [
         offerTitle:'Hotstar',
         offer:"Get 25% Off on 3 Month Super Plan MRP - Rs. 299 ",
         value:'75',
-        code:'CHEGGHS25OFF',
-        offerLink:'https://web.hotstar.com/in/onboarding/login?promo=HS_M3M50',
+        code: coupondeets[0]?.coupon,
+        offerLink: coupondeets[0]?.redeemurl,
         desclaimer:'Valid till 31th March 2025',
         discription:'Stream TV shows, movies, and live sports on Hotstar, your entertainment hub.',
         terms : [
@@ -392,7 +394,7 @@ function Offers (){
         </div>
         </section>
         <section className="flex flex-col sm:flex-row flex-wrap gap-2 justify-center items-center bg-white rounded-t-3xl md:rounded-t-none -translate-y-24 md:translate-y-0">
-            {offers.map((offer)=>{
+            {offers.map((offer,index)=>{
                 return(
                     <div className="flex flex-col gap-3 md:m-2 shadow-md md:shadow-xl p-5 md:rounded-xl my-5 md:my-10 md:mx-2 w-[95%] rounded-md md:w-[20rem]">
                     <div className="flex md:flex-col gap-3">
@@ -404,10 +406,11 @@ function Offers (){
                     </div>
                     </div>    
                     <p className="text-sm md:hidden">Copy this code and use it during your purchase</p>
-                    <div className="flex justify-between gap-2 border-dashed border-2 p-2 border-secondary rounded-lg">
+                    {offer.code &&<div className="flex justify-between gap-2 border-dashed border-2 p-2 border-secondary rounded-lg">
                         <p className="text-secondary">{offer.code}</p>
                         <CopyButton textToCopy={offer.code}></CopyButton>
                     </div>
+                     }
                     <div className="hidden md:block text-center pt-3">
                     <Button variant="contained" onClick={()=>handleClick(offer)} sx={{backgroundColor:'#951B24', textTransform:'initial' , width:'100%',borderRadius:'0.65rem'}}>
                         Offer Details & Redeem

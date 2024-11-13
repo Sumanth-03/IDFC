@@ -55,8 +55,8 @@ function Home (){
             setLoader(false)
             if(response.data.status === 200)
             {   //console.log(response.data)
-                sessionStorage.setItem('coupon',JSON.stringify(response.data.data))
-                navigate('/offers');
+                //sessionStorage.setItem('coupon',JSON.stringify(response.data.data))
+                navigate('/offers', {state: {coupondeet: JSON.stringify(response.data.data)}});
             }
             
         })
@@ -214,8 +214,8 @@ function Home (){
                     clearInterval(time.current);  
                     setTimeLeft(10);
                     sessionStorage.setItem('otp', true)
-                    sessionStorage.setItem('coupon',JSON.stringify(response.data.data))
-                    navigate('/offers');
+                    //sessionStorage.setItem('coupon',JSON.stringify(response.data.data))
+                    navigate('/offers', {state: {coupondeet: response.data.data}});
                 }
                 else{
                     setwrongOtp(true)

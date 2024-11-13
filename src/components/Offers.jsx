@@ -38,9 +38,9 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
-let coupondeets;
-if (localStorage.getItem("coupon") !== null) {
-coupondeets = JSON.parse(sessionStorage.coupon);}
+let coupondeets = JSON.parse(sessionStorage.coupon);
+// if (localStorage.getItem("coupon") !== null) {
+// coupondeets = JSON.parse(sessionStorage.coupon);}
 
 //import emailjs from 'emailjs-com';
 

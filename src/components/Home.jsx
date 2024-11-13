@@ -38,7 +38,7 @@ function Home (){
     const [timeLeft, setTimeLeft]  = useState(10)
     const [resend, setResend]  = useState(false)
     const time = useRef(null);
-    const [showerror, setShowError]  = useState('')
+    const [loader, setLoader]  = useState(false)
     const [openSnackbar, setOpenSnackbar] = useState(false);
 
     const queryParams = new URLSearchParams(window.location.search);
@@ -48,9 +48,11 @@ function Home (){
 
     useEffect(() => {
         if(hdnRefNumber){
+            setLoader(true)
         makeApiCall('checkPaymentStatuss',{"order_id": hdnRefNumber, "phone": sessionStorage.getItem('phone')})
         .then((response) => {
             console.log("rsd",response.data)
+            setLoader(false)
             if(response.data.status === 200)
             {   //console.log(response.data)
                 sessionStorage.setItem('coupon',JSON.stringify(response.data.data))
@@ -332,7 +334,7 @@ function Home (){
       )
     return(
         <>
-        <main className="w-full h-auto md:p-2">
+        <main className={`w-full h-auto md:p-2 ${loader?'blur-sm animate-pulse':''}`}>
             <section className="w-full md:p-5 py-10 bg-secondary text-primary md:rounded-2xl relative text-center md:text-left ">
                 <h1 className="text-2xl font-semibold">
                     The ₹ 1 Store
@@ -425,7 +427,7 @@ function Home (){
                 <CloseIcon />
             </IconButton>
         </header>
-        {!OtpDailog ?
+        {(!OtpDailog && !loader) ?
         <section className="flex flex-col items-center p-2 gap-2 relative" style={{color:'#1f4172'}}>
             
                 <h1 className="font-bold text-lg text-left w-full ">Enter Your Mobile Number</h1>

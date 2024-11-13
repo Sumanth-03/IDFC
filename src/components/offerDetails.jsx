@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import audibleBanner from '../assets/audibleBanner.svg'
 import Logomixed from '../assets/logomixed.svg'
 import { Snackbar, Alert } from '@mui/material';
-
+import { RedeemAccordion } from "./Offers";
 
 import { Dialog, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
@@ -70,17 +70,10 @@ function OfferDetails (){
                         Redeem Now
                     </Button>
                 </div>
-                <div className="my-10 ">
-                    <h1 className="text-xl font-semibold py-2 border-0 border-b border-gray-200">Order Details</h1>
-                    <p><span className="text-gray-500">AVAILED FOR:</span> 1 Rs</p>
-                    <p><span className="text-gray-500">ORDER ID: </span>2253165214313565131</p>
-                    <p><span className="text-gray-500">TIME OF PURCHASE:</span> 12:05 PM</p>
-                </div>
-                <div>
-                    <h1 className="text-xl font-semibold py-2 border-0 border-b border-gray-200">Need any help?</h1>
-                    <p>Contact us at support@cheggout.com</p>
-                </div>
 
+                <div className="my-10 ">
+                   <RedeemAccordion redeemSteps={offer?.redeemSteps} terms={offer?.terms}></RedeemAccordion>
+                </div>
             </section>
             <section className='md:w-1/2 h-[calc(100vh-64px)] flex' style={{background: 'linear-gradient(to bottom, #0a2943, #010e19)'}}>
                     <img src={audibleBanner} alt="banner" className="w-full"></img>

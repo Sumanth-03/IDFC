@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import Button from '@mui/material/Button';
 import Logo from '../assets/Logo.svg'
 import Logomixed from '../assets/logomixed.svg'
@@ -22,7 +22,22 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { Snackbar, Alert } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 
-import emailjs from 'emailjs-com';
+import {
+    Accordion,
+    AccordionSummary,
+    AccordionDetails,
+    Typography,
+    Stepper,
+    StepConnector,
+    Step,
+    StepLabel,
+    List,
+    ListItem,
+    ListItemText,
+} from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+//import emailjs from 'emailjs-com';
 
 // export const sendRedeemCodeEmail = (email, redeemCode) => {
 //     const serviceID = 'service_2ua4a3a'; 
@@ -61,6 +76,24 @@ const offers = [
         offerLink: 'https://www.lenskart.com/lenskart-gold-membership.html?utm_source=oct24idfc&utm_medium=affiliate&utm_campaign=oct24idfc',
         desclaimer:'Hurry! This offer expires in 45 days!',
         discription:'Premium eyewear solutions with stylish frames and lenses',
+        terms : [
+             'Membership is valid for 365 days from the date of purchase.',
+             'Enhance the joy of Membership by extending it to your cherished friends and family by sharing your membership benefits',
+            ' Buy 1 Get 1 Free is valid on Vincent Chase, Lenskart Air, John Jacobs, Hooper & New Balance (for Eyeglasses & Sunglasses).',
+             'Buy One Get One can be availed on Eyeglasses+Sunglasses / Eyeglasses+Eyeglasses / Sunglasses+Sunglasses.',
+             'Membership benefits can be availed 2 times a month.',
+            ' Membership benefits are applicable across App, Website , 1500+ Stores & Home Try-On services.',
+            ' Membership cannot be returned or refunded.',
+             'Both products need to be added in cart to avail Buy One Get One',
+             'Convenience fee of 49 will be applied at checkout.',
+             'Membership can be redeemed through online transactions only.',
+             'Lenskart.com reserves the right to change/modify terms and conditions of the coupon.',
+        ],
+        redeemSteps : [
+           ' Visit- https://www.lenskart.com/lenskart-gold-membership.html?utm_source=oct24idfc&utm_medium=affiliate&utm_campaign=oct24idfc',
+            'Add gold membership to your cart.',
+            'Apply promo code at checkout page under tab  Have a voucher'
+        ]
     },
     {
         icon:audible,
@@ -70,7 +103,36 @@ const offers = [
         code:'CHEGGAUDIBLE2FREE',
         offerLink:'https://www.audible.in/cheggout',
         desclaimer:'Valid till 11th November 2024',
-        discription:'Leading producer and provider of audio storytelling'
+        discription:'Leading producer and provider of audio storytelling',
+        terms : [
+           ' This is a promotional offer ("Offer") provided and funded by Audible Singapore Private Limited ("Audible").',
+           ' These Offer terms and conditions ("Offer Terms") are in addition to the Audible.in Conditions of Use (available here) and Privacy Policy (available here), to which you agree by using Audible.in and/ or by availing the Offer. In the event of any conflict between the Audible.in Conditions of Use and these Offer Terms, these Offer Terms will prevail in respect of this Offer only.',
+            'This Offer will be available from 1st October 2024 Ò 31st August 2025(both days included) (collectively "Offer Period"). Notwithstanding anything contained herein, Audible shall have the right to revoke the Offer at any time without any prior written notice and without any liability, in this regard.',
+            'Each user who fulfills the criteria mentioned in Sections 5 and 6 below (each such user an "Eligible Customer") will be eligible to receive a trial Audible membership of 2 months at no cost ("Benefit"). Post the 2 months period, the Eligible Customers will move to paid Audible membership and charged at the rate of the then prevailing subscription price.',
+            'You may only avail this Offer if you: (a) are located in India; and (b) are 18 years or above. It is clarified that this Offer is not valid for existing members of Audible.',
+           ' During the Offer Period, all the users who either (a) copy the voucher codes displayed to them and redeem them on https://audible.in/cheggout or (b) click on the redemption link made available to them and subsequently undertake the sign-up process appearing on the landing page of such link, will be eligible to receive the Benefit.',
+            'It is clarified that at the time of sign-up by the Eligible Customer, an amount of INR 2 will be deducted using the selected payment instrument by the customer, as a validation of such payment instrument. Such deduction of INR 2 shall be non-refundable.',
+            'An Eligible Customer will be eligible to receive the Benefit under this Offer only once.',
+            'There are no cash or other alternatives available in whole or in part, in relation to the Benefit under this Offer.',
+             'All applicable taxes and levies in relation to the Offer, including without limitation sales tax, service tax, goods and services tax etc., shall be payable by you/ the Eligible Customer.',
+             'Audible reserves the absolute right to withdraw and/or alter any of the terms and conditions of the Offer at any time without prior notice and reserves the right to remove / withdraw this Offer at any time without any prior notice.',
+             'This Offer cannot be combined with any other offer.',
+             'Any queries in relation to the Offer and / or the Benefit should be addressed to the Audible Support team.',
+             'You are not bound in any manner to participate in or avail the Offer. This Offer is being made purely on a "best effort" basis and participating in or availing the Offer is voluntary.',
+             'By participating in this Offer, you will be deemed to have accepted these Offer Terms.',
+             'Audible reserves the right to disqualify any Eligible Customer from this Offer if any fraudulent activity is identified as being carried out for the purpose of availing the Offer or if any of the conditions of these Offer Terms are not met.',
+             'Nothing contained in these Offer Terms amounts to a commitment by Audible to conduct further, similar or other offers.',
+             'All decisions of Audible related to the Offer are final and binding. Failure by Audible to enforce any of these Offer Terms, in any instance, will not be deemed to be a waiver of the Offer Terms.',
+             'Nothing contained herein shall prejudice or affect the terms and conditions of any other Offer and/ or Offer Terms.',
+             'These Offer Terms are governed by the laws of India. '
+        ],
+       redeemSteps : [
+        'Copy the voucher code displayed',
+        'Visit https://www.audible.in/cheggout or click the redirection link',
+        'Enter voucher code in the box labelled ÎEnter your code hereÌ and click ÎRedeem nowÌ',
+        'Login with your Amazon account and choose credit/debit card or UPI (Super-fast signup with UPI!) for membership sign-up. Rupees Two(Rs. 2) will be charged and your membership starts.',
+        'Subscription auto-renews at INR 199/month after the free period. Cancel anytime'
+        ]
     },
     {
         icon:zee5,
@@ -80,7 +142,34 @@ const offers = [
         code:'CHEGGZEE515OFF',
         offerLink:'https://as.zee5.com/myaccount/subscription',
         desclaimer:'Valid till 30th November 2024',
-        discription:'A leading digital entertainment platform with a wide variety of TV shows, movies, and web series'
+        discription:'A leading digital entertainment platform with a wide variety of TV shows, movies, and web series',
+        terms : [
+            'These Terms and Conditions shall constitute an agreement between ZEE5 and each Customer. By accepting and availing the Offer, the Customer accepts these Terms & Conditions as binding upon him/her.',
+            'This offer is non-negotiable and non-binding',
+            'This offer is valid in India only',
+            'The code is redeemable on ZEE5 Website only',
+            'The code can be utilized for one-time transaction only',
+            'The code can be used only against ZEE5 Premium HD Annual Plan',
+            'This offer is valid for a limited period only',
+            'The benefits under this Offer are non-transferable. No exchange or redemption for an equivalent cash amount or in any other form shall be allowed',
+            'Apart from these Terms & Conditions, the Customer will also be bound by the Terms of Use (https://www.zee5.com/termsofuse) or any such specific terms and conditions as provided by ZEE5 on their platform for using their services',
+            'To the extent permitted by law, ZEE5 or its representatives, employees, directors, officers or agents, shall not be liable for any loss suffered or sustained, to person or property including, but not limited to, consequential (including economic) loss by reason of any act or omission, deliberate or negligent on the part of ZEE5 or its representatives, employees, directors, officers or agents',
+           ' ZEE5 reserves the right at any time and from time to time to modify or discontinue, temporarily or permanently, this Offer with or without prior notice due to reasons outside its control or otherwise (including, without limitation, in the case of anticipated, suspected or actual fraud)',
+            'ZEE5 reserves the right to modify, add or delete any of the Terms and Conditions at any point of time at its sole discretion without serving any prior intimation to the Customers',
+            'The invalidity or unenforceability of any part of the Terms and Conditions shall not prejudice or affect the remaining parts of the Terms and Conditions to the extent that it is severable',
+            'ZEE5 shall not be responsible and/or liable in any manner whatsoever in case of any failed transaction as part of this offer NOR liable for any failure relating to technical, hardware, software, server, website, or other issues of any kind to the extent that these may prevent the Customer from participating in this offer',
+            'By availing this offer, it is deemed that the Customer has agreed to all the terms & conditions mentioned herein',
+       ],
+       redeemSteps : [
+       ' Visit ZEE5 website or click https://as.zee5.com/myaccount/subscription',
+        'Login using your mobile number or email id',
+        "Click 'Buy Plan'",
+       " Enter the code in the section that says, 'Apply Code' and click 'Apply'",
+        'Offer will get applied on the respective plan basis the entered code',
+        "Click on 'Buy Plan' after the code is applied to complete the transaction",
+        'Complete the payment of the discounted amount using the payment option of your choice',
+        'Pack will be instantly activated post successful payment transaction',
+       ]
     },
     {
         icon:gana,
@@ -90,7 +179,22 @@ const offers = [
         code:'CHEGGGAANAFREE1',
         offerLink:' https://gaana.onelink.me/35m8/scratchcard',
         desclaimer:'Valid till 15th October 2025',
-        discription:'Ad-free music and downloads with Gaana Plus, featuring a vast song and podcast library.'
+        discription:'Ad-free music and downloads with Gaana Plus, featuring a vast song and podcast library.',
+        terms : [
+             'The offer is valid in the territory of India. ',
+             'This offer is not transferable. ',
+             'Offer valid till 15th Oct 2025. ',
+             'Input of Coupon Code gives the user 45 days subscription of Gaana Plus.' ,
+             'This coupon code will only work once per user.'
+       ],
+       redeemSteps : [
+       ' Sign in on the Gaana App ',
+        'Navigate to ì https://gaana.onelink.me/35m8/scratchcard î your browser ',
+       ' Enter the Unique Coupon Code ',
+       ' Make a transaction of Rs 1 to activate the subscription ',
+       ' Enjoy your 45 days Gaana Plus Subscription. ',
+        'In case you are not logged in on web/wap/app, you would need to login first and then enter - https://gaana.onelink.me/35m8/scratchcard'
+       ]
     },
     
     {
@@ -101,10 +205,96 @@ const offers = [
         code:'CHEGGHS25OFF',
         offerLink:'https://web.hotstar.com/in/onboarding/login?promo=HS_M3M50',
         desclaimer:'Valid till 31th March 2025',
-        discription:'Stream TV shows, movies, and live sports on Hotstar, your entertainment hub.'
+        discription:'Stream TV shows, movies, and live sports on Hotstar, your entertainment hub.',
+        terms : [
+             'Offer is applicable for first time subscribers only',
+             'In case of any dispute, the decision made by SIPL would be final and binding',
+            ' SIPL reserves the right to modify or amend the terms and conditions without any prior notice and such modifications shall be binding on the user',
+             'Please refer to our https://www.hotstar.com/tnc/in for more information regarding the Disney+ Hotstar Service in general'
+       ],
+       redeemSteps : [
+       ]
     },
 ]
 
+export const RedeemAccordion = ({ redeemSteps, terms }) => {
+    return (
+        <div>
+            {redeemSteps?.length>=1 &&
+            <Accordion sx={{ border: 'none' ,boxShadow:'none'}}>
+                <AccordionSummary sx={{fontSize:'1rem',lineHeight:'1.5rem'}} expandIcon={<ExpandMoreIcon />}>
+                    Redemption Process
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Stepper
+                    orientation="vertical"
+                    connector={<StepConnector />}
+                    sx={{
+                        '& .MuiStepConnector-line': {
+                            borderColor: '#951B24',      
+                            borderStyle: 'dotted',
+                            marginY:'-10px',  
+                            height:'50px',
+                            border:'none',
+                            backgroundImage:'linear-gradient(to bottom, #000 40%, rgba(255, 255, 255, 0) 10%)',
+                            backgroundSize:' 1px 20px',
+                            backgroundRepeat: 'repeat-y'
+                        },
+                        '& .MuiStepIcon-root': {
+                            color: '#951B24 !important',          
+                        },
+                        '& .MuiStepLabel-root': {
+                        color: '#000000',   
+                        },
+                        '& .Mui-active .MuiStepLabel-label': {
+                        color: '#000000',   
+                        },
+                        '& .Mui-completed .MuiStepLabel-label': {
+                        color: '#000000',  
+                        },
+                        '& .MuiStepLabel-label': {
+                        color: '#555',
+                        },
+                    }}
+                    >
+                        {redeemSteps?.map((step, index) => (
+                            <Step key={index}>
+                                <StepLabel
+                                sx={{color:'#000'}}>{step}</StepLabel>
+                            </Step>
+                        ))}
+                    </Stepper>
+                </AccordionDetails>
+            </Accordion>
+            }
+            {terms?.length>=1 &&
+
+            <Accordion sx={{ border: 'none' ,boxShadow:'none'}}>
+                <AccordionSummary sx={{fontSize:'1rem',lineHeight:'1.5rem'}} expandIcon={<ExpandMoreIcon />}>
+                    Terms and Conditions
+                </AccordionSummary>
+                <AccordionDetails>
+                    <List>
+                        {terms?.map((term, index) => (
+                            <ListItem 
+                            key={index}
+                            sx={{
+                                display: 'list-item', 
+                                listStyleType: 'disc', 
+                                marginBottom: '0px', 
+                                marginLeft:'20px'                              
+                            }}
+                              >
+                                <ListItemText sx={{ color: '#555' }} primary={term} />
+                            </ListItem>
+                        ))}
+                    </List>
+                </AccordionDetails>
+            </Accordion>
+            }
+        </div>
+    );
+};
 
 export function CopyButton({ textToCopy }) {
     const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -241,18 +431,20 @@ function Offers (){
             PaperProps={{
                 style: {
                     position:'absolute',
-                    bottom:'21rem',
+                    //top:0,
+                    bottom:375,
                     borderRadius: '1rem',
                     padding:'10px',
                     background: 'radial-gradient(circle at top,  #EAD0D2, #f9f0f0, #FFFFFF)',
                     overflow:'visible'
                 },
             }}
+            
         >
             <div className="flex flex-col items-center pb-5">
-                <img src={offer?.icon}className="w-20 py-5"></img>
-                <p className="font-semibold text-2xl">{offer?.offerTitle}</p>
-                <p className="text-2xl font-semibold text-gray-600 text-center">{offer?.offer} worth ₹ {offer?.value}</p>
+                <img src={offer?.icon}className="w-20 py-3"></img>
+                <p className="font-semibold text-2xl mb-3">{offer?.offerTitle}</p>
+                <p className="text-xl font-medium text-gray-600 text-center">{offer?.offer} worth ₹ {offer?.value}</p>
                 <p className="text-lg text-gray-500">{offer?.desclaimer}</p>
             </div>
         </Dialog>
@@ -261,14 +453,17 @@ function Offers (){
             onClose={handleClickDailog}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
+            //ref={element2Ref}
             PaperProps={{
                 style: {
+                    maxHeight:'100vh',
+                    overflowY:'auto',
                     position:'absolute',
                     bottom:0,
                     borderRadius: '1rem',
                     padding:'10px',
                     //background: 'radial-gradient(circle at top,  #EED7D8, #FFFFFF, #FFFFFF)',
-                    overflow:'visible',
+                    
                     margin:0,
                     width:'100%'
                 },
@@ -290,19 +485,13 @@ function Offers (){
                         <p className="text-secondary font-semibold">{offer?.code}</p>
                         <CopyButton textToCopy={offer?.code}></CopyButton>
                 </div>
-                <h1 className="text-lg font-medium">Terms & conditions</h1>
-                <p className="font-light text-gray-900 text-base">Eligible Customer at the time of signing up for&nbsp;  
-                    <span style={{ textTransform: 'capitalize' }}>
-                        {offer?.offerTitle?.toLowerCase()}
-                    </span>&nbsp;
-                </p>
-                <div className="text-center pt-3 my-3 text-lg font-semibold">
+                <RedeemAccordion redeemSteps={offer?.redeemSteps} terms={offer?.terms}></RedeemAccordion>
+                <div className="text-center pt-3 my-3 text-lg font-semibold sticky bottom-0">
                     <Button variant="contained"  sx={{borderRadius:'10px',backgroundColor:'#951B24', textTransform:'initial', width:'90%', fontSize:'1.2rem'}} onClick={()=>{window.open(offer.offerLink)}}>
                     Visit&nbsp;
                     <span style={{ textTransform: 'capitalize' }}>
                     {offer?.offerTitle ? offer.offerTitle.toLowerCase() : ''}
-                    </span>&nbsp;
-                    to claim
+                    </span>&nbsp;to claim
                     </Button>
                 </div>
                 <div className="relative">
@@ -310,9 +499,9 @@ function Offers (){
                 aria-label="close"
                 onClick={handleClickDailog}
                 sx={() => ({
-                    position: 'absolute',
+                    position: 'fixed',
                     right:'10px',
-                    top:'-98vh',
+                    top:'10px',
                     color: '#000',
                     backgroundColor: '#ffffff',
                     boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
@@ -323,6 +512,7 @@ function Offers (){
                 </div>
             </div>
         </Dialog>
+
         <Dialog
             open={openEmailDailog}
             onClose={handleClickEmailDailog}
@@ -363,6 +553,7 @@ function Offers (){
                 <button onClick={()=>handlesetOpenalert('Mail')} className="bg-secondary py-1 rounded-2xl text-white mt-6 w-full">Email My Code</button>
             </div>
         </Dialog>
+
         <Snackbar open={openalert} autoHideDuration={2000} onClose={handleClosealert}  anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
         <Alert
             onClose={handleClosealert}

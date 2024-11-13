@@ -37,7 +37,10 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-var coupondeets = JSON.parse(sessionStorage.coupon);
+
+let coupondeets;
+if (localStorage.getItem("coupon") !== null) {
+coupondeets = JSON.parse(sessionStorage.coupon);}
 
 //import emailjs from 'emailjs-com';
 
@@ -74,8 +77,8 @@ const offers = [
         offerTitle:'LENSKART',
         offer: "Free 1 Year Gold Membership",
         value:'500',
-        code: coupondeets[4]?.coupon,
-        offerLink: coupondeets[4]?.redeemurl,
+        code: coupondeets?coupondeets[4]?.coupon:'',
+        offerLink: coupondeets?coupondeets[4]?.redeemurl:'',
         desclaimer:'Hurry! This offer expires in 45 days!',
         discription:'Premium eyewear solutions with stylish frames and lenses',
         terms : [
@@ -102,8 +105,8 @@ const offers = [
         offerTitle:'AUDIBLE',
         offer:'Free 2 months subscription',
         value:'398',
-        code: coupondeets[2]?.coupon,
-        offerLink: coupondeets[2]?.redeemurl,
+        code: coupondeets?coupondeets[2]?.coupon:'',
+        offerLink: coupondeets?coupondeets[2]?.redeemurl:'',
         desclaimer:'Valid till 11th November 2024',
         discription:'Leading producer and provider of audio storytelling',
         terms : [
@@ -141,8 +144,8 @@ const offers = [
         offerTitle:'ZEE5',
         offer:"15% Off on annual subscription",
         value:'179/ ₹ 150',
-        code: coupondeets[3]?.coupon,
-        offerLink: coupondeets[3]?.redeemurl,
+        code: coupondeets?coupondeets[3]?.coupon:'',
+        offerLink: coupondeets?coupondeets[3]?.redeemurl:'',
         desclaimer:'Valid till 30th November 2024',
         discription:'A leading digital entertainment platform with a wide variety of TV shows, movies, and web series',
         terms : [
@@ -178,8 +181,8 @@ const offers = [
         offerTitle:'Gaana',
         offer:"Free 45 days Gaana Plus memebership at ₹ 1",
         value:'149',
-        code: coupondeets[1]?.coupon,
-        offerLink: coupondeets[1]?.redeemurl,
+        code: coupondeets?coupondeets[1]?.coupon:'',
+        offerLink: coupondeets?coupondeets[1]?.redeemurl:'',
         desclaimer:'Valid till 15th October 2025',
         discription:'Ad-free music and downloads with Gaana Plus, featuring a vast song and podcast library.',
         terms : [
@@ -204,8 +207,8 @@ const offers = [
         offerTitle:'Hotstar',
         offer:"Get 25% Off on 3 Month Super Plan MRP - Rs. 299 ",
         value:'75',
-        code: coupondeets[0]?.coupon,
-        offerLink: coupondeets[0]?.redeemurl,
+        code: coupondeets?coupondeets[0]?.coupon:'',
+        offerLink: coupondeets?coupondeets[0]?.redeemurl:'',
         desclaimer:'Valid till 31th March 2025',
         discription:'Stream TV shows, movies, and live sports on Hotstar, your entertainment hub.',
         terms : [

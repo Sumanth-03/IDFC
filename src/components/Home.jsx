@@ -153,7 +153,7 @@ function Home (){
                 }
                 else if(response?.data?.status === 401){
                     setShowError(response?.data?.message)
-                    setTimeout(() => window.location.reload(), 1000);
+                    setTimeout(() => window.location.reload(), 3000);
                 }
             });
 

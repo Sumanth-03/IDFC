@@ -45,12 +45,15 @@ function Home (){
     const amount = queryParams.get('amount');
 
     useEffect(() => {
-        if(transactionId){
-        makeApiCall('checkPaymentStatuss',{"order_id": transactionId})
+        if(hdnRefNumber){
+        makeApiCall('checkPaymentStatuss',{"order_id": hdnRefNumber})
         .then((response) => {
             console.log("rsd",response.data)
-            if(response.data)
-            {navigate('/offers');}
+            if(response.data.status === 200)
+            {   //console.log(response.data)
+                navigate('/offers');
+            }
+            
         })
         }
       },[]); 

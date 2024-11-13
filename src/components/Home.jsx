@@ -33,8 +33,8 @@ function Home (){
     const [wrongOtp, setwrongOtp] = useState(false);
     const [infoDailog, setinfoDailog] = useState(false)
     const navigate = useNavigate()
-    const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
-    const [otpValues, setOtpValues] = useState(["", "", "", "",""]);
+    const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
+    const [otpValues, setOtpValues] = useState(["", "", "", "","", ""]);
     const [timeLeft, setTimeLeft]  = useState(10)
     const [resend, setResend]  = useState(false)
     const time = useRef(null);
@@ -45,8 +45,16 @@ function Home (){
     const amount = queryParams.get('amount');
 
     useEffect(() => {
-        if(transactionId){
-          navigate('/offers');
+        if(hdnRefNumber){
+        makeApiCall('checkPaymentStatuss',{"order_id": hdnRefNumber})
+        .then((response) => {
+            console.log("rsd",response.data)
+            if(response.data.status === 200)
+            {   //console.log(response.data)
+                navigate('/offers');
+            }
+            
+        })
         }
       },[]); 
       
@@ -129,9 +137,21 @@ function Home (){
           .matches(/^[0-9]{10}$/, "Mobile number must be exactly 10 digits")
           .required("Mobile number is required")
       });
-    const setDailog2 = (err,touched)=>{
+    const setDailog2 = (err,touched,values)=>{
         if(!err.mobileNumber && touched.mobileNumber){
-            setOtpDailog(true)
+            let indata ={
+                phone: values.mobileNumber
+               }
+               sessionStorage.setItem('phone', values.mobileNumber)
+            makeApiCall('initiateLogin',indata)
+            .then((response) => {
+                console.log(response?.data)
+                if(response?.data?.status === 200){
+                    setOtpDailog(true)
+                }
+            });
+
+            
         }
     }  
 
@@ -157,24 +177,34 @@ function Home (){
     
       const handleSubmit = () => {
         const otpCode = otpValues.join('')
-        if(otpCode.length === 5){
+        if(otpCode.length === 6){
             console.log(otpCode)
-            if(otpCode == '12345'){
-                setOpen(false)
-                setOtpDailog(false)
-                clearInterval(time.current);  
-                setTimeLeft(10);
-                sessionStorage.setItem('otp', true)
-                window.location.reload();
-            }else{
-                setwrongOtp(true)
-                setResend(true)
-                if (!time.current) {
-                    time.current = setInterval(() => {
-                        setTimeLeft((prev) => prev - 1);
-                    }, 1000);
+            let indata ={
+            phone: sessionStorage.getItem('phone'),
+            otp: otpCode
+            }
+            makeApiCall('checkOTP',indata)
+            .then((response) => {
+                console.log(response?.data)
+                if(response?.data?.status === 200){
+                    setOpen(false)
+                    setOtpDailog(false)
+                    clearInterval(time.current);  
+                    setTimeLeft(10);
+                    sessionStorage.setItem('otp', true)
+                    window.location.reload();
                 }
-            }    
+                else{
+                    setwrongOtp(true)
+                    setResend(true)
+                    if (!time.current) {
+                        time.current = setInterval(() => {
+                            setTimeLeft((prev) => prev - 1);
+                        }, 1000);
+                    }
+                }  
+            })
+             
         }
       };
 
@@ -216,11 +246,11 @@ function Home (){
            }
          
         
-           makeApiCall('validationCheckDemo', indata)
+           makeApiCall('validationCard', indata)
             .then((response) => {
-              console.log(response?.data?.data?.data)
-              if(response?.data?.data?.data?.url){
-                let paymenturl = response.data.data.data.url;
+              //console.log("resp", response?.data.data.url)
+              if(response?.data?.data?.url){
+                let paymenturl = response.data.data.url;
                 //setIsloading(false);
                 window.location.href = paymenturl;
                 }
@@ -395,7 +425,7 @@ function Home (){
                     <p className="ml-2 text-xs">By continuing, you agree to our <button className="text-blue-700" onClick={()=>navigate('/terms')}>Terms of Use</button> and <button className="text-blue-700" onClick={()=>{navigate('/privacypolicy')}}>Privacy Policy</button>.</p>
                     </div>
                     <div className="text-center pt-3">
-                    <Button disabled={!terms || errors.mobileNumber || !values?.mobileNumber==10 || !touched.mobileNumber } onClick={()=>setDailog2(errors,touched)} variant="contained" sx={{backgroundColor:'#951B24', textTransform:'initial', width:'80%', borderRadius:'10px'}}>
+                    <Button disabled={!terms || errors.mobileNumber || !values?.mobileNumber==10 || !touched.mobileNumber } onClick={()=>setDailog2(errors,touched,values)} variant="contained" sx={{backgroundColor:'#951B24', textTransform:'initial', width:'80%', borderRadius:'10px'}}>
                         Continue
                     </Button>
                     </div>
@@ -406,7 +436,7 @@ function Home (){
         </section>
         :
         <section className="flex flex-col items-center p-2 gap-2 relative text-gray-700">
-            <h1 className="font-bold text-lg ">Please Enter The 5 Digit Code sent to registered mobile number</h1>
+            <h1 className="font-bold text-lg ">Please Enter The 6 Digit Code sent to registered mobile number</h1>
             <div className="w-full text-left">
                 <label htmlFor="otp" className="text-xs">OTP</label>
                 <div className="flex gap-2 justify-evenly md:justify-normal pt-3">
@@ -427,7 +457,7 @@ function Home (){
                 {wrongOtp && <div className="text-red-400 text-xs pt-2">Incorrect OTP</div>}
             </div>
             <div className="text-center pt-3 w-full">
-                <Button disabled={otpValues.toString().length!==9} onClick={handleSubmit} variant="contained" sx={{ backgroundColor:'#951B24', textTransform:'initial', width:'100%', borderRadius:'10px'}}>
+                <Button disabled={otpValues.toString().length!==11} onClick={handleSubmit} variant="contained" sx={{ backgroundColor:'#951B24', textTransform:'initial', width:'100%', borderRadius:'10px'}}>
                     Continue
                 </Button>
                 {resend &&

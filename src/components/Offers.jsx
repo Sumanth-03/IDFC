@@ -411,7 +411,7 @@ function Offers (){
         </div>
         </section>
         <section className="flex flex-col sm:flex-row flex-wrap gap-2 justify-center items-center bg-white rounded-t-3xl md:rounded-t-none -translate-y-24 md:translate-y-0">
-            {offers.map((offer)=>{
+            {coupondeet && coupondeet?.map((offer)=>{
                 return(
                     <div className="flex flex-col gap-3 md:m-2 shadow-md md:shadow-xl p-5 md:rounded-xl my-5 md:my-10 md:mx-2 w-[95%] rounded-md md:w-[20rem]">
                     <div className="flex md:flex-col gap-3">

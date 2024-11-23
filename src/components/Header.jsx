@@ -23,7 +23,7 @@ function Header (){
             </div>
             <button className="flex items-center gap-2 pr-2" onClick={handleLogout}>
                 <img src={user_logo} alt="user" className="w-10 "></img>
-                <span className="text-primary md:text-gray-500">{(logged || sessionStorage.getItem('otp'))?'Logout':'Login'}</span> 
+                <span className="text-primary md:text-gray-500 pr-2">{(logged || sessionStorage.getItem('otp'))?'Logout':'Login'}</span> 
                 <span className="hidden md:block"><KeyboardArrowDownIcon style={{ fontSize: '2rem', color: 'gray' }} /></span>
                 
             </button>

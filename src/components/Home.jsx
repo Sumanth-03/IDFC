@@ -45,7 +45,7 @@ function Home (){
     const hdnRefNumber = queryParams.get('hdnRefNumber');
     const transactionId = queryParams.get('transactionId');
     const amount = queryParams.get('amount');
-
+    console.log(terms)
     useEffect(() => {
         if(hdnRefNumber){
             setLoader(true)
@@ -60,7 +60,7 @@ function Home (){
                     {
                         icon:lenscart,
                         offerTitle:'LENSKART',
-                        offer: "Free 1 Year Gold Membership",
+                        offer: "1 Year Free on Lenskart Gold Membership",
                         value:'500',
                         code: response.data.data[4].coupon,
                         offerLink: response.data.data[4].redeemurl,
@@ -88,7 +88,7 @@ function Home (){
                     {
                         icon:audible,
                         offerTitle:'AUDIBLE',
-                        offer:'Free 2 months subscription',
+                        offer:'2 Months Free on Audible Subscription',
                         value:'398',
                         code: response.data.data[2].coupon,
                         offerLink: response.data.data[2].redeemurl,
@@ -127,8 +127,8 @@ function Home (){
                     {
                         icon:zee5,
                         offerTitle:'ZEE5',
-                        offer:"15% Off on annual subscription",
-                        value:'179/ ₹ 150',
+                        offer:"15% off on Zee5 Annual Subscription",
+                        value:'179',
                         code: response.data.data[3].coupon,
                         offerLink: response.data.data[3].redeemurl,
                         desclaimer:'Valid till 30th November 2024',
@@ -164,7 +164,7 @@ function Home (){
                     {
                         icon:gana,
                         offerTitle:'Gaana',
-                        offer:"Free 45 days Gaana Plus memebership at ₹ 1",
+                        offer:"45 days free on Gaana Plus Membership",
                         value:'149',
                         code: response.data.data[1].coupon,
                         offerLink: response.data.data[1].redeemurl,
@@ -189,8 +189,8 @@ function Home (){
                     
                     {
                         icon:hotstar,
-                        offerTitle:'Hotstar',
-                        offer:"Get 25% Off on 3 Month Super Plan MRP - Rs. 299 ",
+                        offerTitle:'Disney+ Hotstar',
+                        offer:"25% off on 3-month Disney+ Hotstar Super plan",
                         value:'75',
                         code: response.data.data[0].coupon,
                         offerLink: response.data.data[0].redeemurl,
@@ -217,7 +217,7 @@ function Home (){
         {
             icon:lenscart,
             offerTitle:'LENSKART',
-            offer: "Free 1 Year Gold Membership",
+            offer: "1 Year Free on Lenskart Gold Membership",
             value:'500',
             code:'CHEGGLENSKARTGOLD500',
             offerLink: 'https://www.lenskart.com/lenskart-gold-membership.html?utm_source=oct24idfc&utm_medium=affiliate&utm_campaign=oct24idfc',
@@ -227,7 +227,7 @@ function Home (){
         {
             icon:audible,
             offerTitle:'AUDIBLE',
-            offer:'Free 2 months subscription',
+            offer:'2 Months Free on Audible Subscription',
             value:'398',
             code:'CHEGGAUDIBLE2FREE',
             offerLink:'https://www.audible.in/cheggout',
@@ -237,8 +237,8 @@ function Home (){
         {
             icon:zee5,
             offerTitle:'ZEE5',
-            offer:"15% Off on annual subscription",
-            value:'179/ ₹ 150',
+            offer:"15% off on Zee5 Annual Subscription",
+            value:'179',
             code:'CHEGGZEE515OFF',
             offerLink:'https://as.zee5.com/myaccount/subscription',
             desclaimer:'Valid till 30th November 2024',
@@ -247,7 +247,7 @@ function Home (){
         {
             icon:gana,
             offerTitle:'Gaana',
-            offer:"Free 45 days Gaana Plus memebership at ₹ 1",
+            offer:"45 days free on Gaana Plus Membership",
             value:'149',
             code:'CHEGGGAANAFREE1',
             offerLink:' https://gaana.onelink.me/35m8/scratchcard',
@@ -257,8 +257,8 @@ function Home (){
         
         {
             icon:hotstar,
-            offerTitle:'Hotstar',
-            offer:"Get 25% Off on 3 Month Super Plan MRP - Rs. 299 ",
+            offerTitle:'Disney+ Hotstar',
+            offer:"25% off on 3-month Disney+ Hotstar Super plan",
             value:'75',
             code:'CHEGGHS25OFF',
             offerLink:'https://web.hotstar.com/in/onboarding/login?promo=HS_M3M50',
@@ -293,7 +293,7 @@ function Home (){
             "Mobile number must contain only digits",
             (value) => /^[0-9]*$/.test(value || '')
           )
-          .matches(/^[0-9]{10}$/, "Mobile number must be exactly 10 digits")
+          .matches(/^[0-9]{10}$/, "Mobile Number is incomplete.")
           .required("Mobile number is required")
       });
     const setDailog2 = (err,touched,values)=>{
@@ -638,10 +638,10 @@ function Home (){
         <main className={`w-full h-auto md:p-2 ${loader?'blur-sm animate-pulse':''}`}>
             <section className="w-full md:p-5 py-10 bg-secondary text-primary md:rounded-2xl relative text-center md:text-left ">
                 <h1 className="text-2xl font-semibold">
-                    The ₹ 1 Store
+                    ₹1 Store
                 </h1>
                 <p className="md:max-w-96 text-xl pt-5">
-                    Welcome to the store where your favourite<br/> merchant offers are all just for ₹ 1!
+                Shop exclusive bundle Offers at just ₹1!<br/> <em className="text-sm">Limited Period Offer!</em>
                 </p>
                 <img src={Logo} alt="logo" className="hidden md:block h-24 absolute right-10 top-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></img>
                 <section className="block md:hidden text-center w-full pb-10 md:pb-0 bg-secondary text-white rounded-2xl">
@@ -651,7 +651,8 @@ function Home (){
             <div className="flex flex-col md:flex-row my-5 -translate-y-10 md:translate-y-0  md:static  bg-primary rounded-3xl p-2 md:p-0">
             <section className="text-centerw-full  md:w-1/2 p-5  md:border-2 md:ml-2 md:mr-4 rounded-2xl">
                 <h1 className="flex flex-wrap text-2xl font-bold text-center py-4 pb-12">
-                    Total benefits worth <span className="underline md:no-underline pl-2">₹2,998</span> <img src={blast} alt="emoji" className="pl-2 md:hidden"></img>
+                    Offers worth ₹2,998, now at ₹1!
+                    {/* Total benefits worth <span className="underline md:no-underline pl-2">₹2,998</span> <img src={blast} alt="emoji" className="pl-2 md:hidden"></img> */}
                 </h1>
                 <div className="text-left">
                     {offers.map((offer)=>{
@@ -661,28 +662,29 @@ function Home (){
                             <div className="flex gap-2 flex-wrap">
                                 <img src={offer.icon} className="w-12 h-12"></img>
                                 <div className="flex flex-col  justify-center">
-                                    <span className="max-w-20 text-gray-500 font-semibold">{offer.offerTitle}</span>
+                                    <span className="min-w-fit text-gray-500 font-semibold">{offer.offerTitle}</span>
                                     <p className="w-full hidden md:block">{offer.offer}</p>
                                 </div>
                             </div>
-                            <div className="flex gap-2">
-                                <div className="rounded-full px-4 p-1 bg-turiary text-center flex items-center min-w-32">worth  ₹ {offer.value} <img src={Gift} alt="gift" className="pl-2 md:hidden"></img></div>
+                            <div className="flex gap-2 min-w-fit">
+                                <div className="rounded-full px-4 p-1 bg-turiary text-center flex items-center min-w-fit gap-[6px]">worth <span className="flex line-through min-w-fit">₹ {offer.value} </span><span className="text-red-500 font-bold min-w-fit">₹ 1</span><img src={Gift} alt="gift" className="pl-2 md:hidden"></img></div>
                                 <CheckCircleOutlineIcon color="success" sx={{width:'40px',height:'40px', display:{xs:'none',md:'block'},}}/>
                             </div>
                             </div>
-                            <p className="w-full  md:hidden">{offer.offer}</p>
+                            <p className="w-full md:hidden">{offer.offer}</p>
                             </div>
                         )
                     })}
                     <p className="text-sm text-gray-400">
-                        Unlock exclusive benefits with your IDFC card! As an IDFC FIRST bank cardholder, simply activate your card 
+                        Unlock exclusive benefits with your IDFC FIRST Bank Credit Card
+                        {/* Unlock exclusive benefits with your IDFC card! As an IDFC FIRST bank cardholder, simply activate your card 
                         for online payments and make a payment of just ₹1 to gain access to great offers from premium brands. Enjoy
-                        these exclusive perks and elevate your experience today!
+                        these exclusive perks and elevate your experience today! */}
                     </p>
                     <div className="text-center pt-3 font-semibold">
                     <Button onClick={handleClickOpenInfo} variant="contained" sx={{borderRadius:'10px',backgroundColor:'#951B24', textTransform:'initial'}}>
                         <img src={Lock} alt ='lock' className="pr-2"></img>
-                        Unlock all for Only ₹1 !
+                        Unlock @ ₹1
                     </Button>
                     </div>
                 </div>
@@ -731,7 +733,7 @@ function Home (){
         {(!OtpDailog && !loader) ?
         <section className="flex flex-col items-center p-2 gap-2 relative" style={{color:'#1f4172'}}>
             
-                <h1 className="font-bold text-lg text-left w-full ">Enter Your Mobile Number</h1>
+                <h1 className="font-bold text-lg text-left w-full ">Enter Your Registered Mobile Number</h1>
                 <div>
                 <Formik
                 initialValues={{ mobileNumber: '' }}
@@ -746,11 +748,11 @@ function Home (){
                     <ErrorMessage name="mobileNumber" component="div" style={{ color: 'red' }} />
                     <div className="flex py-3">
                     <input type="checkbox" value={terms} onChange={()=>setTerms((pre)=>!pre)}/>
-                    <p className="ml-2 text-xs">By continuing, you agree to our <button className="text-blue-700" onClick={()=>navigate('/terms')}>Terms of Use</button> and <button className="text-blue-700" onClick={()=>{navigate('/privacypolicy')}}>Privacy Policy</button>.</p>
+                    <p className="ml-2 text-xs">I have read and accept<button className="text-blue-700" onClick={()=>navigate('/terms')}>Terms of Use </button> and <button className="text-blue-700" onClick={()=>{navigate('/privacypolicy')}}>Privacy Policy</button>.</p>
                     </div>
                     <div className="text-center pt-3">
                     <Button disabled={!terms || errors.mobileNumber || !values?.mobileNumber==10 || !touched.mobileNumber } onClick={()=>setDailog2(errors,touched,values)} variant="contained" sx={{backgroundColor:'#951B24', textTransform:'initial', width:'80%', borderRadius:'10px'}}>
-                        Continue
+                        Submit
                     </Button>
                     </div>
                     </Form>

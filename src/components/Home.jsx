@@ -611,7 +611,7 @@ function Home (){
             <img src={Banner} alt="banner" className="mx-auto w-52 py-10"></img>
             <div className="p-3 py-5 mx-5 rounded-2xl flex flex-col items-start md:items-center" style={{backgroundColor:'#80232A'}}>
             <h1 className="text-2xl pb-5 font-semibold">What You’ll Need to do!</h1>
-                <span className="text-xl relative pt-2 md:-ml-5"><span className="mr-2 px-2 py-0 pb-1 my-2 border-[1px] border-white rounded-full aspect-square">1</span> Ensure your card is activated  
+                <span className="text-xl relative pt-2 md:-ml-5"><span className=" px-2 py-0 pb-0 my-2 border-[1px] md:border-none border-white rounded-full aspect-square">1</span> Ensure your card is activated  
                 <Box
                         onClick={handleClickOpenInfo}
                         sx={{ position:'absolute', right:'-30px',top:'35%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white',borderRadius: '50%', 
@@ -621,10 +621,10 @@ function Home (){
                         <QuestionMarkIcon sx={{ color: '#951B24',fontSize:'20px' }} />
                     </Box>
                 </span><br/>
-                <span className="text-xl relative pb-2 md:-ml-5"><span className="mr-2 px-2 py-0 pb-1 my-2 border-[1px] border-white rounded-full aspect-square">2</span> Enable your online transactions
+                <span className="text-xl relative pb-2 md:-ml-5 text-left md:text-center"><span className=" px-2 py-0 pb-1 my-2 border-[1px] md:border-none border-white rounded-full aspect-square">2</span> Enable your online transactions
                     <Box
                         onClick={handleClickOpenInfo}
-                        sx={{ position:'absolute', right:'-30px',top:'35%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white',borderRadius: '50%', 
+                        sx={{ position:'absolute', right:'-30px',top:'20%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white',borderRadius: '50%', 
                             width: 20, height: 20, boxShadow: 1,
                         }}
                         >

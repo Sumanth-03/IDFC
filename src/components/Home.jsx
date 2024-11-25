@@ -1,7 +1,7 @@
 import React,{useState, useRef, useEffect} from "react";
 import Logo from '../assets/Logo.svg'
 import Logomixed from '../assets/logomixed.svg'
-import Banner from '../assets/Banner.svg'
+import Banner from '../assets/Banner.png'
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import { Box } from '@mui/material';
 import zee5 from '../assets/zee5.svg'
@@ -25,11 +25,11 @@ import { Snackbar, Alert } from '@mui/material';
 import { current } from "@reduxjs/toolkit";
 import { makeApiCallGet, makeApiCall, makeApiCallWithAuth, makeApiGetCallWithAuth, makeSwinkApiCallWithAuth } from '../Services/Api' 
 
-import audibleBanner from '../assets/audibleBanner.svg'
-import gaanaBanner from '../assets/gaanaBanner.svg'
-import hotstarBanner from '../assets/hotstarBanner.svg'
-import lenskartBanner from '../assets/lenskartBanner.svg'
-import zee5Banner from '../assets/zee5Banner.svg'
+import audibleBanner from '../assets/audibleBanner.png'
+import gaanaBanner from '../assets/gaanaBanner.png'
+import hotstarBanner from '../assets/hotstarBanner.png'
+import lenskartBanner from '../assets/lenskartBanner.png'
+import zee5Banner from '../assets/zee5Banner.png'
 
 function Home (){
     const [open, setOpen] = useState(true);

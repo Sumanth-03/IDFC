@@ -623,7 +623,7 @@ function Home (){
 
     const poster = (
     <section>
-            <img src={Banner} alt="banner" className="mx-auto w-52 py-10"></img>
+            <img src={Banner} alt="banner" className="mx-auto w-full py-10"></img>
             <div className="p-3 py-5 mx-5 rounded-2xl flex flex-col items-start md:items-center gap-2" style={{backgroundColor:'#80232A'}}>
             <h1 className="text-2xl pb-5 font-semibold">What You’ll Need to do!</h1>
                 <div className="flex items-center gap-2">

@@ -4,7 +4,7 @@ import mail from '../assets/mail.svg'
 import { CopyButton } from "./Offers";
 import audible from '../assets/audible.svg'
 import Button from '@mui/material/Button';
-import audibleBanner from '../assets/audibleBanner.svg'
+
 import Logomixed from '../assets/logomixed.svg'
 import { Snackbar, Alert } from '@mui/material';
 import { RedeemAccordion } from "./Offers";
@@ -19,6 +19,16 @@ function OfferDetails (){
     const [email, setEmail] = useState('')
     const [alertType, setalertType] = useState('')
     const [openalert, setOpenalert] = useState()
+
+    //----dummy
+    const [ couponcods, setCouponcods ] = useState({}) 
+    const getCode = (offerTitle,code)=>{
+        setTimeout(() => {
+            setCouponcods((preObj)=>{
+                return {...preObj, [offerTitle]:code}
+            })
+        }, 500);
+    }
 
     const handleClosealert = ()=>{
         setOpenalert(false)
@@ -44,7 +54,7 @@ function OfferDetails (){
         window.scrollTo(0, 0); 
     }, []);
 
-    console.log(alertType,openalert)
+    console.log(offer)
     return(
         <main className="flex flex-col md:flex-row">
             <section className="flex flex-col gap-3 md:w-1/2 p-2 m-2 border rounded-lg ">
@@ -59,13 +69,19 @@ function OfferDetails (){
                     </Button>
                 </div>
                 <p className="text-2xl font-semibold">{offer.offer} worth ₹ {offer.value}</p>
-                <p className="text-xs">Copy this code and use it during your purchase at {offer.offerTitle}
-                </p>
-                {offer.code &&<div className="flex justify-between gap-2 border-dashed border-2 p-4 border-secondary rounded-lg">
-                        <p>{offer.code}</p>
-                        <CopyButton textToCopy={offer.code}></CopyButton>
-                </div>
-                }
+                
+                {offer?.code &&
+                    <>
+                    <p className="text-xs">Copy this code and use it during your purchase at {offer.offerTitle}</p>
+                    <div className={`flex  gap-2  border-2  w-full ${couponcods[offer.offerTitle] ? "p-2 justify-between border-dashed w-full" : 'bg-secondary  text-white justify-center' }  rounded-lg border-secondary`}>
+                        <p className={`text-secondary ${couponcods[offer.offerTitle] ? '' : 'hidden'}`}>{offer.code}</p>
+                        <span className={`${couponcods[offer.offerTitle] ?  '' : 'inline-block w-full'}`}>
+                            <span className={`  ${couponcods[offer.offerTitle] ? '' : 'hidden'}`}><CopyButton className='' textToCopy={offer.code}></CopyButton></span>
+                            <span className={`inline-block w-full text-center p-1 ${couponcods[offer.offerTitle] ?  'hidden' : ''} `}onClick={()=>getCode(offer.offerTitle,offer.code)}>Get Code</span>
+                        </span>
+                    </div>
+                    </>
+                     }
                 <div className="text-center pt-3 w-[100%]">
                     <Button variant="contained"  onClick={()=>{window.open(offer.offerLink)}} sx={{backgroundColor:'#2dac13', textTransform:'initial', width:'100%'}}>
                         Redeem Now
@@ -77,7 +93,7 @@ function OfferDetails (){
                 </div>
             </section>
             <section className='md:w-1/2 h-[calc(100vh-64px)] flex' style={{background: 'linear-gradient(to bottom, #0a2943, #010e19)'}}>
-                    <img src={audibleBanner} alt="banner" className="w-full"></img>
+                    <img src={offer?.banner} alt="banner" className="w-full"></img>
             </section>
             <Dialog
             open={openEmailDailog}

@@ -25,6 +25,11 @@ import { Snackbar, Alert } from '@mui/material';
 import { current } from "@reduxjs/toolkit";
 import { makeApiCallGet, makeApiCall, makeApiCallWithAuth, makeApiGetCallWithAuth, makeSwinkApiCallWithAuth } from '../Services/Api' 
 
+import audibleBanner from '../assets/audibleBanner.svg'
+import gaanaBanner from '../assets/gaanaBanner.svg'
+import hotstarBanner from '../assets/hotstarBanner.svg'
+import lenskartBanner from '../assets/lenskartBanner.svg'
+import zee5Banner from '../assets/zee5Banner.svg'
 
 function Home (){
     const [open, setOpen] = useState(true);
@@ -65,6 +70,7 @@ function Home (){
                         value:'500',
                         code: response.data.data[4].coupon,
                         offerLink: response.data.data[4].redeemurl,
+                        banner:lenskartBanner,
                         desclaimer:'Hurry! This offer expires in 45 days!',
                         discription:'Premium eyewear solutions with stylish frames and lenses',
                         terms : [
@@ -93,6 +99,7 @@ function Home (){
                         value:'398',
                         code: response.data.data[2].coupon,
                         offerLink: response.data.data[2].redeemurl,
+                        banner:audibleBanner,
                         desclaimer:'Valid till 11th November 2024',
                         discription:'Leading producer and provider of audio storytelling',
                         terms : [
@@ -132,6 +139,7 @@ function Home (){
                         value:'179',
                         code: response.data.data[3].coupon,
                         offerLink: response.data.data[3].redeemurl,
+                        banner:zee5Banner,
                         desclaimer:'Valid till 30th November 2024',
                         discription:'A leading digital entertainment platform with a wide variety of TV shows, movies, and web series',
                         terms : [
@@ -169,6 +177,7 @@ function Home (){
                         value:'149',
                         code: response.data.data[1].coupon,
                         offerLink: response.data.data[1].redeemurl,
+                        banner:gaanaBanner,
                         desclaimer:'Valid till 15th October 2025',
                         discription:'Ad-free music and downloads with Gaana Plus, featuring a vast song and podcast library.',
                         terms : [
@@ -195,6 +204,7 @@ function Home (){
                         value:'75',
                         code: response.data.data[0].coupon,
                         offerLink: response.data.data[0].redeemurl,
+                        banner:hotstarBanner,
                         desclaimer:'Valid till 31th March 2025',
                         discription:'Stream TV shows, movies, and live sports on Hotstar, your entertainment hub.',
                         terms : [
@@ -375,6 +385,7 @@ function Home (){
                             value:'500',
                             code: response.data.data[4].coupon,
                             offerLink: response.data.data[4].redeemurl,
+                            banner:lenskartBanner,
                             desclaimer:'Hurry! This offer expires in 45 days!',
                             discription:'Premium eyewear solutions with stylish frames and lenses',
                             terms : [
@@ -403,6 +414,7 @@ function Home (){
                             value:'398',
                             code: response.data.data[2].coupon,
                             offerLink: response.data.data[2].redeemurl,
+                            banner:audibleBanner,
                             desclaimer:'Valid till 11th November 2024',
                             discription:'Leading producer and provider of audio storytelling',
                             terms : [
@@ -442,6 +454,7 @@ function Home (){
                             value:'179/ ₹ 150',
                             code: response.data.data[3].coupon,
                             offerLink: response.data.data[3].redeemurl,
+                            banner:zee5Banner,
                             desclaimer:'Valid till 30th November 2024',
                             discription:'A leading digital entertainment platform with a wide variety of TV shows, movies, and web series',
                             terms : [
@@ -479,6 +492,7 @@ function Home (){
                             value:'149',
                             code: response.data.data[1].coupon,
                             offerLink: response.data.data[1].redeemurl,
+                            banner:gaanaBanner,
                             desclaimer:'Valid till 15th October 2025',
                             discription:'Ad-free music and downloads with Gaana Plus, featuring a vast song and podcast library.',
                             terms : [
@@ -505,6 +519,7 @@ function Home (){
                             value:'75',
                             code: response.data.data[0].coupon,
                             offerLink: response.data.data[0].redeemurl,
+                            banner:hotstarBanner,
                             desclaimer:'Valid till 31th March 2025',
                             discription:'Stream TV shows, movies, and live sports on Hotstar, your entertainment hub.',
                             terms : [

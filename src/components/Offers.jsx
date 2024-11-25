@@ -430,7 +430,6 @@ function Offers (){
                         <p className="md:hidden  text-gray-400">{offer?.desclaimer}</p>
                     </div>
                     </div>  
-                    {console.log(couponcods) } 
                     <p className="text-sm md:hidden">Copy this code and use it during your purchase</p>
                     {offer.code &&<div className={`flex  gap-2  border-2  m-auto w-full ${couponcods[offer.offerTitle] ? "p-2 justify-between border-dashed w-full" : 'bg-secondary  text-white justify-center' }  rounded-lg border-secondary`}>
                         <p className={`text-secondary ${couponcods[offer.offerTitle] ? '' : 'hidden'}`}>{offer.code}</p>
@@ -512,11 +511,18 @@ function Offers (){
             <div className="flex flex-col mt-3">
                 <h1 className="text-xl font-semibold">About <span className="capitalize"> {offer?.offerTitle ? offer.offerTitle.toLowerCase() : ''}</span></h1>
                 <p className="font-medium mb-3">{offer?.discription}</p>
+                {offer?.code &&
+                <>
                 <p className="font-light text-gray-600">Copy this code and use it during your purchase</p>
-                <div className="flex gap-2 border-dashed border-2 p-2 border-secondary rounded-lg my-2 mb-4 justify-between" style={{color:'#9c1d26',borderColor:'#9c1d26'}}>
-                        <p className="text-secondary font-semibold">{offer?.code}</p>
-                        <CopyButton textToCopy={offer?.code}></CopyButton>
+                <div className={`flex  gap-2  border-2  m-auto  my-2 ${couponcods[offer.offerTitle] ? " p-2 justify-between border-dashed w-full" : 'w-[90%] bg-secondary  text-white justify-center' }  rounded-lg border-secondary`}>
+                        <p className={`text-secondary ${couponcods[offer.offerTitle] ? '' : 'hidden'}`}>{offer.code}</p>
+                        <span className={`${couponcods[offer.offerTitle] ?  '' : 'inline-block w-full'}`}>
+                            <span className={`  ${couponcods[offer.offerTitle] ? '' : 'hidden'}`}><CopyButton className='' textToCopy={offer.code}></CopyButton></span>
+                            <span className={`inline-block w-full text-center p-1 ${couponcods[offer.offerTitle] ?  'hidden' : ''} `}onClick={()=>getCode(offer.offerTitle,offer.code)}>Get Code</span>
+                        </span>
                 </div>
+                </>    
+                }
                 <RedeemAccordion redeemSteps={offer?.redeemSteps} terms={offer?.terms}></RedeemAccordion>
                 <div className="text-center pt-3 my-3 text-lg font-semibold sticky bottom-0">
                     <Button variant="contained"  sx={{borderRadius:'10px',backgroundColor:'#951B24', textTransform:'initial', width:'90%', fontSize:'1.2rem'}} onClick={()=>{window.open(offer.offerLink)}}>

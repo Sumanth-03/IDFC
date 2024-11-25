@@ -190,7 +190,6 @@ export function CopyButton({ textToCopy }) {
 function Offers (){
     const location = useLocation();
     let {coupondeet} = location.state;
-    console.log("ff",coupondeet)
     const [open, setOpen] = useState()
     const [openalert, setOpenalert] = useState()
     const [openEmailDailog, setOpenEmailDailog] = useState()
@@ -200,7 +199,16 @@ function Offers (){
     
     const [coupondeets, setCoupondeets] = useState(JSON.parse(coupondeet) || [])
     const navigate = useNavigate()
-
+    //----dummy
+    const [ couponcods, setCouponcods ] = useState({}) 
+    const getCode = (offerTitle,code)=>{
+        setTimeout(() => {
+            setCouponcods((preObj)=>{
+                return {...preObj, [offerTitle]:code}
+            })
+        }, 500);
+    }
+    //----
     const handleClick = (offer)=>{
         navigate('/offerDetails',{state:offer})
     }
@@ -403,10 +411,10 @@ function Offers (){
             <img src={mail} className="hidden md:block"></img><img src={mailMobile} className="md:hidden"></img>
             <span  className="hidden md:block"> Email My Code</span>
         </Button>
-        <Button onClick={()=>handlesetOpenalert('SMS')} sx={{backgroundColor:{xs:'#951B24',},'@media (min-width: 768px)':{backgroundColor:'#ffffff'}, color:'#951B24', borderRadius:'10px', paddingX:'20px', paddingY:'10px',paddingBottom:'5px',border:'1px solid white'}}>
+        {/* <Button onClick={()=>handlesetOpenalert('SMS')} sx={{backgroundColor:{xs:'#951B24',},'@media (min-width: 768px)':{backgroundColor:'#ffffff'}, color:'#951B24', borderRadius:'10px', paddingX:'20px', paddingY:'10px',paddingBottom:'5px',border:'1px solid white'}}>
             <img src={message} className="hidden md:block"></img><img src={messageMobile} className="md:hidden"></img>
             <span className="hidden md:block">SMS My Code</span>
-        </Button>
+        </Button> */}
         </div>
         </div>
         </section>
@@ -421,11 +429,15 @@ function Offers (){
                         <p className="text-lg font-semibold">{offer.offer}</p>
                         <p className="md:hidden  text-gray-400">{offer?.desclaimer}</p>
                     </div>
-                    </div>    
+                    </div>  
+                    {console.log(couponcods) } 
                     <p className="text-sm md:hidden">Copy this code and use it during your purchase</p>
-                    {offer.code &&<div className="flex justify-between gap-2 border-dashed border-2 p-2 border-secondary rounded-lg">
-                        <p className="text-secondary">{offer.code}</p>
-                        <CopyButton textToCopy={offer.code}></CopyButton>
+                    {offer.code &&<div className={`flex  gap-2  border-2  m-auto w-full ${couponcods[offer.offerTitle] ? "p-2 justify-between border-dashed w-full" : 'bg-secondary  text-white justify-center' }  rounded-lg border-secondary`}>
+                        <p className={`text-secondary ${couponcods[offer.offerTitle] ? '' : 'hidden'}`}>{offer.code}</p>
+                        <span className={`${couponcods[offer.offerTitle] ?  '' : 'inline-block w-full'}`}>
+                            <span className={`  ${couponcods[offer.offerTitle] ? '' : 'hidden'}`}><CopyButton className='' textToCopy={offer.code}></CopyButton></span>
+                            <span className={`inline-block w-full text-center p-1 ${couponcods[offer.offerTitle] ?  'hidden' : ''} `}onClick={()=>getCode(offer.offerTitle,offer.code)}>Get Code</span>
+                        </span>
                     </div>
                      }
                     <div className="hidden md:block text-center pt-3">

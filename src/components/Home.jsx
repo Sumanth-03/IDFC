@@ -609,28 +609,54 @@ function Home (){
     const poster = (
     <section>
             <img src={Banner} alt="banner" className="mx-auto w-52 py-10"></img>
-            <div className="p-3 py-5 mx-5 rounded-2xl flex flex-col items-start md:items-center" style={{backgroundColor:'#80232A'}}>
+            <div className="p-3 py-5 mx-5 rounded-2xl flex flex-col items-start md:items-center gap-2" style={{backgroundColor:'#80232A'}}>
             <h1 className="text-2xl pb-5 font-semibold">What You’ll Need to do!</h1>
-                <span className="text-xl relative pt-2 md:-ml-5"><span className=" px-2 py-0 pb-0 my-2 border-[1px] md:border-none border-white rounded-full aspect-square">1</span> Ensure your card is activated  
-                <Box
-                        onClick={handleClickOpenInfo}
-                        sx={{ position:'absolute', right:'-30px',top:'35%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white',borderRadius: '50%', 
-                            width: 20, height: 20, boxShadow: 1,
-                        }}
-                        >
-                        <QuestionMarkIcon sx={{ color: '#951B24',fontSize:'20px' }} />
-                    </Box>
-                </span><br/>
-                <span className="text-xl relative pb-2 md:-ml-5 text-left md:text-center"><span className=" px-2 py-0 pb-1 my-2 border-[1px] md:border-none border-white rounded-full aspect-square">2</span> Enable your online transactions
-                    <Box
-                        onClick={handleClickOpenInfo}
-                        sx={{ position:'absolute', right:'-30px',top:'20%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white',borderRadius: '50%', 
-                            width: 20, height: 20, boxShadow: 1,
-                        }}
-                        >
-                        <QuestionMarkIcon sx={{ color: '#951B24',fontSize:'20px' }} />
-                    </Box>
+                <div className="flex items-center gap-2">
+                <span className="w-8 h-8 border-[1px] md:border-none border-white rounded-full aspect-square flex items-center justify-center">
+                    1
                 </span>
+                <span className="text-xl pb-1  md:text-center w-fit">Ensure your card is activated</span>
+                <Box
+                    onClick={handleClickOpenInfo}
+                    sx={{
+                        position: 'relative',
+                        right: '0px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: 'white',
+                        borderRadius: '50%',
+                        width: 20,
+                        height: 20,
+                        boxShadow: 1,
+                    }}
+                >
+                    <QuestionMarkIcon sx={{ color: '#951B24', fontSize: '20px' }} />
+                </Box>
+            </div> 
+            <div className="flex items-center gap-2">
+                <span className="w-8 h-8 border-[1px] md:border-none border-white rounded-full aspect-square flex items-center justify-center">
+                    2
+                </span>
+                <span className="text-xl pb-1"> Enable your online transactions</span>
+                <Box
+                    onClick={handleClickOpenInfo}
+                    sx={{
+                        position: 'relative',
+                        right: '0px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: 'white',
+                        borderRadius: '50%',
+                        width: 20,
+                        height: 20,
+                        boxShadow: 1,
+                    }}
+                >
+                    <QuestionMarkIcon sx={{ color: '#951B24', fontSize: '20px' }} />
+                </Box>
+            </div> 
             </div>
         </section>
       )

@@ -693,7 +693,7 @@ function Home (){
             <div className="flex flex-col md:flex-row my-5 -translate-y-10 md:translate-y-0  md:static  bg-primary rounded-3xl p-2 md:p-0">
             <section className="text-centerw-full  md:w-1/2 p-5  md:border-2 md:ml-2 md:mr-4 rounded-2xl">
                 <h1 className="flex flex-wrap text-2xl font-bold text-center py-4 pb-12">
-                    Offers worth ₹1,301, now at ₹1!
+                    Offers worth ₹1,300, now at ₹1!
                     {/* Total benefits worth <span className="underline md:no-underline pl-2">₹2,998</span> <img src={blast} alt="emoji" className="pl-2 md:hidden"></img> */}
                 </h1>
                 <div className="text-left">
@@ -727,7 +727,7 @@ function Home (){
                     <Button onClick={handleClickOpenInfo} variant="contained" sx={{borderRadius:'10px',backgroundColor:'#951B24', textTransform:'initial',width:{xs:'100%',md:'auto'}}}>
                         <img src={Lock} alt ='lock' className="pr-2 hidden md:block"></img>
                         <img src={LockG} alt ='lock' className="w-8 pr-2 md:hidden" ></img>
-                        Unlock @ ₹1
+                        Buy Deal for ₹1
                     </Button>
                     </div>
                 </div>

@@ -279,6 +279,7 @@ function Home (){
     ]
 
     const handleClose = () => {
+        setTerms(false)
         setOpen(false);
     };
 

@@ -482,7 +482,7 @@ function Home (handleLogin){
                     setTimeLeft(10);
                     sessionStorage.setItem('otp', true)
                     //sessionStorage.setItem('coupon',JSON.stringify(response.data.data))
-                    navigate('/offers', {state: {coupondeet: response.data.data}});
+                    //navigate('/offers', {state: {coupondeet: response.data.data}});
                     let offers = [
                         // {
                         //     icon:lenscart,
@@ -638,10 +638,10 @@ function Home (handleLogin){
                            ]
                         },
                     ]
-                    if(paymentFlow){
-                    handlePayment()
-                    //navigate('/offers', {state: {coupondeet: JSON.stringify(offers)}});
-                    }
+                    //if(paymentFlow){
+                    //handlePayment()
+                    navigate('/offers', {state: {coupondeet: JSON.stringify(offers)}});
+                    //}
                 }
                 else{
                     setwrongOtp(true)

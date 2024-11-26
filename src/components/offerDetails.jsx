@@ -1,6 +1,6 @@
 import React ,{useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
-import mail from '../assets/mail.svg'
+import mail from '../assets/mail_1.svg'
 import { CopyButton } from "./Offers";
 import audible from '../assets/audible.svg'
 import Button from '@mui/material/Button';
@@ -63,9 +63,9 @@ function OfferDetails (){
                         <img src={offer.icon} alt='icon' className="w-10"></img>
                         <p>{offer.offerTitle}</p>
                     </div>
-                    <Button onClick={handleClickEmailDailog} sx={{backgroundColor:'#f5e8e9', color:'#951B24', borderRadius:'10px', paddingX:'20px',paddingY:'0px',height:'40px',border:'1px solid #951B24' }}>
+                    <Button onClick={handleClickEmailDailog} sx={{backgroundColor:'#951B24', color:'#f5e8e9', borderRadius:'10px', paddingX:'20px',paddingY:'0px',height:'40px',border:'1px solid #ffffff', textTransform:'capitalize' }}>
                         <img src={mail}></img>
-                        <span className="hidden md:block">Email</span>
+                        <span className="hidden md:block pl-2">Email</span>
                     </Button>
                 </div>
                 <p className="text-2xl font-semibold">{offer.offer} worth ₹ {offer.value}</p>

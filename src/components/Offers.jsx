@@ -429,15 +429,16 @@ function Offers (){
                         <p className="text-lg font-semibold">{offer.offer}</p>
                         <p className="md:hidden  text-gray-400">{offer?.desclaimer}</p>
                     </div>
-                    </div>  
-                    <p className="text-sm md:hidden">Copy this code and use it during your purchase</p>
-                    {offer.code &&<div className={`flex  gap-2  border-2  m-auto w-full ${couponcods[offer.offerTitle] ? "p-2 justify-between border-dashed w-full" : 'bg-secondary  text-white justify-center' }  rounded-lg border-secondary`}>
+                    </div> 
+                    {offer.code && 
+                    <><p className="text-sm md:hidden">Copy this code and use it during your purchase</p>
+                    <div className={`flex  gap-2  border-2  m-auto w-full ${couponcods[offer.offerTitle] ? "p-2 justify-between border-dashed w-full" : 'bg-secondary  text-white justify-center' }  rounded-lg border-secondary`}>
                         <p className={`text-secondary ${couponcods[offer.offerTitle] ? '' : 'hidden'}`}>{offer.code}</p>
                         <span className={`${couponcods[offer.offerTitle] ?  '' : 'inline-block w-full'}`}>
                             <span className={`  ${couponcods[offer.offerTitle] ? '' : 'hidden'}`}><CopyButton className='' textToCopy={offer.code}></CopyButton></span>
                             <span className={`inline-block w-full text-center p-1 ${couponcods[offer.offerTitle] ?  'hidden' : ''} `}onClick={()=>getCode(offer.offerTitle,offer.code)}>Get Code</span>
                         </span>
-                    </div>
+                    </div></>
                      }
                     <div className="hidden md:block text-center pt-3">
                     <Button variant="contained" onClick={()=>handleClick(offer)} sx={{backgroundColor:'#951B24', textTransform:'initial' , width:'100%',borderRadius:'0.65rem'}}>

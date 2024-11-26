@@ -209,7 +209,7 @@ function Home (handleLogin){
                         code: response.data.data[0].coupon,
                         offerLink: response.data.data[0].redeemurl,
                         banner:hotstarBanner,
-                        desclaimer:'Valid till 31th March 2025',
+                        desclaimer:'Valid till 31st March 2025',
                         discription:'Stream TV shows, movies, and live sports on Hotstar, your entertainment hub.',
                         terms : [
                              'Offer is applicable for first time subscribers only',
@@ -361,7 +361,7 @@ function Home (handleLogin){
             offer:"25% off on 3-month Disney+ Hotstar Super plan",
             value:'75',
             banner:hotstarBanner,
-            desclaimer:'Valid till 31th March 2025',
+            desclaimer:'Valid till 31st March 2025',
             discription:'Stream TV shows, movies, and live sports on Hotstar, your entertainment hub.',
             terms : [
                  'Offer is applicable for first time subscribers only',
@@ -631,7 +631,7 @@ function Home (handleLogin){
                             code: response.data.data[0].coupon,
                             offerLink: response.data.data[0].redeemurl,
                             banner:hotstarBanner,
-                            desclaimer:'Valid till 31th March 2025',
+                            desclaimer:'Valid till 31st March 2025',
                             discription:'Stream TV shows, movies, and live sports on Hotstar, your entertainment hub.',
                             terms : [
                                  'Offer is applicable for first time subscribers only',
@@ -825,7 +825,7 @@ function Home (handleLogin){
                                 </div>
                             </div>
                             <div className="flex gap-2 min-w-fit">
-                                <div className="rounded-full px-4 p-1 bg-turiary text-center flex items-center min-w-fit gap-[6px]">worth <span className="flex  min-w-fit">₹ {offer.value} </span><img src={Gift} alt="gift" className="pl-2 md:hidden"></img></div>
+                                <div className="rounded-full px-4 p-1 bg-turiary text-center flex items-center min-w-fit gap-[6px]">worth <span className="flex  min-w-fit">₹ {offer.value} </span><img src={Gift} alt="gift" className="pl-2"></img></div>
                                 <CheckCircleOutlineIcon color="success" sx={{width:'40px',height:'40px', display:{xs:'none',md:'block'},}}/>
                             </div>
                             </div>

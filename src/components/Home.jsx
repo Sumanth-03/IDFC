@@ -802,10 +802,11 @@ function Home (handleLogin){
             </section>
             <div className="flex flex-col md:flex-row my-5 -translate-y-10 md:translate-y-0  md:static  bg-primary md:rounded-3xl p-2 md:p-0">
             <section className="text-centerw-full  md:w-1/2 p-5  md:border-2 md:ml-2 md:mr-4 md:rounded-2xl">
-                <h1 className="flex flex-wrap text-2xl font-bold text-center py-4 pb-12">
-                    Offers worth ₹665, now at ₹1!
+                <h1 className="flex flex-wrap text-2xl font-bold text-center pt-4 ">
+                    Offers worth ₹665, now at ₹1
                     {/* Total benefits worth <span className="underline md:no-underline pl-2">₹2,998</span> <img src={blast} alt="emoji" className="pl-2 md:hidden"></img> */}
                 </h1>
+                <h1 className="flex flex-wrap text-lg  text-center py-4 pb-12">Offer valid till  31st January 2025 </h1>
                 <div className="text-left">
                     {offers.map((offer)=>{
                         return(
@@ -983,7 +984,7 @@ function Home (handleLogin){
         <section className="flex flex-col items-center p-2 gap-2 relative text-gray-700"  
             >
             <h1 className='text-3xl font-semibold' style={{color:'#411518'}}>Just Checking In!</h1>
-            <p className='text-lg font-semibold py-3'style={{color:'#411518'}}>Have you activated your card and enabled online transactions?</p>
+            <p className='text-lg font-semibold py-3'style={{color:'#411518'}}>Have you activated your credit card ?</p>
             <section className="flex flex-col md:flex-row">
                 <div className="md:w-1/2 p-2 border-0 md:border-r-2  border-r-gray-300 flex flex-col gap-4 text-sm mb-4">
                     <h1 className="text-secondary text-xl font-semibold border-0 md:border-none pb-2 md:pb-2 border-b-2">Here’s how!</h1>

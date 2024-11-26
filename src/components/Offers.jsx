@@ -136,7 +136,7 @@ export const RedeemAccordion = ({ redeemSteps, terms }) => {
                             key={index}
                             sx={{
                                 display: 'list-item', 
-                                listStyleType: 'disc', 
+                                listStyleType: 'decimal', 
                                 marginBottom: '0px', 
                                 marginLeft:'20px'                              
                             }}

@@ -56,9 +56,9 @@ function OfferDetails (){
 
     console.log(offer)
     return(
-        <main className="flex flex-col md:flex-row">
+        <main className="flex flex-col md:flex-row ">
             <section className="flex flex-col gap-3 md:w-1/2 p-2 m-2 border rounded-lg ">
-                <div className="flex justify-between">
+                <div className="flex justify-between pt-7">
                     <div>
                         <img src={offer.icon} alt='icon' className="w-10"></img>
                         <p>{offer.offerTitle}</p>

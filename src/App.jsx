@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Home from './components/Home';
 import './App.css'
 import { Routes, Route,} from 'react-router-dom';
@@ -12,14 +12,14 @@ import Disclaimer from './components/Disclaimer';
 
 
 function App() {
-
+  const [open, setOpen] = useState(false)
   return (
     <>
     <div className='w-screen overflow-y-auto min-h-screen md:px-10'>
     <div className='overflow-x-hidden max-w-[1200px]  m-auto mt-20'>
-    <Header/>
+    <Header open={open} setOpen={setOpen}/>
       <Routes>
-          <Route path="/" element={<Home/>} />
+          <Route path="/" element={<Home open={open} setOpen={setOpen}/>} />
           <Route path="/offers" element={<Offers/>} />
           <Route path="/offerDetails" element={<OfferDetails/>} />
           <Route path="/terms" element={<TermsOfService/>} />

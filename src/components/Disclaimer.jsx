@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 function Disclaimer() {
+    useEffect(() => {
+        window.scrollTo(0, 0); 
+    }, []);
     return (
-        <div className="max-w-3xl mx-auto p-6 text-justify">
+        <div className="max-w-3xl mx-auto p-6 text-justify mt-3">
             <h1 className="text-2xl font-bold mb-4 text-secondary">Disclaimer</h1>
             
             <p className="mt-2">

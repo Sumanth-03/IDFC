@@ -5,7 +5,7 @@ const PrivacyPolicy = () => {
         window.scrollTo(0, 0); 
     }, []);
     return (
-        <div className="container mx-auto p-6 bg-white text-gray-800 rounded-lg shadow-md max-w-2xl text-justify">
+        <div className="container mx-auto p-6 bg-white text-gray-800 rounded-lg shadow-md max-w-2xl text-justify mt-3">
             <h1 className="text-3xl font-bold mb-4 text-secondary">Privacy Policy</h1>
 
             <section className="mb-6">

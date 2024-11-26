@@ -31,8 +31,11 @@ import hotstarBanner from '../assets/hotstarBanner.png'
 import lenskartBanner from '../assets/lenskartBanner.png'
 import zee5Banner from '../assets/zee5Banner.png'
 
-function Home (){
-    const [open, setOpen] = useState(true);
+import { RedeemAccordion } from "./Offers";
+
+function Home (handleLogin){
+    const {open, setOpen} = handleLogin
+    const [paymentFlow, setpaymentFlow] = useState(false)
     const [terms, setTerms] = useState(false);
     const [phone, setPhone] = useState(null);
     const [OtpDailog, setOtpDailog] = useState(false);
@@ -51,7 +54,7 @@ function Home (){
     const hdnRefNumber = queryParams.get('hdnRefNumber');
     const transactionId = queryParams.get('transactionId');
     const amount = queryParams.get('amount');
-    console.log(terms)
+
     useEffect(() => {
         if(hdnRefNumber){
             setLoader(true)
@@ -63,35 +66,35 @@ function Home (){
             {   //console.log(response.data)
                 //sessionStorage.setItem('coupon',JSON.stringify(response.data.data))
                 let offers = [
-                    {
-                        icon:lenscart,
-                        offerTitle:'LENSKART',
-                        offer: "1 Year Free on Lenskart Gold Membership",
-                        value:'500',
-                        code: response.data.data[4].coupon,
-                        offerLink: response.data.data[4].redeemurl,
-                        banner:lenskartBanner,
-                        desclaimer:'Hurry! This offer expires in 45 days!',
-                        discription:'Premium eyewear solutions with stylish frames and lenses',
-                        terms : [
-                             'Membership is valid for 365 days from the date of purchase.',
-                             'Enhance the joy of Membership by extending it to your cherished friends and family by sharing your membership benefits',
-                            ' Buy 1 Get 1 Free is valid on Vincent Chase, Lenskart Air, John Jacobs, Hooper & New Balance (for Eyeglasses & Sunglasses).',
-                             'Buy One Get One can be availed on Eyeglasses+Sunglasses / Eyeglasses+Eyeglasses / Sunglasses+Sunglasses.',
-                             'Membership benefits can be availed 2 times a month.',
-                            ' Membership benefits are applicable across App, Website , 1500+ Stores & Home Try-On services.',
-                            ' Membership cannot be returned or refunded.',
-                             'Both products need to be added in cart to avail Buy One Get One',
-                             'Convenience fee of 49 will be applied at checkout.',
-                             'Membership can be redeemed through online transactions only.',
-                             'Lenskart.com reserves the right to change/modify terms and conditions of the coupon.',
-                        ],
-                        redeemSteps : [
-                           ' Visit- https://www.lenskart.com/lenskart-gold-membership.html?utm_source=oct24idfc&utm_medium=affiliate&utm_campaign=oct24idfc',
-                            'Add gold membership to your cart.',
-                            'Apply promo code at checkout page under tab  Have a voucher'
-                        ]
-                    },
+                    // {
+                    //     icon:lenscart,
+                    //     offerTitle:'LENSKART',
+                    //     offer: "1 Year Free on Lenskart Gold Membership",
+                    //     value:'500',
+                    //     code: response.data.data[4].coupon,
+                    //     offerLink: response.data.data[4].redeemurl,
+                    //     banner:lenskartBanner,
+                    //     desclaimer:'Hurry! This offer expires in 45 days!',
+                    //     discription:'Premium eyewear solutions with stylish frames and lenses',
+                    //     terms : [
+                    //          'Membership is valid for 365 days from the date of purchase.',
+                    //          'Enhance the joy of Membership by extending it to your cherished friends and family by sharing your membership benefits',
+                    //         ' Buy 1 Get 1 Free is valid on Vincent Chase, Lenskart Air, John Jacobs, Hooper & New Balance (for Eyeglasses & Sunglasses).',
+                    //          'Buy One Get One can be availed on Eyeglasses+Sunglasses / Eyeglasses+Eyeglasses / Sunglasses+Sunglasses.',
+                    //          'Membership benefits can be availed 2 times a month.',
+                    //         ' Membership benefits are applicable across App, Website , 1500+ Stores & Home Try-On services.',
+                    //         ' Membership cannot be returned or refunded.',
+                    //          'Both products need to be added in cart to avail Buy One Get One',
+                    //          'Convenience fee of 49 will be applied at checkout.',
+                    //          'Membership can be redeemed through online transactions only.',
+                    //          'Lenskart.com reserves the right to change/modify terms and conditions of the coupon.',
+                    //     ],
+                    //     redeemSteps : [
+                    //        ' Visit- https://www.lenskart.com/lenskart-gold-membership.html?utm_source=oct24idfc&utm_medium=affiliate&utm_campaign=oct24idfc',
+                    //         'Add gold membership to your cart.',
+                    //         'Apply promo code at checkout page under tab  Have a voucher'
+                    //     ]
+                    // },
                     {
                         icon:audible,
                         offerTitle:'AUDIBLE',
@@ -170,32 +173,32 @@ function Home (){
                         'Pack will be instantly activated post successful payment transaction',
                        ]
                     },
-                    {
-                        icon:gana,
-                        offerTitle:'Gaana',
-                        offer:"45 days free on Gaana Plus Membership",
-                        value:'149',
-                        code: response.data.data[1].coupon,
-                        offerLink: response.data.data[1].redeemurl,
-                        banner:gaanaBanner,
-                        desclaimer:'Valid till 15th October 2025',
-                        discription:'Ad-free music and downloads with Gaana Plus, featuring a vast song and podcast library.',
-                        terms : [
-                             'The offer is valid in the territory of India. ',
-                             'This offer is not transferable. ',
-                             'Offer valid till 15th Oct 2025. ',
-                             'Input of Coupon Code gives the user 45 days subscription of Gaana Plus.' ,
-                             'This coupon code will only work once per user.'
-                       ],
-                       redeemSteps : [
-                       ' Sign in on the Gaana App ',
-                        'Navigate to ì https://gaana.onelink.me/35m8/scratchcard î your browser ',
-                       ' Enter the Unique Coupon Code ',
-                       ' Make a transaction of Rs 1 to activate the subscription ',
-                       ' Enjoy your 45 days Gaana Plus Subscription. ',
-                        'In case you are not logged in on web/wap/app, you would need to login first and then enter - https://gaana.onelink.me/35m8/scratchcard'
-                       ]
-                    },
+                    // {
+                    //     icon:gana,
+                    //     offerTitle:'Gaana',
+                    //     offer:"45 days free on Gaana Plus Membership",
+                    //     value:'149',
+                    //     code: response.data.data[1].coupon,
+                    //     offerLink: response.data.data[1].redeemurl,
+                    //     banner:gaanaBanner,
+                    //     desclaimer:'Valid till 15th October 2025',
+                    //     discription:'Ad-free music and downloads with Gaana Plus, featuring a vast song and podcast library.',
+                    //     terms : [
+                    //          'The offer is valid in the territory of India. ',
+                    //          'This offer is not transferable. ',
+                    //          'Offer valid till 15th Oct 2025. ',
+                    //          'Input of Coupon Code gives the user 45 days subscription of Gaana Plus.' ,
+                    //          'This coupon code will only work once per user.'
+                    //    ],
+                    //    redeemSteps : [
+                    //    ' Sign in on the Gaana App ',
+                    //     'Navigate to ì https://gaana.onelink.me/35m8/scratchcard î your browser ',
+                    //    ' Enter the Unique Coupon Code ',
+                    //    ' Make a transaction of Rs 1 to activate the subscription ',
+                    //    ' Enjoy your 45 days Gaana Plus Subscription. ',
+                    //     'In case you are not logged in on web/wap/app, you would need to login first and then enter - https://gaana.onelink.me/35m8/scratchcard'
+                    //    ]
+                    // },
                     
                     {
                         icon:hotstar,
@@ -225,60 +228,153 @@ function Home (){
       },[]); 
       
     const offers =[
-        {
-            icon:lenscart,
-            offerTitle:'LENSKART',
-            offer: "1 Year Free on Lenskart Gold Membership",
-            value:'500',
-            code:'CHEGGLENSKARTGOLD500',
-            offerLink: 'https://www.lenskart.com/lenskart-gold-membership.html?utm_source=oct24idfc&utm_medium=affiliate&utm_campaign=oct24idfc',
-            desclaimer:'Hurry! This offer expires in 45 days!',
-            discription:'Premium eyewear solutions with stylish frames and lenses',
-        },
+        // {
+        //     icon:lenscart,
+        //     offerTitle:'LENSKART',
+        //     offer: "1 Year Free on Lenskart Gold Membership",
+        //     value:'500',
+        //     banner:lenskartBanner,
+        //     desclaimer:'Hurry! This offer expires in 45 days!',
+        //     discription:'Premium eyewear solutions with stylish frames and lenses',
+        //     terms : [
+        //          'Membership is valid for 365 days from the date of purchase.',
+        //          'Enhance the joy of Membership by extending it to your cherished friends and family by sharing your membership benefits',
+        //         ' Buy 1 Get 1 Free is valid on Vincent Chase, Lenskart Air, John Jacobs, Hooper & New Balance (for Eyeglasses & Sunglasses).',
+        //          'Buy One Get One can be availed on Eyeglasses+Sunglasses / Eyeglasses+Eyeglasses / Sunglasses+Sunglasses.',
+        //          'Membership benefits can be availed 2 times a month.',
+        //         ' Membership benefits are applicable across App, Website , 1500+ Stores & Home Try-On services.',
+        //         ' Membership cannot be returned or refunded.',
+        //          'Both products need to be added in cart to avail Buy One Get One',
+        //          'Convenience fee of 49 will be applied at checkout.',
+        //          'Membership can be redeemed through online transactions only.',
+        //          'Lenskart.com reserves the right to change/modify terms and conditions of the coupon.',
+        //     ],
+        //     redeemSteps : [
+        //        ' Visit- https://www.lenskart.com/lenskart-gold-membership.html?utm_source=oct24idfc&utm_medium=affiliate&utm_campaign=oct24idfc',
+        //         'Add gold membership to your cart.',
+        //         'Apply promo code at checkout page under tab  Have a voucher'
+        //     ]
+        // },
         {
             icon:audible,
             offerTitle:'AUDIBLE',
             offer:'2 Months Free on Audible Subscription',
             value:'398',
-            code:'CHEGGAUDIBLE2FREE',
-            offerLink:'https://www.audible.in/cheggout',
+            banner:audibleBanner,
             desclaimer:'Valid till 11th November 2024',
-            discription:'Leading producer and provider of audio storytelling'
+            discription:'Leading producer and provider of audio storytelling',
+            terms : [
+               ' This is a promotional offer ("Offer") provided and funded by Audible Singapore Private Limited ("Audible").',
+               ' These Offer terms and conditions ("Offer Terms") are in addition to the Audible.in Conditions of Use (available here) and Privacy Policy (available here), to which you agree by using Audible.in and/ or by availing the Offer. In the event of any conflict between the Audible.in Conditions of Use and these Offer Terms, these Offer Terms will prevail in respect of this Offer only.',
+                'This Offer will be available from 1st October 2024 Ò 31st August 2025(both days included) (collectively "Offer Period"). Notwithstanding anything contained herein, Audible shall have the right to revoke the Offer at any time without any prior written notice and without any liability, in this regard.',
+                'Each user who fulfills the criteria mentioned in Sections 5 and 6 below (each such user an "Eligible Customer") will be eligible to receive a trial Audible membership of 2 months at no cost ("Benefit"). Post the 2 months period, the Eligible Customers will move to paid Audible membership and charged at the rate of the then prevailing subscription price.',
+                'You may only avail this Offer if you: (a) are located in India; and (b) are 18 years or above. It is clarified that this Offer is not valid for existing members of Audible.',
+               ' During the Offer Period, all the users who either (a) copy the voucher codes displayed to them and redeem them on https://audible.in/cheggout or (b) click on the redemption link made available to them and subsequently undertake the sign-up process appearing on the landing page of such link, will be eligible to receive the Benefit.',
+                'It is clarified that at the time of sign-up by the Eligible Customer, an amount of INR 2 will be deducted using the selected payment instrument by the customer, as a validation of such payment instrument. Such deduction of INR 2 shall be non-refundable.',
+                'An Eligible Customer will be eligible to receive the Benefit under this Offer only once.',
+                'There are no cash or other alternatives available in whole or in part, in relation to the Benefit under this Offer.',
+                 'All applicable taxes and levies in relation to the Offer, including without limitation sales tax, service tax, goods and services tax etc., shall be payable by you/ the Eligible Customer.',
+                 'Audible reserves the absolute right to withdraw and/or alter any of the terms and conditions of the Offer at any time without prior notice and reserves the right to remove / withdraw this Offer at any time without any prior notice.',
+                 'This Offer cannot be combined with any other offer.',
+                 'Any queries in relation to the Offer and / or the Benefit should be addressed to the Audible Support team.',
+                 'You are not bound in any manner to participate in or avail the Offer. This Offer is being made purely on a "best effort" basis and participating in or availing the Offer is voluntary.',
+                 'By participating in this Offer, you will be deemed to have accepted these Offer Terms.',
+                 'Audible reserves the right to disqualify any Eligible Customer from this Offer if any fraudulent activity is identified as being carried out for the purpose of availing the Offer or if any of the conditions of these Offer Terms are not met.',
+                 'Nothing contained in these Offer Terms amounts to a commitment by Audible to conduct further, similar or other offers.',
+                 'All decisions of Audible related to the Offer are final and binding. Failure by Audible to enforce any of these Offer Terms, in any instance, will not be deemed to be a waiver of the Offer Terms.',
+                 'Nothing contained herein shall prejudice or affect the terms and conditions of any other Offer and/ or Offer Terms.',
+                 'These Offer Terms are governed by the laws of India. '
+            ],
+           redeemSteps : [
+            'Copy the voucher code displayed',
+            'Visit https://www.audible.in/cheggout or click the redirection link',
+            'Enter voucher code in the box labelled ÎEnter your code hereÌ and click ÎRedeem nowÌ',
+            'Login with your Amazon account and choose credit/debit card or UPI (Super-fast signup with UPI!) for membership sign-up. Rupees Two(Rs. 2) will be charged and your membership starts.',
+            'Subscription auto-renews at INR 199/month after the free period. Cancel anytime'
+            ]
         },
         {
             icon:zee5,
             offerTitle:'ZEE5',
             offer:"15% off on Zee5 Annual Subscription",
             value:'195',
-            code:'CHEGGZEE515OFF',
-            offerLink:'https://as.zee5.com/myaccount/subscription',
+            banner:zee5Banner,
             desclaimer:'Valid till 30th November 2024',
-            discription:'A leading digital entertainment platform with a wide variety of TV shows, movies, and web series'
+            discription:'A leading digital entertainment platform with a wide variety of TV shows, movies, and web series',
+            terms : [
+                'These Terms and Conditions shall constitute an agreement between ZEE5 and each Customer. By accepting and availing the Offer, the Customer accepts these Terms & Conditions as binding upon him/her.',
+                'This offer is non-negotiable and non-binding',
+                'This offer is valid in India only',
+                'The code is redeemable on ZEE5 Website only',
+                'The code can be utilized for one-time transaction only',
+                'The code can be used only against ZEE5 Premium HD Annual Plan',
+                'This offer is valid for a limited period only',
+                'The benefits under this Offer are non-transferable. No exchange or redemption for an equivalent cash amount or in any other form shall be allowed',
+                'Apart from these Terms & Conditions, the Customer will also be bound by the Terms of Use (https://www.zee5.com/termsofuse) or any such specific terms and conditions as provided by ZEE5 on their platform for using their services',
+                'To the extent permitted by law, ZEE5 or its representatives, employees, directors, officers or agents, shall not be liable for any loss suffered or sustained, to person or property including, but not limited to, consequential (including economic) loss by reason of any act or omission, deliberate or negligent on the part of ZEE5 or its representatives, employees, directors, officers or agents',
+               ' ZEE5 reserves the right at any time and from time to time to modify or discontinue, temporarily or permanently, this Offer with or without prior notice due to reasons outside its control or otherwise (including, without limitation, in the case of anticipated, suspected or actual fraud)',
+                'ZEE5 reserves the right to modify, add or delete any of the Terms and Conditions at any point of time at its sole discretion without serving any prior intimation to the Customers',
+                'The invalidity or unenforceability of any part of the Terms and Conditions shall not prejudice or affect the remaining parts of the Terms and Conditions to the extent that it is severable',
+                'ZEE5 shall not be responsible and/or liable in any manner whatsoever in case of any failed transaction as part of this offer NOR liable for any failure relating to technical, hardware, software, server, website, or other issues of any kind to the extent that these may prevent the Customer from participating in this offer',
+                'By availing this offer, it is deemed that the Customer has agreed to all the terms & conditions mentioned herein',
+           ],
+           redeemSteps : [
+           ' Visit ZEE5 website or click https://as.zee5.com/myaccount/subscription',
+            'Login using your mobile number or email id',
+            "Click 'Buy Plan'",
+           " Enter the code in the section that says, 'Apply Code' and click 'Apply'",
+            'Offer will get applied on the respective plan basis the entered code',
+            "Click on 'Buy Plan' after the code is applied to complete the transaction",
+            'Complete the payment of the discounted amount using the payment option of your choice',
+            'Pack will be instantly activated post successful payment transaction',
+           ]
         },
-        {
-            icon:gana,
-            offerTitle:'Gaana',
-            offer:"45 days free on Gaana Plus Membership",
-            value:'149',
-            code:'CHEGGGAANAFREE1',
-            offerLink:' https://gaana.onelink.me/35m8/scratchcard',
-            desclaimer:'Valid till 15th October 2025',
-            discription:'Ad-free music and downloads with Gaana Plus, featuring a vast song and podcast library.'
-        },
+        // {
+        //     icon:gana,
+        //     offerTitle:'Gaana',
+        //     offer:"45 days free on Gaana Plus Membership",
+        //     value:'149',
+        //     banner:gaanaBanner,
+        //     desclaimer:'Valid till 15th October 2025',
+        //     discription:'Ad-free music and downloads with Gaana Plus, featuring a vast song and podcast library.',
+        //     terms : [
+        //          'The offer is valid in the territory of India. ',
+        //          'This offer is not transferable. ',
+        //          'Offer valid till 15th Oct 2025. ',
+        //          'Input of Coupon Code gives the user 45 days subscription of Gaana Plus.' ,
+        //          'This coupon code will only work once per user.'
+        //    ],
+        //    redeemSteps : [
+        //    ' Sign in on the Gaana App ',
+        //     'Navigate to ì https://gaana.onelink.me/35m8/scratchcard î your browser ',
+        //    ' Enter the Unique Coupon Code ',
+        //    ' Make a transaction of Rs 1 to activate the subscription ',
+        //    ' Enjoy your 45 days Gaana Plus Subscription. ',
+        //     'In case you are not logged in on web/wap/app, you would need to login first and then enter - https://gaana.onelink.me/35m8/scratchcard'
+        //    ]
+        // },
         
         {
             icon:hotstar,
             offerTitle:'Disney+ Hotstar',
             offer:"25% off on 3-month Disney+ Hotstar Super plan",
             value:'75',
-            code:'CHEGGHS25OFF',
-            offerLink:'https://web.hotstar.com/in/onboarding/login?promo=HS_M3M50',
+            banner:hotstarBanner,
             desclaimer:'Valid till 31th March 2025',
-            discription:'Stream TV shows, movies, and live sports on Hotstar, your entertainment hub.'
+            discription:'Stream TV shows, movies, and live sports on Hotstar, your entertainment hub.',
+            terms : [
+                 'Offer is applicable for first time subscribers only',
+                 'In case of any dispute, the decision made by SIPL would be final and binding',
+                ' SIPL reserves the right to modify or amend the terms and conditions without any prior notice and such modifications shall be binding on the user',
+                 'Please refer to our https://www.hotstar.com/tnc/in for more information regarding the Disney+ Hotstar Service in general'
+           ],
+           redeemSteps : [
+           ]
         },
     ]
 
     const handleClose = () => {
+        setpaymentFlow(false)
         setTerms(false)
         setOpen(false);
     };
@@ -287,12 +383,17 @@ function Home (){
         setinfoDailog(false);
     };
     const handleClickOpenInfo = () => {
-        if(sessionStorage.getItem('otp')){
         setinfoDailog(true);
+    };
+    const handleUnlock = () => {
+        if(sessionStorage.getItem('otp')){
+            handlePayment()
         }else{
+            setinfoDailog(false);
+            setpaymentFlow(true)
             setOpen(true);  
         }
-    };
+    }
 
     const handleCloseSnackbar = () => {
         setOpenSnackbar(false);
@@ -308,6 +409,7 @@ function Home (){
           .matches(/^[0-9]{10}$/, "Mobile Number is incomplete.")
           .required("Mobile number is required")
       });
+
     const setDailog2 = (err,touched,values)=>{
         if(!err.mobileNumber && touched.mobileNumber){
             let indata ={
@@ -379,35 +481,35 @@ function Home (){
                     //sessionStorage.setItem('coupon',JSON.stringify(response.data.data))
                     //navigate('/offers', {state: {coupondeet: response.data.data}});
                     let offers = [
-                        {
-                            icon:lenscart,
-                            offerTitle:'LENSKART',
-                            offer: "Free 1 Year Gold Membership",
-                            value:'500',
-                            code: response.data.data[4].coupon,
-                            offerLink: response.data.data[4].redeemurl,
-                            banner:lenskartBanner,
-                            desclaimer:'Hurry! This offer expires in 45 days!',
-                            discription:'Premium eyewear solutions with stylish frames and lenses',
-                            terms : [
-                                 'Membership is valid for 365 days from the date of purchase.',
-                                 'Enhance the joy of Membership by extending it to your cherished friends and family by sharing your membership benefits',
-                                ' Buy 1 Get 1 Free is valid on Vincent Chase, Lenskart Air, John Jacobs, Hooper & New Balance (for Eyeglasses & Sunglasses).',
-                                 'Buy One Get One can be availed on Eyeglasses+Sunglasses / Eyeglasses+Eyeglasses / Sunglasses+Sunglasses.',
-                                 'Membership benefits can be availed 2 times a month.',
-                                ' Membership benefits are applicable across App, Website , 1500+ Stores & Home Try-On services.',
-                                ' Membership cannot be returned or refunded.',
-                                 'Both products need to be added in cart to avail Buy One Get One',
-                                 'Convenience fee of 49 will be applied at checkout.',
-                                 'Membership can be redeemed through online transactions only.',
-                                 'Lenskart.com reserves the right to change/modify terms and conditions of the coupon.',
-                            ],
-                            redeemSteps : [
-                               ' Visit- https://www.lenskart.com/lenskart-gold-membership.html?utm_source=oct24idfc&utm_medium=affiliate&utm_campaign=oct24idfc',
-                                'Add gold membership to your cart.',
-                                'Apply promo code at checkout page under tab  Have a voucher'
-                            ]
-                        },
+                        // {
+                        //     icon:lenscart,
+                        //     offerTitle:'LENSKART',
+                        //     offer: "Free 1 Year Gold Membership",
+                        //     value:'500',
+                        //     code: response.data.data[4].coupon,
+                        //     offerLink: response.data.data[4].redeemurl,
+                        //     banner:lenskartBanner,
+                        //     desclaimer:'Hurry! This offer expires in 45 days!',
+                        //     discription:'Premium eyewear solutions with stylish frames and lenses',
+                        //     terms : [
+                        //          'Membership is valid for 365 days from the date of purchase.',
+                        //          'Enhance the joy of Membership by extending it to your cherished friends and family by sharing your membership benefits',
+                        //         ' Buy 1 Get 1 Free is valid on Vincent Chase, Lenskart Air, John Jacobs, Hooper & New Balance (for Eyeglasses & Sunglasses).',
+                        //          'Buy One Get One can be availed on Eyeglasses+Sunglasses / Eyeglasses+Eyeglasses / Sunglasses+Sunglasses.',
+                        //          'Membership benefits can be availed 2 times a month.',
+                        //         ' Membership benefits are applicable across App, Website , 1500+ Stores & Home Try-On services.',
+                        //         ' Membership cannot be returned or refunded.',
+                        //          'Both products need to be added in cart to avail Buy One Get One',
+                        //          'Convenience fee of 49 will be applied at checkout.',
+                        //          'Membership can be redeemed through online transactions only.',
+                        //          'Lenskart.com reserves the right to change/modify terms and conditions of the coupon.',
+                        //     ],
+                        //     redeemSteps : [
+                        //        ' Visit- https://www.lenskart.com/lenskart-gold-membership.html?utm_source=oct24idfc&utm_medium=affiliate&utm_campaign=oct24idfc',
+                        //         'Add gold membership to your cart.',
+                        //         'Apply promo code at checkout page under tab  Have a voucher'
+                        //     ]
+                        // },
                         {
                             icon:audible,
                             offerTitle:'AUDIBLE',
@@ -486,32 +588,32 @@ function Home (){
                             'Pack will be instantly activated post successful payment transaction',
                            ]
                         },
-                        {
-                            icon:gana,
-                            offerTitle:'Gaana',
-                            offer:"Free 45 days Gaana Plus memebership at ₹ 1",
-                            value:'149',
-                            code: response.data.data[1].coupon,
-                            offerLink: response.data.data[1].redeemurl,
-                            banner:gaanaBanner,
-                            desclaimer:'Valid till 15th October 2025',
-                            discription:'Ad-free music and downloads with Gaana Plus, featuring a vast song and podcast library.',
-                            terms : [
-                                 'The offer is valid in the territory of India. ',
-                                 'This offer is not transferable. ',
-                                 'Offer valid till 15th Oct 2025. ',
-                                 'Input of Coupon Code gives the user 45 days subscription of Gaana Plus.' ,
-                                 'This coupon code will only work once per user.'
-                           ],
-                           redeemSteps : [
-                           ' Sign in on the Gaana App ',
-                            'Navigate to ì https://gaana.onelink.me/35m8/scratchcard î your browser ',
-                           ' Enter the Unique Coupon Code ',
-                           ' Make a transaction of Rs 1 to activate the subscription ',
-                           ' Enjoy your 45 days Gaana Plus Subscription. ',
-                            'In case you are not logged in on web/wap/app, you would need to login first and then enter - https://gaana.onelink.me/35m8/scratchcard'
-                           ]
-                        },
+                        // {
+                        //     icon:gana,
+                        //     offerTitle:'Gaana',
+                        //     offer:"Free 45 days Gaana Plus memebership at ₹ 1",
+                        //     value:'149',
+                        //     code: response.data.data[1].coupon,
+                        //     offerLink: response.data.data[1].redeemurl,
+                        //     banner:gaanaBanner,
+                        //     desclaimer:'Valid till 15th October 2025',
+                        //     discription:'Ad-free music and downloads with Gaana Plus, featuring a vast song and podcast library.',
+                        //     terms : [
+                        //          'The offer is valid in the territory of India. ',
+                        //          'This offer is not transferable. ',
+                        //          'Offer valid till 15th Oct 2025. ',
+                        //          'Input of Coupon Code gives the user 45 days subscription of Gaana Plus.' ,
+                        //          'This coupon code will only work once per user.'
+                        //    ],
+                        //    redeemSteps : [
+                        //    ' Sign in on the Gaana App ',
+                        //     'Navigate to ì https://gaana.onelink.me/35m8/scratchcard î your browser ',
+                        //    ' Enter the Unique Coupon Code ',
+                        //    ' Make a transaction of Rs 1 to activate the subscription ',
+                        //    ' Enjoy your 45 days Gaana Plus Subscription. ',
+                        //     'In case you are not logged in on web/wap/app, you would need to login first and then enter - https://gaana.onelink.me/35m8/scratchcard'
+                        //    ]
+                        // },
                         
                         {
                             icon:hotstar,
@@ -533,7 +635,10 @@ function Home (){
                            ]
                         },
                     ]
+                    if(paymentFlow){
+                    //handlePayment()
                     navigate('/offers', {state: {coupondeet: JSON.stringify(offers)}});
+                    }
                 }
                 else{
                     setwrongOtp(true)
@@ -558,9 +663,10 @@ function Home (){
     }
 
     useEffect(()=>{
-        if(sessionStorage.getItem('otp')){
-            setOpen(false);
-            }
+    if(sessionStorage.getItem('otp')){
+        setOpen(false);
+        setTerms(false)
+    }
     if (timeLeft === 0) {
         clearInterval(time.current);
         time.current = null;  
@@ -631,7 +737,7 @@ function Home (){
                 <span className="w-8 h-8 border-[1px] md:border-none border-white rounded-full aspect-square flex items-center justify-center">
                     1
                 </span>
-                <span className="text-xl pb-1  md:text-center w-fit">Ensure your card is activated</span>
+                <span className="text-xl pb-1  md:text-center text-left w-fit">Ensure your credit card is activated</span>
                 <Box
                     onClick={handleClickOpenInfo}
                     sx={{
@@ -654,7 +760,7 @@ function Home (){
                 <span className="w-8 h-8 border-[1px] md:border-none border-white rounded-full aspect-square flex items-center justify-center">
                     2
                 </span>
-                <span className="text-xl pb-1"> Enable your online transactions</span>
+                <span className="text-xl pb-1 text-left w-fit"> Enable your online transactions</span>
                 <Box
                     onClick={handleClickOpenInfo}
                     sx={{
@@ -679,20 +785,20 @@ function Home (){
     return(
         <>
         <main className={`w-full h-auto md:p-2 ${loader?'blur-sm animate-pulse':''}`}>
-            <section className="w-full md:p-5 py-10 bg-secondary text-primary md:rounded-2xl relative text-center md:text-left ">
+            <section className="w-full md:p-5 py-10 bg-secondary text-primary md:rounded-2xl relative text-center md:text-left pb-0 mb-0">
                 <h1 className="text-2xl font-semibold">
                     ₹1 Store
                 </h1>
-                <p className="md:max-w-96 text-xl pt-5">
+                <p className="md:max-w-96 text-xl pt-5 mb-5">
                 Shop exclusive bundle Offers at just ₹1!<br/> <em className="text-sm">Limited Period Offer!</em>
                 </p>
                 <img src={Logo} alt="logo" className="hidden md:block h-24 absolute right-10 top-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></img>
-                <section className="block md:hidden text-center w-full pb-10 md:pb-0 bg-secondary text-white rounded-2xl">
+                <section className="block md:hidden text-center w-full pb-10 md:pb-0 bg-white text-white rounded-3xl">
                 {poster}
                 </section>
             </section>
-            <div className="flex flex-col md:flex-row my-5 -translate-y-10 md:translate-y-0  md:static  bg-primary rounded-3xl p-2 md:p-0">
-            <section className="text-centerw-full  md:w-1/2 p-5  md:border-2 md:ml-2 md:mr-4 rounded-2xl">
+            <div className="flex flex-col md:flex-row my-5 -translate-y-10 md:translate-y-0  md:static  bg-primary md:rounded-3xl p-2 md:p-0">
+            <section className="text-centerw-full  md:w-1/2 p-5  md:border-2 md:ml-2 md:mr-4 md:rounded-2xl">
                 <h1 className="flex flex-wrap text-2xl font-bold text-center py-4 pb-12">
                     Offers worth ₹1317, now at ₹1!
                     {/* Total benefits worth <span className="underline md:no-underline pl-2">₹2,998</span> <img src={blast} alt="emoji" className="pl-2 md:hidden"></img> */}
@@ -710,11 +816,12 @@ function Home (){
                                 </div>
                             </div>
                             <div className="flex gap-2 min-w-fit">
-                                <div className="rounded-full px-4 p-1 bg-turiary text-center flex items-center min-w-fit gap-[6px]">worth <span className="flex line-through min-w-fit">₹ {offer.value} </span><span className="text-red-500 font-bold min-w-fit">₹ 1</span><img src={Gift} alt="gift" className="pl-2 md:hidden"></img></div>
+                                <div className="rounded-full px-4 p-1 bg-turiary text-center flex items-center min-w-fit gap-[6px]">worth <span className="flex  min-w-fit">₹ {offer.value} </span><img src={Gift} alt="gift" className="pl-2 md:hidden"></img></div>
                                 <CheckCircleOutlineIcon color="success" sx={{width:'40px',height:'40px', display:{xs:'none',md:'block'},}}/>
                             </div>
                             </div>
                             <p className="w-full md:hidden">{offer.offer}</p>
+                            <RedeemAccordion redeemSteps={offer?.redeemSteps} terms={offer?.terms}></RedeemAccordion>
                             </div>
                         )
                     })}
@@ -733,7 +840,7 @@ function Home (){
                     </div>
                 </div>
             </section>
-            <section  className="hidden md:block text-center w-full md:w-1/2 p-5 bg-secondary text-white rounded-2xl h-fit"> 
+            <section  className="hidden md:block text-center w-full md:w-1/2 p-5 bg-white text-white rounded-2xl h-fit"> 
                 {poster}
             </section>
             </div>
@@ -887,7 +994,7 @@ function Home (){
                 <div className="md:w-1/2 p-2 flex flex-col gap-4 items-center">
                     <h1 className='text-2xl font-semibold'style={{color:'#951B24',}}>Yes, I’m ready!</h1>
                     <p className="text-center md:text-left text-lg md:text-sm">Click below to unlock exclusive discount just for you at ₹ 1.</p>
-                    <Button variant="contained" onClick={handlePayment} sx={{borderRadius:'10px',backgroundColor:'#951B24', textTransform:'initial',width:'80%'}}>
+                    <Button variant="contained" onClick={handleUnlock} sx={{borderRadius:'10px',backgroundColor:'#951B24', textTransform:'initial',width:'80%'}}>
                         <img src={Lock} alt ='lock' className="pr-2 hidden md:block"></img>
                         <img src={LockG} alt ='lock' className="w-8 pr-2 md:hidden" ></img>
                         Unlock My Offer

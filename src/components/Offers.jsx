@@ -244,41 +244,41 @@ function Offers (){
     
 
     let offers = [
-        {
-            icon:lenscart,
-            offerTitle:'LENSKART',
-            offer: "Free 1 Year Gold Membership",
-            value:'500',
-            code: coupondeets[4].coupon,
-            offerLink: coupondeets[4].redeemurl,
-            desclaimer:'Hurry! This offer expires in 45 days!',
-            discription:'Premium eyewear solutions with stylish frames and lenses',
-            terms : [
-                 'Membership is valid for 365 days from the date of purchase.',
-                 'Enhance the joy of Membership by extending it to your cherished friends and family by sharing your membership benefits',
-                ' Buy 1 Get 1 Free is valid on Vincent Chase, Lenskart Air, John Jacobs, Hooper & New Balance (for Eyeglasses & Sunglasses).',
-                 'Buy One Get One can be availed on Eyeglasses+Sunglasses / Eyeglasses+Eyeglasses / Sunglasses+Sunglasses.',
-                 'Membership benefits can be availed 2 times a month.',
-                ' Membership benefits are applicable across App, Website , 1500+ Stores & Home Try-On services.',
-                ' Membership cannot be returned or refunded.',
-                 'Both products need to be added in cart to avail Buy One Get One',
-                 'Convenience fee of 49 will be applied at checkout.',
-                 'Membership can be redeemed through online transactions only.',
-                 'Lenskart.com reserves the right to change/modify terms and conditions of the coupon.',
-            ],
-            redeemSteps : [
-               ' Visit- https://www.lenskart.com/lenskart-gold-membership.html?utm_source=oct24idfc&utm_medium=affiliate&utm_campaign=oct24idfc',
-                'Add gold membership to your cart.',
-                'Apply promo code at checkout page under tab  Have a voucher'
-            ]
-        },
+        //{
+        //     icon:lenscart,
+        //     offerTitle:'LENSKART',
+        //     offer: "Free 1 Year Gold Membership",
+        //     value:'500',
+        //     code: coupondeets[4].coupon,
+        //     offerLink: coupondeets[4].redeemurl,
+        //     desclaimer:'Hurry! This offer expires in 45 days!',
+        //     discription:'Premium eyewear solutions with stylish frames and lenses',
+        //     terms : [
+        //          'Membership is valid for 365 days from the date of purchase.',
+        //          'Enhance the joy of Membership by extending it to your cherished friends and family by sharing your membership benefits',
+        //         ' Buy 1 Get 1 Free is valid on Vincent Chase, Lenskart Air, John Jacobs, Hooper & New Balance (for Eyeglasses & Sunglasses).',
+        //          'Buy One Get One can be availed on Eyeglasses+Sunglasses / Eyeglasses+Eyeglasses / Sunglasses+Sunglasses.',
+        //          'Membership benefits can be availed 2 times a month.',
+        //         ' Membership benefits are applicable across App, Website , 1500+ Stores & Home Try-On services.',
+        //         ' Membership cannot be returned or refunded.',
+        //          'Both products need to be added in cart to avail Buy One Get One',
+        //          'Convenience fee of 49 will be applied at checkout.',
+        //          'Membership can be redeemed through online transactions only.',
+        //          'Lenskart.com reserves the right to change/modify terms and conditions of the coupon.',
+        //     ],
+        //     redeemSteps : [
+        //        ' Visit- https://www.lenskart.com/lenskart-gold-membership.html?utm_source=oct24idfc&utm_medium=affiliate&utm_campaign=oct24idfc',
+        //         'Add gold membership to your cart.',
+        //         'Apply promo code at checkout page under tab  Have a voucher'
+        //     ]
+        // },
         {
             icon:audible,
             offerTitle:'AUDIBLE',
             offer:'Free 2 months subscription',
             value:'398',
-            code: coupondeets[2].coupon,
-            offerLink: coupondeets[2].redeemurl,
+            code: coupondeets[2]?.coupon,
+            offerLink: coupondeets[2]?.redeemurl,
             desclaimer:'Valid till 11th November 2024',
             discription:'Leading producer and provider of audio storytelling',
             terms : [
@@ -316,8 +316,8 @@ function Offers (){
             offerTitle:'ZEE5',
             offer:"15% Off on annual subscription",
             value:'179/ ₹ 150',
-            code: coupondeets[3].coupon,
-            offerLink: coupondeets[3].redeemurl,
+            code: coupondeets[3]?.coupon,
+            offerLink: coupondeets[3]?.redeemurl,
             desclaimer:'Valid till 30th November 2024',
             discription:'A leading digital entertainment platform with a wide variety of TV shows, movies, and web series',
             terms : [
@@ -348,39 +348,39 @@ function Offers (){
             'Pack will be instantly activated post successful payment transaction',
            ]
         },
-        {
-            icon:gana,
-            offerTitle:'Gaana',
-            offer:"Free 45 days Gaana Plus memebership at ₹ 1",
-            value:'149',
-            code: coupondeets[1].coupon,
-            offerLink: coupondeets[1].redeemurl,
-            desclaimer:'Valid till 15th October 2025',
-            discription:'Ad-free music and downloads with Gaana Plus, featuring a vast song and podcast library.',
-            terms : [
-                 'The offer is valid in the territory of India. ',
-                 'This offer is not transferable. ',
-                 'Offer valid till 15th Oct 2025. ',
-                 'Input of Coupon Code gives the user 45 days subscription of Gaana Plus.' ,
-                 'This coupon code will only work once per user.'
-           ],
-           redeemSteps : [
-           ' Sign in on the Gaana App ',
-            'Navigate to ì https://gaana.onelink.me/35m8/scratchcard î your browser ',
-           ' Enter the Unique Coupon Code ',
-           ' Make a transaction of Rs 1 to activate the subscription ',
-           ' Enjoy your 45 days Gaana Plus Subscription. ',
-            'In case you are not logged in on web/wap/app, you would need to login first and then enter - https://gaana.onelink.me/35m8/scratchcard'
-           ]
-        },
+        // {
+        //     icon:gana,
+        //     offerTitle:'Gaana',
+        //     offer:"Free 45 days Gaana Plus memebership at ₹ 1",
+        //     value:'149',
+        //     code: coupondeets[1].coupon,
+        //     offerLink: coupondeets[1].redeemurl,
+        //     desclaimer:'Valid till 15th October 2025',
+        //     discription:'Ad-free music and downloads with Gaana Plus, featuring a vast song and podcast library.',
+        //     terms : [
+        //          'The offer is valid in the territory of India. ',
+        //          'This offer is not transferable. ',
+        //          'Offer valid till 15th Oct 2025. ',
+        //          'Input of Coupon Code gives the user 45 days subscription of Gaana Plus.' ,
+        //          'This coupon code will only work once per user.'
+        //    ],
+        //    redeemSteps : [
+        //    ' Sign in on the Gaana App ',
+        //     'Navigate to ì https://gaana.onelink.me/35m8/scratchcard î your browser ',
+        //    ' Enter the Unique Coupon Code ',
+        //    ' Make a transaction of Rs 1 to activate the subscription ',
+        //    ' Enjoy your 45 days Gaana Plus Subscription. ',
+        //     'In case you are not logged in on web/wap/app, you would need to login first and then enter - https://gaana.onelink.me/35m8/scratchcard'
+        //    ]
+        // },
         
         {
             icon:hotstar,
             offerTitle:'Hotstar',
             offer:"Get 25% Off on 3 Month Super Plan MRP - Rs. 299 ",
             value:'75',
-            code: coupondeets[0].coupon,
-            offerLink: coupondeets[0].redeemurl,
+            code: coupondeets[0]?.coupon,
+            offerLink: coupondeets[0]?.redeemurl,
             desclaimer:'Valid till 31th March 2025',
             discription:'Stream TV shows, movies, and live sports on Hotstar, your entertainment hub.',
             terms : [
@@ -399,10 +399,10 @@ function Offers (){
     <>
         <section className="flex flex-col justify-center gap-3 lg:block w-full p-5 py-10 bg-secondary text-primary md:rounded-2xl relative text-center md:text-left pb-32 md:pb-10">
         <h1 className="text-3xl md:text-5xl font-semibold md:max-w-[80%] lg:max-w-[60%]" style={{lineHeight:'1.2'}}>
-        Congrats! You’ve redeemed the ₹ 1 Rupee deal.
+        Congrats! You’ve redeemed the ₹ 1 deal.
         </h1>
         <p className="md:max-w-[80%] lg:max-w-[60%] text-xl pt-5">
-        You can use your coupon code now or save it for later by choosing to send it to your email or mobile number.
+        You can use your coupon code now or save it for later by choosing to send it to your email id.
         </p>
         <div className="lg:absolute right-5 top-1/2 transform lg:-translate-x-1/2 lg:-translate-y-1/2 text-center">
         <img src={Logo} alt="logo" className="hidden lg:block h-32 absolute right-10 top-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></img>

@@ -638,8 +638,8 @@ function Home (handleLogin){
                         },
                     ]
                     if(paymentFlow){
-                    //handlePayment()
-                    navigate('/offers', {state: {coupondeet: JSON.stringify(offers)}});
+                    handlePayment()
+                    //navigate('/offers', {state: {coupondeet: JSON.stringify(offers)}});
                     }
                 }
                 else{

@@ -464,8 +464,8 @@ function Home (handleLogin){
             }
             makeApiCall('checkOTP',indata)
             .then((response) => {
-                // console.log(response?.data)
-                // console.log(response?.data?.data)
+                 console.log(response?.data)
+                 console.log(response?.data?.data)
                 if(response?.data?.status === 200){
                     setOpen(false)
                     setOtpDailog(false)
@@ -473,7 +473,12 @@ function Home (handleLogin){
                     setTimeLeft(10);
                     sessionStorage.setItem('otp', true)
                     //sessionStorage.setItem('token', response?.data?.data?.session)
-                    window.location.reload();
+                    //window.location.reload();
+                    //if(paymentFlow){
+                        handlePayment()
+                     //   navigate('/offers', {state: {coupondeet: JSON.stringify(offers)}});
+                    //}
+
                 }
                 else if(response?.data?.status === 201){
                     setOpen(false)

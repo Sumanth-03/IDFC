@@ -4,11 +4,13 @@ import mail from '../assets/mail_1.svg'
 import { CopyButton } from "./Offers";
 import audible from '../assets/audible.svg'
 import Button from '@mui/material/Button';
+import * as yup from 'yup';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import Logomixed from '../assets/logomixed.svg'
 import { Snackbar, Alert } from '@mui/material';
 import { RedeemAccordion } from "./Offers";
-
+import { sendMail } from "./Offers";
 import { Dialog, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 
@@ -19,7 +21,8 @@ function OfferDetails (){
     const [email, setEmail] = useState('')
     const [alertType, setalertType] = useState('')
     const [openalert, setOpenalert] = useState()
-
+    const [loader, setLoader]  = useState(false)
+    const [error, setError] = useState("");
     //----dummy
     const [ couponcods, setCouponcods ] = useState({}) 
     const getCode = (offerTitle,code)=>{
@@ -34,9 +37,8 @@ function OfferDetails (){
         setOpenalert(false)
     }
     const handlesetOpenalert = (type)=>{
-        setOpenEmailDailog(false)
-        setOpenalert(true)
         setalertType(type)
+        setOpenalert(true)
     }
     const location = useLocation()
     const offer = location.state
@@ -48,8 +50,27 @@ function OfferDetails (){
     //     code:'CHEGGIDFCZEP08128JOY'
     // }
     const handleClickEmailDailog = ()=>{
+        setEmail('')
         setOpenEmailDailog((pre)=>!pre)
     }
+
+    const emailSchema = yup.string()
+    .email("Please enter a valid email address")
+    .required("Email is required");
+
+    const handleChangeEmail = async (e,Blur=false) => {
+        const newEmail = e.target.value;
+        setEmail(newEmail);
+        if(Blur){
+            try {
+                await emailSchema.validate(newEmail);
+                setError(""); 
+            } catch (validationError) {
+                setError(validationError.message); 
+            }
+        }
+    };
+
     useEffect(() => {
         window.scrollTo(0, 0); 
     }, []);
@@ -131,8 +152,20 @@ function OfferDetails (){
             </IconButton>
             <div className="flex flex-col  pb-5 min-h-30 ">
                 <p className="font-semibold text-lg text-left">Enter your email :</p>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="px-2 py-1 w-full border !border-gray-300 rounded-lg mt-2 min-w-60 md:min-w-96" autoFocus></input>
-                <button onClick={()=>handlesetOpenalert('Mail')} className="bg-secondary py-1 rounded-2xl text-white mt-6 w-full">Email My Code</button>
+                <input
+                type="email"
+                value={email}
+                onChange={(e)=>handleChangeEmail(e)}
+                onBlur={(e)=>handleChangeEmail(e,true)}
+                className={`px-2 py-1 w-full border ${
+                    error ? "!border-red-500" : "!border-gray-300"
+                } rounded-lg mt-2 min-w-60 md:min-w-96`}
+                autoFocus
+            />
+            {error && (
+                <span className="text-red-500 text-sm mt-1">{error}</span>
+            )}
+                <button disabled={error} onClick={()=>sendMail(email,handlesetOpenalert,setOpenEmailDailog,setLoader)} className="bg-secondary py-1 rounded-2xl text-white mt-6 w-full">{loader ? <CircularProgress color="#fff" size={20}/> : 'Email My Code'}</button>
             </div>
         </Dialog>
         <Snackbar open={openalert} autoHideDuration={2000} onClose={handleClosealert}  anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>

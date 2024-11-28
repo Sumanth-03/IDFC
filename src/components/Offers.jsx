@@ -76,7 +76,7 @@ import { makeApiCallGet, makeApiCall, makeApiCallWithAuth, makeApiGetCallWithAut
  
 export const sendMail = (mailid,handlesetOpenalert,setOpenEmailDailog,setLoader)=>{
     setLoader(true)
-    makeApiCall('mailme',{"mailid": `${mailid}`})
+    makeApiCall('mailme',{"mailid": `${mailid}`, "phone": sessionStorage.getItem('phone'),})
     .then((res)=>{
         if(res?.data?.status === 200){
         setLoader(false)

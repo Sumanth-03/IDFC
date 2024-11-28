@@ -869,9 +869,9 @@ function Home (handleLogin){
             }}
         >
         <header className="flex justify-between items-center">
-            <div className=" text-secondary flex w-48 py-2 ">
-                <img src={Logomixed} alt="logo" className="hidden md:block w-auto h-full p-1 mr-2"></img>
-                <img src={Logomixed} alt="logo" className="md:hidden w-auto h-full p-1 mr-2"></img>
+            <div className=" text-secondary flex w-48 py-4 ">
+                {/* <img src={Logomixed} alt="logo" className="hidden md:block w-auto h-full p-1 mr-2"></img>
+                <img src={Logomixed} alt="logo" className="md:hidden w-auto h-full p-1 mr-2"></img> */}
                 {/* <span className="hidden md:block font-bold">IDFC FIRST <br/> Bank</span> */}
             </div>
 
@@ -922,7 +922,7 @@ function Home (handleLogin){
         </section>
         :
         <section className="flex flex-col items-center p-2 gap-2 relative text-gray-700">
-            <h1 className="font-bold text-lg ">Please Enter The 6 Digit Code sent to registered mobile number</h1>
+            <h1 className="font-bold text-lg ">Please Enter The 6 Digit Code Sent To Registered Mobile Number</h1>
             <div className="w-full text-left">
                 <label htmlFor="otp" className="text-xs">OTP</label>
                 <div className="flex gap-2 justify-evenly md:justify-normal pt-3">

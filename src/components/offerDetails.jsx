@@ -1,7 +1,7 @@
 import React ,{useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
 import mail from '../assets/mail_1.svg'
-import { CopyButton } from "./Offers";
+import { CopyButton } from "../utils/copyButton";
 import audible from '../assets/audible.svg'
 import Button from '@mui/material/Button';
 import * as yup from 'yup';
@@ -9,8 +9,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 import Logomixed from '../assets/logomixed.svg'
 import { Snackbar, Alert } from '@mui/material';
-import { RedeemAccordion } from "./Offers";
-import { sendMail } from "./Offers";
+import { RedeemAccordion } from "../utils/RedeemAccordion";
+import { sendMail } from "../utils/sendMail";
 import { Dialog, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 

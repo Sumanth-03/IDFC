@@ -31,7 +31,7 @@ import hotstarBanner from '../assets/hotstarBanner.png'
 import lenskartBanner from '../assets/lenskartBanner.png'
 import zee5Banner from '../assets/zee5Banner.png'
 
-import { RedeemAccordion } from "./Offers";
+import { RedeemAccordion } from "../utils/RedeemAccordion";
 
 function Home (handleLogin){
     const {open, setOpen} = handleLogin
@@ -221,7 +221,7 @@ function Home (handleLogin){
                        ]
                     },
                 ]
-                navigate('/offers', {state: {coupondeet: JSON.stringify(offers)}});
+                navigate('/offers', {state: {coupondeet: JSON.stringify(offers)},  replace: true });
             }
             
         })
@@ -645,7 +645,7 @@ function Home (handleLogin){
                     ]
                     //if(paymentFlow){
                     //handlePayment()
-                    navigate('/offers', {state: {coupondeet: JSON.stringify(offers)}});
+                    navigate('/offers',{  replace: true ,state: {coupondeet: JSON.stringify(offers)}});
                     //}
                 }
                 else{
@@ -658,7 +658,6 @@ function Home (handleLogin){
                     }
                 }  
             })
-             
         }
       };
 
@@ -694,6 +693,10 @@ function Home (handleLogin){
     inputRefs[0].current.focus();
     }
     }, [OtpDailog]);
+
+    useEffect(()=>{
+        setOtpValues(["", "", "", "","", ""])
+    },[open])
 
     const handlePayment = ()=>{
         let indata ={

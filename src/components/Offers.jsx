@@ -19,196 +19,17 @@ import lenscart from '../assets/lenscart.svg'
 import gana from '../assets/gana.svg'
 import hotstar from '../assets/hotstar.svg'
 
-import Tooltip from '@mui/material/Tooltip';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { Snackbar, Alert } from '@mui/material';
 import { useLocation, useNavigate } from "react-router-dom";
 
-import {
-    Accordion,
-    AccordionSummary,
-    AccordionDetails,
-    Typography,
-    Stepper,
-    StepConnector,
-    Step,
-    StepLabel,
-    List,
-    ListItem,
-    ListItemText,
-} from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { sendMail } from "../utils/sendMail";
+import { RedeemAccordion } from "../utils/RedeemAccordion";
+import { CopyButton } from "../utils/copyButton";
 
-import { makeApiCallGet, makeApiCall, makeApiCallWithAuth, makeApiGetCallWithAuth, makeSwinkApiCallWithAuth } from '../Services/Api'
-
-//let coupondeets = JSON.parse(sessionStorage.coupon);
-// if (localStorage.getItem("coupon") !== null) {
-// coupondeets = JSON.parse(sessionStorage.coupon);}
-
-//import emailjs from 'emailjs-com';
-
-// export const sendRedeemCodeEmail = (email, redeemCode) => {
-//     const serviceID = 'service_2ua4a3a'; 
-//     const templateID = 'template_97jd3ny'; 
-//     const userID = 'FhBMyAEf7LN1uwIOr';
-
-//     const templateParams = {
-//         user_email: email, 
-//         redeem_code: redeemCode,
-//     };
-
-//     emailjs.send(serviceID, templateID, templateParams, userID)
-//         .then((response) => {
-//             console.log('Email sent successfully!', response.status, response.text);
-//             alert('Redeem code sent to your email!');
-//         })
-//         .catch((error) => {
-//             console.error('Failed to send email:', error);
-//             alert('Failed to send redeem code email.');
-//         });
-// };
-
-// export const handleSendRedeemCode = (email) => {
-//     const userEmail = email;
-//     const redeemCode = 'CHEGGIDFCZEP08128JOY'; 
-//     //sendRedeemCodeEmail(userEmail, redeemCode);
-// };
- 
-export const sendMail = (mailid,handlesetOpenalert,setOpenEmailDailog,setLoader)=>{
-    setLoader(true)
-    makeApiCall('mailme',{"mailid": `${mailid}`, "phone": sessionStorage.getItem('phone'),})
-    .then((res)=>{
-        if(res?.data?.status === 200){
-        setLoader(false)
-            console.log('sucess',res)
-            setOpenEmailDailog(false)
-            handlesetOpenalert('Mail')
-        }
-    })
-    .catch((err)=>{
-        setLoader(false)
-        setOpenEmailDailog(false)
-        console.log(err)
-    })
-}
-
-export const RedeemAccordion = ({ redeemSteps, terms }) => {
-    return (
-        <div>
-            {redeemSteps?.length>=1 &&
-            <Accordion sx={{ border: 'none' ,boxShadow:'none'}}>
-                <AccordionSummary sx={{fontSize:'1rem',lineHeight:'1.5rem'}} expandIcon={<ExpandMoreIcon />}>
-                    Redemption Process
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Stepper
-                    orientation="vertical"
-                    connector={<StepConnector />}
-                    sx={{
-                        '& .MuiStepConnector-line': {
-                            borderColor: '#951B24',      
-                            borderStyle: 'dotted',
-                            marginY:'-10px',  
-                            height:'50px',
-                            border:'none',
-                            backgroundImage:'linear-gradient(to bottom, #000 40%, rgba(255, 255, 255, 0) 10%)',
-                            backgroundSize:' 1px 20px',
-                            backgroundRepeat: 'repeat-y'
-                        },
-                        '& .MuiStepIcon-root': {
-                            color: '#951B24 !important',          
-                        },
-                        '& .MuiStepLabel-root': {
-                        color: '#000000',   
-                        },
-                        '& .Mui-active .MuiStepLabel-label': {
-                        color: '#000000',   
-                        },
-                        '& .Mui-completed .MuiStepLabel-label': {
-                        color: '#000000',  
-                        },
-                        '& .MuiStepLabel-label': {
-                        color: '#555',
-                        },
-                    }}
-                    >
-                        {redeemSteps?.map((step, index) => (
-                            <Step key={index}>
-                                <StepLabel
-                                sx={{color:'#000'}}>{step}</StepLabel>
-                            </Step>
-                        ))}
-                    </Stepper>
-                </AccordionDetails>
-            </Accordion>
-            }
-            {terms?.length>=1 &&
-
-            <Accordion sx={{ border: 'none' ,boxShadow:'none'}}>
-                <AccordionSummary sx={{fontSize:'1rem',lineHeight:'1.5rem'}} expandIcon={<ExpandMoreIcon />}>
-                    Terms and Conditions
-                </AccordionSummary>
-                <AccordionDetails>
-                    <List>
-                        {terms?.map((term, index) => (
-                            <ListItem 
-                            key={index}
-                            sx={{
-                                display: 'list-item', 
-                                listStyleType: 'decimal', 
-                                marginBottom: '0px', 
-                                marginLeft:'20px'                              
-                            }}
-                              >
-                                <ListItemText sx={{ color: '#555' }} primary={term} />
-                            </ListItem>
-                        ))}
-                    </List>
-                </AccordionDetails>
-            </Accordion>
-            }
-        </div>
-    );
-};
-
-export function CopyButton({ textToCopy }) {
-    const [openSnackbar, setOpenSnackbar] = useState(false);
-  
-    const handleCopy = () => {
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        setOpenSnackbar(true);
-      });
-    };
-  
-    const handleCloseSnackbar = () => {
-      setOpenSnackbar(false);
-    };
-  
-    return (
-      <>
-        <Tooltip title="Copy to clipboard">
-          <IconButton onClick={handleCopy} aria-label="copy" sx={{padding:0}}>
-            <ContentCopyIcon sx={{color:'#951B24', width:'20px', padding:0}}/>
-          </IconButton>
-        </Tooltip>
-  
-        <Snackbar
-          open={openSnackbar}
-          autoHideDuration={2000}
-          onClose={handleCloseSnackbar}
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        >
-          <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
-            Copied to clipboard!
-          </Alert>
-        </Snackbar>
-      </>
-    );
-  }
 
 function Offers (){
     const location = useLocation();
-    let {coupondeet} = location.state;
+    let {coupondeet} = location.state || []
     const [open, setOpen] = useState()
     const [openalert, setOpenalert] = useState()
     const [openEmailDailog, setOpenEmailDailog] = useState()
@@ -218,7 +39,21 @@ function Offers (){
     const [error, setError] = useState("");
     const [loader, setLoader]  = useState(false)
     
-    const [coupondeets, setCoupondeets] = useState(JSON.parse(coupondeet) || [])
+    const [coupondeets, setCoupondeets] = useState(() => {
+        try {
+          if (coupondeet) {
+            return JSON.parse(coupondeet);
+          } else {
+            const storedCoupondeet = sessionStorage.getItem('coupondeet');
+            console.log(typeof(JSON.parse(storedCoupondeet)), storedCoupondeet)
+            console.log(JSON.parse(storedCoupondeet))
+            return storedCoupondeet ? JSON.parse(storedCoupondeet) : [];
+          }
+        } catch (e) {
+          console.error("Error parsing coupondeet:", e);
+          return [];
+        }
+      })
     const navigate = useNavigate()
 
     //----dummy
@@ -255,9 +90,6 @@ function Offers (){
         setOpenEmailDailog((pre)=>!pre)
     }
 
-    
-    //console.log("ff",coupondeet)
-    //setCoupondeets(coupondeet)
     useEffect(() => {
         window.scrollTo(0, 0); 
     }, []);
@@ -430,6 +262,24 @@ function Offers (){
         },
     ]
     console.log("ggg", offers)
+    
+    useEffect(() => {
+        const handleBackButton = (event) => {
+            window.history.pushState(null,null, window.location.href);
+            window.history.forward()
+        };
+        window.addEventListener('popstate', handleBackButton);
+        window.history.pushState(null,null, window.location.href);
+        return () => {
+          window.removeEventListener('popstate', handleBackButton);
+        };
+    }, [navigate]);
+
+    useEffect(() => {
+    if (coupondeet) {
+        sessionStorage.setItem('coupondeet', JSON.stringify(coupondeets));
+    }
+    }, [location]);
 
     return(
     <>

@@ -44,7 +44,7 @@ function Home (handleLogin){
     const navigate = useNavigate()
     const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
     const [otpValues, setOtpValues] = useState(["", "", "", "","", ""]);
-    const [timeLeft, setTimeLeft]  = useState(10)
+    const [timeLeft, setTimeLeft]  = useState(30)
     const [resend, setResend]  = useState(false)
     const time = useRef(null);
     const [loader, setLoader]  = useState(false)
@@ -221,7 +221,7 @@ function Home (handleLogin){
                        ]
                     },
                 ]
-                navigate('/offers', {state: {coupondeet: JSON.stringify(offers)},  replace: true });
+                navigate('/offers', {state: {coupondeet: JSON.stringify(offers)} });
             }
             
         })
@@ -387,8 +387,8 @@ function Home (handleLogin){
         setinfoDailog(true);
     };
     const handleUnlock = () => {
-        if(sessionStorage.getItem('otp')){
-            handlePayment()
+        if(sessionStorage.getItem('coupondeet')){
+            navigate('/offers')
         }else{
             setinfoDailog(false);
             setpaymentFlow(true)
@@ -470,7 +470,7 @@ function Home (handleLogin){
                     setOpen(false)
                     setOtpDailog(false)
                     clearInterval(time.current);  
-                    setTimeLeft(10);
+                    setTimeLeft(30);
                     sessionStorage.setItem('otp', true)
                     //sessionStorage.setItem('token', response?.data?.data?.session)
                     //window.location.reload();
@@ -484,7 +484,7 @@ function Home (handleLogin){
                     setOpen(false)
                     setOtpDailog(false)
                     clearInterval(time.current);  
-                    setTimeLeft(10);
+                    setTimeLeft(30);
                     sessionStorage.setItem('otp', true)
                     //sessionStorage.setItem('coupon',JSON.stringify(response.data.data))
                     //navigate('/offers', {state: {coupondeet: response.data.data}});
@@ -645,7 +645,7 @@ function Home (handleLogin){
                     ]
                     //if(paymentFlow){
                     //handlePayment()
-                    navigate('/offers',{  replace: true ,state: {coupondeet: JSON.stringify(offers)}});
+                    navigate('/offers',{ state: {coupondeet: JSON.stringify(offers)}});
                     //}
                 }
                 else{
@@ -678,7 +678,7 @@ function Home (handleLogin){
         clearInterval(time.current);
         time.current = null;  
         setResend(true)     
-        setTimeLeft(10); 
+        setTimeLeft(30); 
     }
     },[timeLeft])
 
@@ -710,7 +710,8 @@ function Home (handleLogin){
               if(response?.data?.data?.url){
                 let paymenturl = response.data.data.url;
                 //setIsloading(false);
-                window.location.href = paymenturl;
+                //window.location.href = paymenturl;
+                window.location.replace(paymenturl);
                 }
               /*else if(response?.data?.data?.data?.errorstring === "Failed"){
                  setIsloading(false);

@@ -263,17 +263,17 @@ function Offers (){
     ]
     console.log("ggg", offers)
     
-    useEffect(() => {
-        const handleBackButton = (event) => {
-            window.history.pushState(null,null, window.location.href);
-            window.history.forward()
-        };
-        window.addEventListener('popstate', handleBackButton);
-        window.history.pushState(null,null, window.location.href);
-        return () => {
-          window.removeEventListener('popstate', handleBackButton);
-        };
-    }, [navigate]);
+    // useEffect(() => {
+    //     const handleBackButton = (event) => {
+    //         window.history.pushState(null,null, window.location.href);
+    //         window.history.forward()
+    //     };
+    //     window.addEventListener('popstate', handleBackButton);
+    //     window.history.pushState(null,null, window.location.href);
+    //     return () => {
+    //       window.removeEventListener('popstate', handleBackButton);
+    //     };
+    // }, [navigate]);
 
     useEffect(() => {
     if (coupondeet) {

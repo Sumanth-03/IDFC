@@ -36,7 +36,7 @@ function Header (handleLogin){
         navigate(-1, { replace: true });
     };
     return(
-        <header className="fixed top-0 z-50 w-full h-20 flex flex-row justify-between  max-w-[1200px] bg-secondary md:bg-white background-gradient-md">
+        <header className="fixed top-0 z-50 w-full h-20 flex flex-row justify-between  max-w-[1200px] bg-[#80232A] md:bg-white background-gradient-md">
            {showBackButton && (
                 <button
                     onClick={goBack}

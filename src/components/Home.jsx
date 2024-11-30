@@ -1,7 +1,7 @@
 import React,{useState, useRef, useEffect} from "react";
 import Logo from '../assets/Logo.svg'
 import Logomixed from '../assets/logomixed.svg'
-import Banner from '../assets/Banner.png'
+import Banner from '../assets/Banner.jpg'
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import { Box } from '@mui/material';
 import zee5 from '../assets/zee5.svg'

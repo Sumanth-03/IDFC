@@ -743,7 +743,7 @@ function Home (handleLogin){
     const poster = (
     <section>
             <img src={Banner} alt="banner" className="mx-auto w-full py-10"></img>
-            <div className="p-3 py-5 mx-5 rounded-2xl flex flex-col items-start md:items-center gap-2" style={{backgroundColor:'#80232A'}}>
+            <div className="p-3 py-5 mx-5 rounded-2xl flex flex-col items-start md:items-center gap-2" style={{backgroundColor:'#9E1C28'}}>
             <h1 className="text-2xl pb-5 font-semibold">What You’ll Need to do!</h1>
                 <div className="flex items-center gap-2">
                 <span className="w-8 h-8 border-[1px] md:border-none border-white rounded-full aspect-square flex items-center justify-center">
@@ -845,7 +845,7 @@ function Home (handleLogin){
                         these exclusive perks and elevate your experience today! */}
                     </p>
                     <div className="text-center pt-3 font-semibold">
-                    <Button onClick={handleClickOpenInfo} variant="contained" sx={{borderRadius:'10px',backgroundColor:'#951B24', textTransform:'initial',width:{xs:'100%',md:'auto'}}}>
+                    <Button onClick={handleClickOpenInfo} variant="contained" sx={{borderRadius:'10px',backgroundColor:'#9E1C28', textTransform:'initial',width:{xs:'100%',md:'auto'}}}>
                         <img src={Lock} alt ='lock' className="pr-2 hidden md:block"></img>
                         <img src={LockG} alt ='lock' className="w-8 pr-2 md:hidden" ></img>
                         Buy Deal for ₹1
@@ -915,7 +915,7 @@ function Home (handleLogin){
                     <p className="ml-2 text-xs">I have read and accept<button className="text-blue-700" onClick={()=>navigate('/terms')}>Terms of Use </button> and <button className="text-blue-700" onClick={()=>{navigate('/privacypolicy')}}>Privacy Policy</button>.</p>
                     </div>
                     <div className="text-center pt-3">
-                    <Button disabled={!terms || errors.mobileNumber || !values?.mobileNumber==10 || !touched.mobileNumber } onClick={()=>setDailog2(errors,touched,values)} variant="contained" sx={{backgroundColor:'#951B24', textTransform:'initial', width:'80%', borderRadius:'10px'}}>
+                    <Button disabled={!terms || errors.mobileNumber || !values?.mobileNumber==10 || !touched.mobileNumber } onClick={()=>setDailog2(errors,touched,values)} variant="contained" sx={{backgroundColor:'#9E1C28', textTransform:'initial', width:'80%', borderRadius:'10px'}}>
                         Submit
                     </Button>
                     </div>
@@ -947,7 +947,7 @@ function Home (handleLogin){
                 {wrongOtp && <div className="text-red-400 text-xs pt-2">Incorrect OTP</div>}
             </div>
             <div className="text-center pt-3 w-full">
-                <Button disabled={otpValues.toString().length!==11} onClick={handleSubmit} variant="contained" sx={{ backgroundColor:'#951B24', textTransform:'initial', width:'100%', borderRadius:'10px'}}>
+                <Button disabled={otpValues.toString().length!==11} onClick={handleSubmit} variant="contained" sx={{ backgroundColor:'#9E1C28', textTransform:'initial', width:'100%', borderRadius:'10px'}}>
                     Continue
                 </Button>
                 {resend &&
@@ -1007,7 +1007,7 @@ function Home (handleLogin){
                 <div className="md:w-1/2 p-2 flex flex-col gap-4 items-center">
                     <h1 className='text-2xl font-semibold'style={{color:'#951B24',}}>Yes, I’m ready!</h1>
                     <p className="text-center md:text-left text-lg md:text-sm">Click below to unlock exclusive discount just for you at ₹ 1.</p>
-                    <Button variant="contained" onClick={handleUnlock} sx={{borderRadius:'10px',backgroundColor:'#951B24', textTransform:'initial',width:'80%'}}>
+                    <Button variant="contained" onClick={handleUnlock} sx={{borderRadius:'10px',backgroundColor:'#9E1C28', textTransform:'initial',width:'80%'}}>
                         <img src={Lock} alt ='lock' className="pr-2 hidden md:block"></img>
                         <img src={LockG} alt ='lock' className="w-8 pr-2 md:hidden" ></img>
                         Unlock My Offer

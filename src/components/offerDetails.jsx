@@ -84,7 +84,7 @@ function OfferDetails (){
                         <img src={offer.icon} alt='icon' className="w-10"></img>
                         <p>{offer.offerTitle}</p>
                     </div>
-                    <Button onClick={handleClickEmailDailog} sx={{backgroundColor:'#951B24', color:'#f5e8e9', borderRadius:'10px', paddingX:'20px',paddingY:'0px',height:'40px',border:'1px solid #ffffff', textTransform:'capitalize' }}>
+                    <Button onClick={handleClickEmailDailog} sx={{backgroundColor:'#9E1C28', color:'#f5e8e9', borderRadius:'10px', paddingX:'20px',paddingY:'0px',height:'40px',border:'1px solid #ffffff', textTransform:'capitalize' }}>
                         <img src={mail}></img>
                         <span className="hidden md:block pl-2">Email</span>
                     </Button>

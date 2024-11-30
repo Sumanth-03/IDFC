@@ -293,11 +293,11 @@ function Offers (){
         <div className="lg:absolute right-5 top-1/2 transform lg:-translate-x-1/2 lg:-translate-y-1/2 text-center">
         <img src={Logo} alt="logo" className="hidden lg:block h-32 absolute right-10 top-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></img>
         <div className="flex md:flex-row lg:flex-col p-2 gap-2 max-w-[600px] text-center justify-center">
-        <Button onClick={handleClickEmailDailog} sx={{backgroundColor:'#951B24', color:'#ffffff', borderRadius:'10px', paddingX:'20px', paddingY:'10px',textTransform:'capitalize',border:'1px solid white'}}>
+        <Button onClick={handleClickEmailDailog} sx={{backgroundColor:'#9E1C28', color:'#ffffff', borderRadius:'10px', paddingX:'20px', paddingY:'10px',textTransform:'capitalize',border:'1px solid white'}}>
             <img src={mail} className="hidden "></img><img src={mailMobile} className="pr-2"></img>
             <span  className="block"> Email My Codes</span>
         </Button>
-        {/* <Button onClick={()=>handlesetOpenalert('SMS')} sx={{backgroundColor:{xs:'#951B24',},'@media (min-width: 768px)':{backgroundColor:'#ffffff'}, color:'#951B24', borderRadius:'10px', paddingX:'20px', paddingY:'10px',paddingBottom:'5px',border:'1px solid white'}}>
+        {/* <Button onClick={()=>handlesetOpenalert('SMS')} sx={{backgroundColor:{xs:'#9E1C28',},'@media (min-width: 768px)':{backgroundColor:'#ffffff'}, color:'#951B24', borderRadius:'10px', paddingX:'20px', paddingY:'10px',paddingBottom:'5px',border:'1px solid white'}}>
             <img src={message} className="hidden md:block"></img><img src={messageMobile} className="md:hidden"></img>
             <span className="hidden md:block">SMS My Code</span>
         </Button> */}
@@ -327,12 +327,12 @@ function Offers (){
                     </div></>
                      }
                     <div className="hidden md:block text-center pt-3">
-                    <Button variant="contained" onClick={()=>handleClick(offer)} sx={{backgroundColor:'#951B24', textTransform:'initial' , width:'100%',borderRadius:'0.65rem'}}>
+                    <Button variant="contained" onClick={()=>handleClick(offer)} sx={{backgroundColor:'#9E1C28', textTransform:'initial' , width:'100%',borderRadius:'0.65rem'}}>
                         Offer Details & Redeem
                     </Button>
                     </div>
                     <div className="md:hidden text-center w-full pt-3">
-                    <Button variant="contained" onClick={()=>handleClickDailog(offer)} sx={{backgroundColor:'#951B24', textTransform:'initial', width:'100%',borderRadius:'0.65rem'}}>
+                    <Button variant="contained" onClick={()=>handleClickDailog(offer)} sx={{backgroundColor:'#9E1C28', textTransform:'initial', width:'100%',borderRadius:'0.65rem'}}>
                         Offer Details & Redeem
                     </Button>
                     </div>

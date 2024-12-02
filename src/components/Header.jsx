@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowBack } from '@mui/icons-material';
 
 function Header (handleLogin){
-    const {open, setOpen} = handleLogin
+    const {open, setOpen, setlogInFlow} = handleLogin
     const [logged, setLogged] = useState(false);
     const [showBackButton, setShowBackButton] = useState(false);
     const navigate = useNavigate()
@@ -22,6 +22,7 @@ function Header (handleLogin){
             navigate('/', { replace: true });
         }else{
             navigate('/');
+            setlogInFlow(true)
             setOpen(true)
         }
         

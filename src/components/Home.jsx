@@ -33,6 +33,8 @@ import zee5Banner from '../assets/zee5Banner.png'
 
 import { RedeemAccordion } from "../utils/RedeemAccordion";
 
+import CryptoJs, {enc} from 'crypto-js';
+
 function Home (handleLogin){
     const {open, setOpen} = handleLogin
     const [paymentFlow, setpaymentFlow] = useState(false)
@@ -54,6 +56,7 @@ function Home (handleLogin){
     const hdnRefNumber = queryParams.get('hdnRefNumber');
     const transactionId = queryParams.get('transactionId');
     const amount = queryParams.get('amount');
+
 
     useEffect(() => {
         if(hdnRefNumber){
@@ -413,10 +416,14 @@ function Home (handleLogin){
 
     const setDailog2 = (err,touched,values)=>{
         if(!err.mobileNumber && touched.mobileNumber){
+
+            var key = enc.Hex.parse('000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f');
+            var encphone = CryptoJs.AES.encrypt(values.mobileNumber, key, { mode: CryptoJs.mode.ECB }).toString();
+
             let indata ={
-                phone: values.mobileNumber
+                phone: encphone
                }
-               sessionStorage.setItem('phone', values.mobileNumber)
+               sessionStorage.setItem('phone', encphone)
             makeApiCall('initiateLogin',indata)
             .then((response) => {
                 console.log(response?.data)

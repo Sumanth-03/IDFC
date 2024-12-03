@@ -36,7 +36,7 @@ import { RedeemAccordion } from "../utils/RedeemAccordion";
 import CryptoJs, {enc} from 'crypto-js';
 
 function Home (handleLogin){
-    const {open, setOpen} = handleLogin
+    const {open, setOpen, logInFlow, setlogInFlow} = handleLogin
     const [paymentFlow, setpaymentFlow] = useState(false)
     const [terms, setTerms] = useState(false);
     const [phone, setPhone] = useState(null);
@@ -56,8 +56,6 @@ function Home (handleLogin){
     const hdnRefNumber = queryParams.get('hdnRefNumber');
     const transactionId = queryParams.get('transactionId');
     const amount = queryParams.get('amount');
-
-
     useEffect(() => {
         if(hdnRefNumber){
             setLoader(true)
@@ -378,12 +376,13 @@ function Home (handleLogin){
     ]
 
     const handleClose = () => {
-        setpaymentFlow(false)
+        setlogInFlow(false)
         setTerms(false)
         setOpen(false);
     };
 
     const handleCloseInfo = () => {
+        setlogInFlow(false)
         setinfoDailog(false);
     };
     const handleClickOpenInfo = () => {
@@ -392,9 +391,10 @@ function Home (handleLogin){
     const handleUnlock = () => {
         if(sessionStorage.getItem('coupondeet')){
             navigate('/offers')
+        }else if(logInFlow){
+            handlePayment()
         }else{
             setinfoDailog(false);
-            setpaymentFlow(true)
             setOpen(true);  
         }
     }
@@ -475,20 +475,23 @@ function Home (handleLogin){
                  console.log(response?.data?.data)
                 if(response?.data?.status === 200){
                     setOpen(false)
+                    setTerms(false)
                     setOtpDailog(false)
                     clearInterval(time.current);  
                     setTimeLeft(30);
                     sessionStorage.setItem('otp', true)
                     //sessionStorage.setItem('token', response?.data?.data?.session)
                     //window.location.reload();
-                    //if(paymentFlow){
+                    if(logInFlow){
+                        handleClickOpenInfo()
+                    }else{
                         handlePayment()
-                     //   navigate('/offers', {state: {coupondeet: JSON.stringify(offers)}});
-                    //}
-
+                    }
+                    //   navigate('/offers', {state: {coupondeet: JSON.stringify(offers)}});
                 }
                 else if(response?.data?.status === 201){
                     setOpen(false)
+                    setTerms(false)
                     setOtpDailog(false)
                     clearInterval(time.current);  
                     setTimeLeft(30);
@@ -650,10 +653,8 @@ function Home (handleLogin){
                            ]
                         },
                     ]
-                    //if(paymentFlow){
                     //handlePayment()
                     navigate('/offers',{ state: {coupondeet: JSON.stringify(offers)}});
-                    //}
                 }
                 else{
                     setwrongOtp(true)

@@ -19,6 +19,7 @@ function Header (handleLogin){
         if(logged || sessionStorage.getItem('otp')){
             setLogged(false)
             sessionStorage.clear();
+            setlogInFlow(false)
             navigate('/', { replace: true });
         }else{
             navigate('/');

@@ -525,7 +525,7 @@ function Home (handleLogin){
                         {
                             icon:audible,
                             offerTitle:'AUDIBLE',
-                            offer:'Free 2 months subscription',
+                            offer:'2 Months Free on Audible Subscription',
                             value:'398',
                             code: response.data.data[2].coupon,
                             offerLink: response.data.data[2].redeemurl,
@@ -565,7 +565,7 @@ function Home (handleLogin){
                         {
                             icon:zee5,
                             offerTitle:'ZEE5',
-                            offer:"15% Off on annual subscription",
+                            offer:"15% off on Zee5 Annual Subscription",
                             value:'195',
                             code: response.data.data[3].coupon,
                             offerLink: response.data.data[3].redeemurl,
@@ -630,7 +630,7 @@ function Home (handleLogin){
                         {
                             icon:hotstar,
                             offerTitle:'Hotstar',
-                            offer:"Get 25% Off on 3 Month Super Plan MRP - Rs. 299 ",
+                            offer:"25% off on 3-month Disney+ Hotstar Super plan",
                             value:'75',
                             code: response.data.data[0].coupon,
                             offerLink: response.data.data[0].redeemurl,
@@ -799,14 +799,14 @@ function Home (handleLogin){
     return(
         <>
         <main className={`w-full h-auto md:p-2 ${loader?'blur-sm animate-pulse':''}`}>
-            <section className="w-full md:p-5 py-10 bg-secondary text-primary md:rounded-2xl relative text-center md:text-left pb-0 mb-0">
-                <h1 className="text-2xl font-semibold">
+            <section className="w-full md:p-5 py-10 pt-5  bg-secondary text-primary md:rounded-2xl relative text-center md:text-left pb-0 mb-0">
+                {/* <h1 className="text-2xl font-semibold">
                     ₹1 Store
-                </h1>
-                <p className="md:max-w-96 text-xl pt-5 mb-5">
+                </h1> */}
+                <p className="md:max-w-96 text-xl mb-5">
                 Shop exclusive bundle Offers at just ₹1!<br/> <em className="text-sm">Limited Period Offer!</em>
                 </p>
-                <img src={Logo} alt="logo" className="hidden md:block h-24 absolute right-10 top-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></img>
+                <img src={Logo} alt="logo" className="hidden md:block  h-[4.5rem] absolute right-10 top-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></img>
                 <section className="block md:hidden text-center w-full pb-10 md:pb-0 bg-white text-white rounded-3xl">
                 {poster}
                 </section>

@@ -1,7 +1,7 @@
 import React,{useState, useRef, useEffect} from "react";
 import Logo from '../assets/Logo.svg'
 import Logomixed from '../assets/logomixed.svg'
-import Banner from '../assets/Banner.jpg'
+import Banner from '../assets/Banner.png'
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import { Box } from '@mui/material';
 import zee5 from '../assets/zee5.svg'
@@ -629,7 +629,7 @@ function Home (handleLogin){
                         
                         {
                             icon:hotstar,
-                            offerTitle:'Hotstar',
+                            offerTitle:'Disney+ Hotstar',
                             offer:"25% off on 3-month Disney+ Hotstar Super plan",
                             value:'75',
                             code: response.data.data[0].coupon,
@@ -744,15 +744,15 @@ function Home (handleLogin){
 
     const poster = (
     <section>
-            <img src={Banner} alt="banner" className="mx-auto w-full py-10"></img>
+            <img src={Banner} alt="banner" className="mx-auto w-full pt-0 pb-4 md:pb-10"></img>
             <div className="p-3 py-5 mx-5 rounded-2xl flex flex-col items-start md:items-center gap-2" style={{backgroundColor:'#80232A'}}>
-            <h1 className="text-2xl pb-5 font-semibold">What You’ll Need to do!</h1>
+            <h1 className="text-xl pb-5 font-semibold">What You’ll Need to do!</h1>
                 <div className="flex items-center gap-2">
                 <span className="w-8 h-8 border-[1px] md:border-none border-white rounded-full aspect-square flex items-center justify-center">
                     1
                 </span>
                 <span className="text-xl pb-1  md:text-center text-left w-fit">Ensure your credit card is activated</span>
-                <Box
+                {/* <Box
                     onClick={handleClickOpenInfo}
                     sx={{
                         position: 'relative',
@@ -768,14 +768,14 @@ function Home (handleLogin){
                     }}
                 >
                     <QuestionMarkIcon sx={{ color: '#951B24', fontSize: '20px' }} />
-                </Box>
+                </Box> */}
             </div> 
             <div className="flex items-center gap-2">
                 <span className="w-8 h-8 border-[1px] md:border-none border-white rounded-full aspect-square flex items-center justify-center">
                     2
                 </span>
-                <span className="text-xl pb-1 text-left w-fit"> Enable your online transactions</span>
-                <Box
+                <span className="text-xl pb-1 text-left w-fit">Enable online transaction on your card</span>
+                {/* <Box
                     onClick={handleClickOpenInfo}
                     sx={{
                         position: 'relative',
@@ -791,7 +791,7 @@ function Home (handleLogin){
                     }}
                 >
                     <QuestionMarkIcon sx={{ color: '#951B24', fontSize: '20px' }} />
-                </Box>
+                </Box> */}
             </div> 
             </div>
         </section>
@@ -799,35 +799,37 @@ function Home (handleLogin){
     return(
         <>
         <main className={`w-full h-auto md:p-2 ${loader?'blur-sm animate-pulse':''}`}>
-            <section className="w-full md:p-5 py-10 pt-5  bg-secondary text-primary md:rounded-2xl relative text-center md:text-left pb-0 mb-0">
+            <section className="block md:hidden w-full md:p-5 py-5 pt-0  bg-secondary text-primary md:rounded-2xl relative text-center md:text-left pb-0 mb-0">
                 {/* <h1 className="text-2xl font-semibold">
                     ₹1 Store
                 </h1> */}
-                <p className="md:max-w-96 text-xl mb-5">
+                {/* <p className="md:max-w-96 text-xl mb-5">
                 Shop exclusive bundle Offers at just ₹1!<br/> <em className="text-sm">Limited Period Offer!</em>
                 </p>
-                <img src={Logo} alt="logo" className="hidden md:block  h-[4.5rem] absolute right-10 top-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></img>
-                <section className="block md:hidden text-center w-full pb-10 md:pb-0 bg-white text-white rounded-3xl">
+                <img src={Logo} alt="logo" className="hidden md:block  h-[4.5rem] absolute right-10 top-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45"></img> */}
+                <section className="block md:hidden text-center w-full pb-10 md:pb-0 bg-white text-white">
                 {poster}
                 </section>
             </section>
-            <div className="flex flex-col md:flex-row my-5 -translate-y-10 md:translate-y-0  md:static  bg-primary md:rounded-3xl p-2 md:p-0">
-            <section className="text-centerw-full  md:w-1/2 p-5  md:border-2 md:ml-2 md:mr-4 md:rounded-2xl">
+            <div className="flex flex-col md:flex-row mt-5 -translate-y-10 md:translate-y-0  md:static  bg-primary md:rounded-3xl p-2 md:p-0">
+            <section className="text-center w-full  md:w-1/2 p-5 pb-0 md:mb-4  md:border-2 md:ml-2 md:mr-4 md:rounded-2xl">
                 <h1 className="flex flex-wrap text-2xl font-bold text-center pt-4 ">
                     Offers worth ₹665, now at ₹1
                     {/* Total benefits worth <span className="underline md:no-underline pl-2">₹2,998</span> <img src={blast} alt="emoji" className="pl-2 md:hidden"></img> */}
                 </h1>
-                <h1 className="flex flex-wrap text-lg  text-center py-4 pb-12">Offer valid till  31st January 2025 </h1>
+                <h1 className="flex flex-wrap text-lg  text-center py-4 pb-12">Redeem before 31st Jan 2025</h1>
                 <div className="text-left">
-                    {offers.map((offer)=>{
+                    {offers.map((offer,index)=>{
+                        const isLast = index === offers.length - 1;
                         return(
-                            <div className="md:border-0 border-2 mb-4 rounded-xl shadow-md p-4">
+                            <>
+                            <div className="md:border-0 border-2 rounded-xl shadow-md p-4">
                             <div className="flex  justify-between mb-4 items-center md:border-b-0 border-b-[1px] pb-2">
                             <div className="flex gap-2 flex-wrap">
                                 <img src={offer.icon} className="w-12 h-12"></img>
                                 <div className="flex flex-col  justify-center">
-                                    <span className="min-w-fit text-gray-500 font-semibold">{offer.offerTitle}</span>
-                                    <p className="w-full hidden md:block">{offer.offer}</p>
+                                    <span className="min-w-fit text-gray-600 font-bold text-lg">{offer.offerTitle}</span>
+                                    <p className="w-full font-semibold hidden md:block">{offer.offer}</p>
                                 </div>
                             </div>
                             <div className="flex gap-2 min-w-fit">
@@ -835,22 +837,25 @@ function Home (handleLogin){
                                 <CheckCircleOutlineIcon color="success" sx={{width:'40px',height:'40px', display:{xs:'none',md:'block'},}}/>
                             </div>
                             </div>
-                            <p className="w-full md:hidden">{offer.offer}</p>
+                            <p className="w-full font-semibold md:hidden">{offer.offer}</p>
                             <RedeemAccordion redeemSteps={offer?.redeemSteps} terms={offer?.terms}></RedeemAccordion>
                             </div>
+                            {!isLast && <p className="text-center text-xl py-1 font-bold text-gray-500">+</p>}
+                            </>
+
                         )
                     })}
-                    <p className="text-sm text-gray-400">
-                        Unlock exclusive benefits with your IDFC FIRST Bank Credit Card
+                    <p className="text-sm text-gray-400 mt-4">
+                        Unlock above exclusive benefits….
                         {/* Unlock exclusive benefits with your IDFC card! As an IDFC FIRST bank cardholder, simply activate your card 
                         for online payments and make a payment of just ₹1 to gain access to great offers from premium brands. Enjoy
                         these exclusive perks and elevate your experience today! */}
                     </p>
-                    <div className="text-center pt-3 font-semibold">
+                    <div className="text-center pt-3 font-semibold md:pb-4">
                     <Button onClick={handleClickOpenInfo} variant="contained" sx={{borderRadius:'10px',backgroundColor:'#951B24', textTransform:'initial',width:{xs:'100%',md:'auto'}}}>
                         <img src={Lock} alt ='lock' className="pr-2 hidden md:block"></img>
                         <img src={LockG} alt ='lock' className="w-8 pr-2 md:hidden" ></img>
-                        Buy Deal for ₹1
+                            Buy all deals for ₹1
                     </Button>
                     </div>
                 </div>
@@ -1000,7 +1005,7 @@ function Home (handleLogin){
                 <div className="md:w-1/2 p-2 border-0 md:border-r-2  border-r-gray-300 flex flex-col gap-4 text-sm mb-4">
                     <h1 className="text-secondary text-xl font-semibold border-0 md:border-none pb-2 md:pb-2 border-b-2">Here’s how!</h1>
                     <p className="flex md:block items-center gap-2 border-0  md:border-none pb-2 md:pb-2 border-b-2">
-                        <span className="p-1 px-2 md:p-0 border-[3px] rounded-full md:border-none">1</span> <span>&nbsp;Activate Card: <span onClick={()=>{window.open('https://my.idfcfirstbank.com/digital-banking-app')}} className="text-blue-700">Download IDFC FIRST Mobile App </span>  {'>'} Go to Credit Cards {'>'} Generate PIN</span>
+                        <span className="p-1 px-2 md:p-0 border-[3px] rounded-full md:border-none">1</span> <span>&nbsp;Activate Card: <span onClick={()=>{window.open('https://my.idfcfirstbank.com/digital-banking-app')}} className="text-blue-700">Download IDFC FIRST Bank Mobile App </span>  {'>'} Go to Credit Cards {'>'} Generate PIN</span>
                     </p>
                     <p className="flex md:block items-center gap-2 border-0  md:border-none pb-2 md:pb-2 border-b-2">
                     <span className="p-1 px-2 md:p-0 border-[3px] rounded-full md:border-none">2</span> <span>&nbsp;Enable Online Transactions: Go to IDFC Mobile Banking App {'>'} Click Card Controls {'>'} Enable Online Transactions</span>
@@ -1012,7 +1017,7 @@ function Home (handleLogin){
                     <Button variant="contained" onClick={handleUnlock} sx={{borderRadius:'10px',backgroundColor:'#951B24', textTransform:'initial',width:'80%'}}>
                         <img src={Lock} alt ='lock' className="pr-2 hidden md:block"></img>
                         <img src={LockG} alt ='lock' className="w-8 pr-2 md:hidden" ></img>
-                        Unlock My Offer
+                        Proceed
                     </Button>
                 </div>
             </section>

@@ -311,7 +311,7 @@ function Offers (){
                     <div className="flex md:flex-col gap-3">
                     <img src={offer.icon} alt="icon" className="w-16"></img>
                     <div className="flex flex-col gap-1">
-                        <p className="text-gray-400 text-sm">{offer.offerTitle}</p>
+                        <p className="text-gray-600 text-lg">{offer.offerTitle}</p>
                         <p className="text-lg font-semibold">{offer.offer}</p>
                         <p className="md:hidden  text-gray-400">{offer?.desclaimer}</p>
                     </div>

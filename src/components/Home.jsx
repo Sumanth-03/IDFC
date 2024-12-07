@@ -840,7 +840,7 @@ function Home (handleLogin){
                             <p className="w-full font-semibold md:hidden">{offer.offer}</p>
                             <RedeemAccordion redeemSteps={offer?.redeemSteps} terms={offer?.terms}></RedeemAccordion>
                             </div>
-                            {!isLast && <p className="text-center text-xl py-1 font-bold text-gray-500">+</p>}
+                            {!isLast && <p className="text-center text-4xl py-1 font-bold text-gray-500">+</p>}
                             </>
 
                         )

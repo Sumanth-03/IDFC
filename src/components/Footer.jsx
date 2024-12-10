@@ -19,7 +19,7 @@ function Footer (){
                 <span className="pr-2">Contact us:</span>
                 <div className="flex flex-col items-center justify-center">
                     <span>support@cheggout.com</span>
-                    <span>+91 809890988</span>
+                    <span>+91 9886589260</span>
                 </div>
             </div>
         </footer>

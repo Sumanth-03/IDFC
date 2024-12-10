@@ -19,6 +19,7 @@ function Header (handleLogin){
         if(logged || sessionStorage.getItem('otp')){
             setLogged(false)
             sessionStorage.clear();
+            setlogInFlow(false)
             navigate('/', { replace: true });
         }else{
             navigate('/');
@@ -46,9 +47,10 @@ function Header (handleLogin){
                     <ArrowBack style={{ fontSize: '2rem' }} />
                 </button>
             )}
-            <div className=" text-secondary flex w-48 p-3">
-                <img src={logodark} alt="logo" className="hidden md:block w-auto h-full p-1 mr-2"></img>
-                <img src={logowhite} alt="logo" className="md:hidden w-auto h-full p-1 mr-2"></img>
+            <div className="text-white md:text-secondary text-2xl font-semibold w-48 p-3 flex items-center">
+                ₹1 Store
+                {/* <img src={logodark} alt="logo" className="hidden md:block w-auto h-full p-1 mr-2"></img>
+                <img src={logowhite} alt="logo" className="md:hidden w-auto h-full p-1 mr-2"></img> */}
                 {/* <span className="hidden md:block font-bold">IDFC FIRST <br/> Bank</span>  */}
             </div>
             <button className="flex items-center gap-2 pr-2" onClick={handleLogout}>

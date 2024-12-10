@@ -174,7 +174,7 @@ function Offers (){
            redeemSteps : [
             'Copy the voucher code displayed',
             'Visit https://www.audible.in/cheggout or click the redirection link',
-            'Enter voucher code in the box labelled ÎEnter your code hereÌ and click ÎRedeem nowÌ',
+            'Enter voucher code in the box labelled "Enter your code here" and click "Redeem now"',
             'Login with your Amazon account and choose credit/debit card or UPI (Super-fast signup with UPI!) for membership sign-up. Rupees Two(Rs. 2) will be charged and your membership starts.',
             'Subscription auto-renews at INR 199/month after the free period. Cancel anytime'
             ]
@@ -197,7 +197,7 @@ function Offers (){
                 'The code can be used only against ZEE5 Premium HD Annual Plan',
                 'This offer is valid for a limited period only',
                 'The benefits under this Offer are non-transferable. No exchange or redemption for an equivalent cash amount or in any other form shall be allowed',
-                'Apart from these Terms & Conditions, the Customer will also be bound by the Terms of Use (https://www.zee5.com/termsofuse) or any such specific terms and conditions as provided by ZEE5 on their platform for using their services',
+                'Apart from these Terms & Conditions, the Customer will also be bound by the Terms of Use (https://www.zee5.com /termsofuse) or any such specific terms and conditions as provided by ZEE5 on their platform for using their services',
                 'To the extent permitted by law, ZEE5 or its representatives, employees, directors, officers or agents, shall not be liable for any loss suffered or sustained, to person or property including, but not limited to, consequential (including economic) loss by reason of any act or omission, deliberate or negligent on the part of ZEE5 or its representatives, employees, directors, officers or agents',
                ' ZEE5 reserves the right at any time and from time to time to modify or discontinue, temporarily or permanently, this Offer with or without prior notice due to reasons outside its control or otherwise (including, without limitation, in the case of anticipated, suspected or actual fraud)',
                 'ZEE5 reserves the right to modify, add or delete any of the Terms and Conditions at any point of time at its sole discretion without serving any prior intimation to the Customers',
@@ -206,7 +206,7 @@ function Offers (){
                 'By availing this offer, it is deemed that the Customer has agreed to all the terms & conditions mentioned herein',
            ],
            redeemSteps : [
-           ' Visit ZEE5 website or click https://as.zee5.com/myaccount/subscription',
+           ' Visit ZEE5 website or click https://as.zee5.com/myaccount /subscription',
             'Login using your mobile number or email id',
             "Click 'Buy Plan'",
            " Enter the code in the section that says, 'Apply Code' and click 'Apply'",
@@ -311,7 +311,7 @@ function Offers (){
                     <div className="flex md:flex-col gap-3">
                     <img src={offer.icon} alt="icon" className="w-16"></img>
                     <div className="flex flex-col gap-1">
-                        <p className="text-gray-400 text-sm">{offer.offerTitle}</p>
+                        <p className="text-gray-600 text-lg">{offer.offerTitle}</p>
                         <p className="text-lg font-semibold">{offer.offer}</p>
                         <p className="md:hidden  text-gray-400">{offer?.desclaimer}</p>
                     </div>

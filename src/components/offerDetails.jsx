@@ -81,8 +81,8 @@ function OfferDetails (){
             <section className="flex flex-col gap-3 md:w-1/2 p-2 m-2 border rounded-lg ">
                 <div className="flex justify-between pt-7">
                     <div>
-                        <img src={offer.icon} alt='icon' className="w-10"></img>
-                        <p>{offer.offerTitle}</p>
+                        <img src={offer.icon} alt='icon' className="w-16"></img>
+                        <p className="text-gray-600 text-lg text-center">{offer.offerTitle}</p>
                     </div>
                     <Button onClick={handleClickEmailDailog} sx={{backgroundColor:'#951B24', color:'#f5e8e9', borderRadius:'10px', paddingX:'20px',paddingY:'0px',height:'40px',border:'1px solid #ffffff', textTransform:'capitalize' }}>
                         <img src={mail}></img>

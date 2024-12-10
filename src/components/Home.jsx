@@ -59,8 +59,8 @@ function Home (handleLogin){
     useEffect(() => {
         if(hdnRefNumber){
             setLoader(true)
-        makeApiCall('checkPaymentStatuss',{"order_id": hdnRefNumber, "phone": sessionStorage.getItem('phone')})
-        //makeApiCallWithAuth('checkPaymentStatuss',{"order_id": hdnRefNumber, "phone": sessionStorage.getItem('phone')})
+        //makeApiCall('checkPaymentStatuss',{"order_id": hdnRefNumber, "phone": sessionStorage.getItem('phone')})
+        makeApiCallWithAuth('checkPaymentStatuss',{"order_id": hdnRefNumber, "phone": sessionStorage.getItem('phone')})
         .then((response) => {
             console.log("rsd",response.data)
             setLoader(false)
@@ -712,7 +712,7 @@ function Home (handleLogin){
            }
          
         
-           makeApiCall('validationCard', indata)
+           makeApiCallWithAuth('validationCard', indata)
             .then((response) => {
               //console.log("resp", response?.data.data.url)
               if(response?.data?.data?.url){

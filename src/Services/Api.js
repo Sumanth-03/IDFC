@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const apiBaseUrl = "http://localhost:9000/api"; //"http://localhost:9000/api"; //"https://onerupee-store-api-stage.azurewebsites.net/api";
+const apiBaseUrl = "https://idfcfirstdealsapiprod-frc8g0gwehbpczf3.centralindia-01.azurewebsites.net/api"; //"http://localhost:9000/api"; //"https://onerupee-store-api-stage.azurewebsites.net/api";
       //"https://onerupee-store-api-prod.azurewebsites.net/api";
 
 const apiSwinkUrl = "https://sandbox.swinkpay-fintech.com/api/v2/plugin/pay"

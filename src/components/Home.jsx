@@ -480,7 +480,7 @@ function Home (handleLogin){
                     clearInterval(time.current);  
                     setTimeLeft(30);
                     sessionStorage.setItem('otp', true)
-                    //sessionStorage.setItem('token', response?.data?.data?.session)
+                    sessionStorage.setItem('token', response?.data?.data?.session)
                     //window.location.reload();
                     if(logInFlow){
                         handleClickOpenInfo()
@@ -496,7 +496,7 @@ function Home (handleLogin){
                     clearInterval(time.current);  
                     setTimeLeft(30);
                     sessionStorage.setItem('otp', true)
-                    //sessionStorage.setItem('coupon',JSON.stringify(response.data.data))
+                    sessionStorage.setItem('coupon',JSON.stringify(response.data.data))
                     //navigate('/offers', {state: {coupondeet: response.data.data}});
                     let offers = [
                         // {

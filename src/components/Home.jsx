@@ -32,6 +32,7 @@ import lenskartBanner from '../assets/lenskartBanner.png'
 import zee5Banner from '../assets/zee5Banner.png'
 
 import { RedeemAccordion } from "../utils/RedeemAccordion";
+import CustomAlert from '../utils/alert'
 
 const offers = [
     // {
@@ -70,7 +71,7 @@ const offers = [
         value:'398',
         offerLink:'https://www.audible.in/cheggout',
         banner:audibleBanner,
-        desclaimer:'Valid till 11th November 2024',
+        desclaimer:'Valid till 31st December 2024',
         discription:'Leading producer and provider of audio storytelling',
         terms : [
            ' This is a promotional offer ("Offer") provided and funded by Audible Singapore Private Limited ("Audible").',
@@ -109,7 +110,7 @@ const offers = [
         value:'195',
         offerLink: 'https://as.zee5.com/myaccount/subscription?utm_source=Partnerships&utm_medium=Cheggout&utm_campaign=CANSCt',
         banner:zee5Banner,
-        desclaimer:'Valid till 30th November 2024',
+        desclaimer:'Valid till 31st December 2024',
         discription:'A leading digital entertainment platform with a wide variety of TV shows, movies, and web series',
         terms : [
             'These Terms and Conditions shall constitute an agreement between ZEE5 and each Customer. By accepting and availing the Offer, the Customer accepts these Terms & Conditions as binding upon him/her.',
@@ -206,10 +207,17 @@ function Home (handleLogin){
     const [loader, setLoader]  = useState(false)
     const [openSnackbar, setOpenSnackbar] = useState(false);
 
+    const [openAlert, setOpenAlert] = useState(false)
+    const [alertConfig, setAlertConfig] = useState({
+        severity: "error",
+        message: "Error",
+    }); 
+
     const queryParams = new URLSearchParams(window.location.search);
     const hdnRefNumber = queryParams.get('hdnRefNumber');
     const transactionId = queryParams.get('transactionId');
     const amount = queryParams.get('amount');
+
     useEffect(() => {
         if(hdnRefNumber){
             setLoader(true)
@@ -222,8 +230,19 @@ function Home (handleLogin){
             {   //console.log(response.data)
                 //sessionStorage.setItem('coupon',JSON.stringify(response.data.data))
                 navigate('/offers', {state: {coupondeet: JSON.stringify(offers)} });
+            }else if(response.data.status === 201){
+                setAlertConfig({
+                    severity: "error",
+                    message: "Your payment pending, check later if not refunded",
+                })
+                setOpenAlert(true)
+            }else{
+                setAlertConfig({
+                    severity: "error",
+                    message: "Payment failed, try again",
+                })
+                setOpenAlert(true)
             }
-            
         })
         }
       },[]); 
@@ -738,6 +757,7 @@ function Home (handleLogin){
             User Not Found!
           </Alert>
         </Snackbar>
+        <CustomAlert openAlert={openAlert} setOpenAlert={setOpenAlert} alertConfig={alertConfig}/>
         </>
         
     )

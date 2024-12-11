@@ -303,10 +303,15 @@ function Home (handleLogin){
                 if(response?.data?.status === 200){
                     setOtpDailog(true)
                 }
-                else if(response?.data?.status === 401){
+                else if(response?.data?.status === 400){
                     //setShowError(response?.data?.message)
-                    setOpenSnackbar(true)
+                    //setOpenSnackbar(true)
                     //setTimeout(() => window.location.reload(), 3000);
+                    setAlertConfig({
+                        severity: "error",
+                        message: `${response?.data?.message}`,
+                    })
+                    setOpenAlert(true)
                 }
             });
 

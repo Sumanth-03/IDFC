@@ -15,6 +15,8 @@ import { Dialog, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 
 //import { sendRedeemCodeEmail, handleSendRedeemCode } from "./Offers";
+import { offerIds } from "./Offers";
+import { makeApiCallGet, makeApiCall, makeApiCallWithAuth, makeApiGetCallWithAuth, makeSwinkApiCallWithAuth } from '../Services/Api' 
 
 function OfferDetails (){
     const [openEmailDailog, setOpenEmailDailog] = useState()
@@ -23,16 +25,29 @@ function OfferDetails (){
     const [openalert, setOpenalert] = useState()
     const [loader, setLoader]  = useState(false)
     const [error, setError] = useState("");
-    //----dummy
-    const [ couponcods, setCouponcods ] = useState({}) 
-    const getCode = (offerTitle,code)=>{
-        setTimeout(() => {
-            setCouponcods((preObj)=>{
-                return {...preObj, [offerTitle]:code}
-            })
-        }, 500);
-    }
+    const location = useLocation()
+    const { offer, couponcodes} = location.state
+    const [ couponcode, setCouponcode ] = useState({...couponcodes}) 
 
+    const getCode = (offerTitle)=>{
+        makeApiCallWithAuth('viewCoupon',{'offerId':offerIds[offerTitle]})
+        .then((response)=>{
+            let coupon = sessionStorage.getItem('couponcodes');
+            coupon = coupon ? JSON.parse(coupon) : {};
+            const updatedCoupon = {
+                ...coupon,
+                [offerTitle]: response?.data?.data?.couponcode || response?.data?.data?.coupon,
+            };
+            sessionStorage.setItem('couponcodes', JSON.stringify(updatedCoupon));
+            setCouponcode((preObj)=>{
+                return {...preObj, [offerTitle]:(response?.data?.data?.couponcode || response?.data?.data?.coupon)}
+            })
+        })
+        .catch((err)=>{
+            console.error(err)
+        })
+    }
+    
     const handleClosealert = ()=>{
         setOpenalert(false)
     }
@@ -40,8 +55,7 @@ function OfferDetails (){
         setalertType(type)
         setOpenalert(true)
     }
-    const location = useLocation()
-    const offer = location.state
+    
     // const offer = {
     //     icon:audible,
     //     offerTitle:'AUDIBLE',
@@ -91,14 +105,14 @@ function OfferDetails (){
                 </div>
                 <p className="text-2xl font-semibold">{offer.offer} worth ₹ {offer.value}</p>
                 
-                {offer?.code &&
+                {offer.offerTitle != 'Disney+ Hotstar' &&
                     <>
                     <p className="text-xs">Copy this code and use it during your purchase at {offer.offerTitle}</p>
-                    <div className={`flex  gap-2  border-2  w-full ${couponcods[offer.offerTitle] ? "p-2 justify-between border-dashed w-full" : 'bg-secondary  text-white justify-center' }  rounded-lg border-secondary`}>
-                        <p className={`text-secondary ${couponcods[offer.offerTitle] ? '' : 'hidden'}`}>{offer.code}</p>
-                        <span className={`${couponcods[offer.offerTitle] ?  '' : 'inline-block w-full'}`}>
-                            <span className={`  ${couponcods[offer.offerTitle] ? '' : 'hidden'}`}><CopyButton className='' textToCopy={offer.code}></CopyButton></span>
-                            <span className={`inline-block w-full text-center p-1 ${couponcods[offer.offerTitle] ?  'hidden' : ''} `}onClick={()=>getCode(offer.offerTitle,offer.code)}>Get Code</span>
+                    <div className={`flex  gap-2  border-2  w-full ${couponcode[offer.offerTitle] ? "p-2 justify-between border-dashed w-full" : 'bg-secondary  text-white justify-center' }  rounded-lg border-secondary`}>
+                        <p className={`text-secondary ${couponcode[offer.offerTitle] ? '' : 'hidden'}`}>{couponcode?.[offer?.offerTitle]}</p>
+                        <span className={`${couponcode[offer.offerTitle] ?  '' : 'inline-block w-full'}`}>
+                            <span className={`  ${couponcode[offer.offerTitle] ? '' : 'hidden'}`}><CopyButton className='' textToCopy={couponcode?.[offer?.offerTitle]}></CopyButton></span>
+                            <span className={`inline-block w-full text-center p-1 ${couponcode[offer.offerTitle] ?  'hidden' : ''} `}onClick={()=>getCode(offer.offerTitle)}>Get Code</span>
                         </span>
                     </div>
                     </>

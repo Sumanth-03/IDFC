@@ -245,6 +245,15 @@ function Home (handleLogin){
             }
         })
         }
+        else{
+
+            makeApiCall('trackEvent',{event: 1})
+            .then((response) => {
+                console.log(response?.data)
+                
+            });
+            
+        }
       },[]); 
 
     const handleClose = () => {
